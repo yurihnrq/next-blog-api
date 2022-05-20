@@ -1,5 +1,10 @@
-import { sum } from './sum';
+import app from './config/app.config';
+import postsRouter from './routes/posts.routes';
 
-console.log('Hello World');
+const port = process.env.PORT || 3030;
 
-console.log(sum(1, 2));
+app.use(postsRouter);
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});

@@ -1,0 +1,34 @@
+{
+  "name": "next-blog-api",
+  "version": "0.0.1",
+  "description": "RESTful API to manage users and content for blogs.",
+  "main": ".build/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurihnrq/next-blog-api.git"
+  },
+  "keywords": [
+    "typescript",
+    "blog",
+    "api",
+    "express",
+    "nodejs",
+    "prisma"
+  ],
+  "author": "Yuri Henrique B. Maciel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yurihnrq/next-blog-api/issues"
+  },
+  "project": {
+    "url": "https://github.com/users/yurihnrq/projects/2/views/2"
+  },
+  "homepage": "https://github.com/yurihnrq/next-blog-api#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}

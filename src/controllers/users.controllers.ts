@@ -2,6 +2,35 @@ import { User } from '@prisma/client';
 import { Request, Response } from 'express';
 import prisma from '../config/prisma.config';
 
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: parseInt(id)
+      }
+    });
+
+    if (user) {
+      res.status(200).json({
+        message: 'User fetched successfully',
+        data: user
+      });
+    } else {
+      res.status(404).json({
+        message: 'No user found'
+      });
+    }
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: 'Something went wrong, please try again later.'
+    });
+  }
+};
+
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const { page } = req.query;

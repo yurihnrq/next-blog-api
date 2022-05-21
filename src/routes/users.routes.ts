@@ -3,7 +3,8 @@ import {
   getUserById,
   getAllUsers,
   createUser,
-  deleteUser
+  deleteUser,
+  updateUser
 } from '../controllers/users.controllers';
 import { validateUserInfo } from '../middleware/validate/userInfo.middleware';
 
@@ -13,5 +14,6 @@ router.get('/users/:id', getUserById);
 router.get('/users/', getAllUsers);
 router.post('/users/', validateUserInfo, createUser);
 router.delete('/users/:id', deleteUser);
+router.put('/users/:id', validateUserInfo, updateUser);
 
 export default router;

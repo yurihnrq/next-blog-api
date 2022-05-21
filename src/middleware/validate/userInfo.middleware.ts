@@ -18,13 +18,13 @@ export const validateUserInfo = (
 
   if (name.length < 3 || name.length > 254) {
     res.status(400).json({
-      message: 'Name must be between 3 and 20 characters'
+      message: 'Name must be between 3 and 254 characters'
     });
 
     return;
   }
 
-  if (email.length < 3 || email.length > 60) {
+  if (email.length < 5 || email.length > 60) {
     res.status(400).json({
       message: 'Email must be between 5 and 60 characters'
     });
@@ -32,7 +32,7 @@ export const validateUserInfo = (
     return;
   }
 
-  if (password.length < 3 || password.length > 60) {
+  if (password.length < 8 || password.length > 60) {
     res.status(400).json({
       message: 'Password must be between 8 and 60 characters'
     });

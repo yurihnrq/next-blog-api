@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { Request, Response } from 'express';
 import prisma from '../config/prisma.config';
 
@@ -83,5 +83,34 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(500).json({
       message: 'Something went wrong, please try again later.'
     });
+  }
+};
+
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    await prisma.user.delete({
+      where: {
+        id
+      }
+    });
+
+    res.status(200).json({
+      message: 'User deleted successfully'
+    });
+  } catch (error) {
+    const { meta, code } = error as Prisma.PrismaClientKnownRequestError;
+    console.log(error);
+
+    if (code === 'P2025') {
+      res.status(400).json({
+        message: 'User with provided id does not exist.'
+      });
+    } else {
+      res.status(500).json({
+        message: meta?.cause || 'Something went wrong, please try again later.'
+      });
+    }
   }
 };

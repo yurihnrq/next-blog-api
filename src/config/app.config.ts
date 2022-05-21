@@ -9,4 +9,10 @@ app.use(express.json());
 app.use(postsRouter);
 app.use(usersRouter);
 
+app.use((_req, res) => {
+  res.status(400).json({
+    message: 'Invalid request, please check url and method.'
+  });
+});
+
 export default app;

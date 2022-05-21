@@ -1,0 +1,58 @@
+import { User } from '@prisma/client';
+import { Request, Response } from 'express';
+import prisma from '../config/prisma.config';
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const { page } = req.query;
+
+    const pageInt = page ? parseInt(page as string) : 1;
+
+    const users = await prisma.user.findMany({
+      take: 10,
+      skip: 10 * (pageInt - 1)
+    });
+
+    if (users.length > 0) {
+      res.status(200).json({
+        message: 'Users fetched successfully',
+        data: users
+      });
+    } else {
+      res.status(404).json({
+        message: 'No users found'
+      });
+    }
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: 'Something went wrong, please try again later.'
+    });
+  }
+};
+
+export const createUser = async (req: Request, res: Response) => {
+  try {
+    const { name, email, password, birthDate } = req.body as User;
+
+    await prisma.user.create({
+      data: {
+        name,
+        email,
+        password,
+        birthDate: new Date(birthDate)
+      }
+    });
+
+    res.status(201).json({
+      message: 'User created successfully'
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: 'Something went wrong, please try again later.'
+    });
+  }
+};

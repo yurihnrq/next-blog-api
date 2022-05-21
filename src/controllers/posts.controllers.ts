@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../config/prisma.config';
 
-export const getAllPosts = async (req: Request, res: Response) => {
+export const getAllPosts = async (_req: Request, res: Response) => {
   const posts = await prisma.post.findMany();
 
   if (posts.length > 0) {

@@ -12,7 +12,8 @@
     "generate": "prisma generate",
     "migrate:dev": "prisma migrate dev",
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -48,7 +49,9 @@
     "@typescript-eslint/parser": "^5.25.0",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
     "jest": "^28.1.0",
+    "lint-staged": "^12.4.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
     "prisma": "^3.14.0",
@@ -59,5 +62,12 @@
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "prettier --write src/**/*.ts",
+      "eslint --cache --fix",
+      "jest --bail --findRelatedTests"
+    ]
   }
 }

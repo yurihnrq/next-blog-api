@@ -6,7 +6,7 @@ import {
   deleteUser,
   updateUser
 } from '../controllers/users.controllers';
-import { validateUserInfo } from '../middleware/validate/userInfo.middleware';
+import { validateUserInfo } from '../middleware/validation/userInfo.middleware';
 
 const router = Router();
 

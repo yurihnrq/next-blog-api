@@ -1,13 +1,21 @@
 ## Responses
-Every request will return a response that implements the following interface:
+Every request will return a response body that implements the following interface:
 ```typescript
-interface IResponse<T = unknow>{
+interface IResponseBody<T = unknow>{
   message: string;
   data?: unknown;
 }
 ```
-I would recomend you to use the `IResponse` interface in your front-end code.
+I would recomend you to use the `IResponseBody` interface in your front-end code.
 Its supports generics, so you can use it to treat the response with the expected `data`.
+
+You may will implement something like:
+```typescript
+interface IReponse<T = unknow> {
+  status: number;
+  body: IResponseBody<T>;
+}
+```
 
 Notice that response will `always contain a message`. If the request was successful,
 the response may will also contain a `data` field.

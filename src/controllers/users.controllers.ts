@@ -1,9 +1,12 @@
 import { Prisma, User } from '@prisma/client';
 import { Request, Response } from 'express';
 import prisma from '../config/prisma.config';
-import { IResponse } from '../types';
+import { IResponseBody } from '../types';
 
-export const getUserById = async (req: Request, res: Response<IResponse>) => {
+export const getUserById = async (
+  req: Request,
+  res: Response<IResponseBody>
+) => {
   try {
     const { id } = req.params;
 
@@ -32,7 +35,10 @@ export const getUserById = async (req: Request, res: Response<IResponse>) => {
   }
 };
 
-export const getAllUsers = async (req: Request, res: Response<IResponse>) => {
+export const getAllUsers = async (
+  req: Request,
+  res: Response<IResponseBody>
+) => {
   try {
     const { page } = req.query;
 
@@ -62,7 +68,10 @@ export const getAllUsers = async (req: Request, res: Response<IResponse>) => {
   }
 };
 
-export const createUser = async (req: Request, res: Response<IResponse>) => {
+export const createUser = async (
+  req: Request,
+  res: Response<IResponseBody>
+) => {
   try {
     const { name, email, password, birthDate } = req.body as User;
 
@@ -96,7 +105,10 @@ export const createUser = async (req: Request, res: Response<IResponse>) => {
   }
 };
 
-export const deleteUser = async (req: Request, res: Response<IResponse>) => {
+export const deleteUser = async (
+  req: Request,
+  res: Response<IResponseBody>
+) => {
   try {
     const { id } = req.params;
 
@@ -127,7 +139,10 @@ export const deleteUser = async (req: Request, res: Response<IResponse>) => {
   }
 };
 
-export const updateUser = async (req: Request, res: Response<IResponse>) => {
+export const updateUser = async (
+  req: Request,
+  res: Response<IResponseBody>
+) => {
   try {
     const { id } = req.params;
     const { name, email, password, birthDate, biography } = req.body as User;

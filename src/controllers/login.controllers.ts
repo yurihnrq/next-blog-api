@@ -1,10 +1,8 @@
-import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import prisma from '../configs/prisma.config';
-import { Controller, ILoginInfo } from '../types';
 
-export const login: Controller = async (req: Request, res: Response) => {
+export const login: Controller = async (req, res) => {
   try {
     const { email, password } = req.body;
 

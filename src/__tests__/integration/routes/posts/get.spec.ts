@@ -1,7 +1,6 @@
 import app from '../../../../configs/app.config';
 import request from 'supertest';
 import prisma from '../../../../configs/prisma.config';
-import { IResponse } from '../../../../types';
 import { Post } from '@prisma/client';
 
 describe('GET /posts', () => {

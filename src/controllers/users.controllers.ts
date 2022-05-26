@@ -1,7 +1,6 @@
 import { Prisma, User } from '@prisma/client';
 import prisma from '../configs/prisma.config';
 import bcrypt from 'bcrypt';
-import { Controller } from '../types';
 
 export const getUserById: Controller = async (req, res) => {
   try {

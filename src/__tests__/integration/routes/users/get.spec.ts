@@ -1,7 +1,6 @@
 import request from 'supertest';
 import app from '../../../../configs/app.config';
 import prisma from '../../../../configs/prisma.config';
-import { IResponse } from '../../../../types';
 import { users as usersMock } from '../../../../mocks/users.mock';
 
 describe('GET /users/', () => {

@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { ILoginInfo, Middleware } from '../../types';
 
 export const authJWT: Middleware = async (req, res, next) => {
   const {

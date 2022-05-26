@@ -2,7 +2,6 @@ import request from 'supertest';
 import { Prisma } from '@prisma/client';
 import app from '../../../../configs/app.config';
 import prisma from '../../../../configs/prisma.config';
-import { IResponse } from '../../../../types';
 import { users as usersMock } from '../../../../mocks/users.mock';
 import jwt from 'jsonwebtoken';
 

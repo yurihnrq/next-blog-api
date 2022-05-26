@@ -1,5 +1,4 @@
 import { User } from '@prisma/client';
-import { Middleware } from '../../types';
 
 export const validateUserInfo: Middleware = async (req, res, next) => {
   const { name, email, password, biography, birthDate } = req.body as User;

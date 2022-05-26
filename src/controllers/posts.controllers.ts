@@ -1,5 +1,4 @@
 import prisma from '../configs/prisma.config';
-import { Controller } from '../types';
 
 export const getAllPosts: Controller = async (_req, res) => {
   const posts = await prisma.post.findMany();

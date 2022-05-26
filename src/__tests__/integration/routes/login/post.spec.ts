@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import app from '../../../../configs/app.config';
 import prisma from '../../../../configs/prisma.config';
 import { users as usersMock } from '../../../../mocks/users.mock';
-import { IResponse } from '../../../../types';
 
 afterEach(() => {
   jest.resetAllMocks();

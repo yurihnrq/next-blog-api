@@ -1,16 +1,16 @@
-import { Request, Response } from 'express';
 import prisma from '../config/prisma.config';
+import { Controller } from '../types';
 
-export const getAllPosts = async (_req: Request, res: Response) => {
+export const getAllPosts: Controller = async (_req, res) => {
   const posts = await prisma.post.findMany();
 
   if (posts.length > 0) {
-    res.status(200).json({
+    return res.status(200).json({
       message: 'Posts fetched successfully',
       data: posts
     });
   } else {
-    res.status(404).json({
+    return res.status(404).json({
       message: 'No posts found'
     });
   }

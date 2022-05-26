@@ -6,6 +6,7 @@ import {
   deleteUser,
   updateUser
 } from '../controllers/users.controllers';
+import { authJWT } from '../middleware/authentication/auth.middleware';
 import { validateUserInfo } from '../middleware/validation/userInfo.middleware';
 
 const router = Router();
@@ -13,7 +14,7 @@ const router = Router();
 router.get('/users/:id', getUserById);
 router.get('/users/', getAllUsers);
 router.post('/users/', validateUserInfo, createUser);
-router.delete('/users/:id', deleteUser);
-router.put('/users/:id', validateUserInfo, updateUser);
+router.delete('/users/:id', authJWT, deleteUser);
+router.put('/users/:id', authJWT, validateUserInfo, updateUser);
 
 export default router;

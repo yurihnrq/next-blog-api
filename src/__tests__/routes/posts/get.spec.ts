@@ -1,6 +1,8 @@
-import app from '../../config/app.config';
+import app from '../../../config/app.config';
 import request from 'supertest';
-import prisma from '../../config/prisma.config';
+import prisma from '../../../config/prisma.config';
+import { IResponse } from '../../../types';
+import { Post } from '@prisma/client';
 
 describe('GET /posts', () => {
   it('should return all posts with status 200', async () => {
@@ -22,7 +24,7 @@ describe('GET /posts', () => {
     const {
       body: { data },
       status
-    } = await request(app).get('/posts');
+    }: IResponse<Post[]> = await request(app).get('/posts');
 
     expect(status).toBe(200);
     expect(data).toHaveLength(2);
@@ -33,7 +35,7 @@ describe('GET /posts', () => {
     const {
       body: { message },
       status
-    } = await request(app).get('/posts');
+    }: IResponse = await request(app).get('/posts');
 
     expect(status).toBe(404);
     expect(message).toBe('No posts found');

@@ -1,4 +1,4 @@
-import prisma from '../config/prisma.config';
+import prisma from '../configs/prisma.config';
 import { Controller } from '../types';
 
 export const getAllPosts: Controller = async (_req, res) => {

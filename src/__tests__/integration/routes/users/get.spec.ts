@@ -1,8 +1,8 @@
 import request from 'supertest';
-import app from '../../../config/app.config';
-import prisma from '../../../config/prisma.config';
-import { IResponse } from '../../../types';
-import { users as usersMock } from '../../../mocks/users.mock';
+import app from '../../../../configs/app.config';
+import prisma from '../../../../configs/prisma.config';
+import { IResponse } from '../../../../types';
+import { users as usersMock } from '../../../../mocks/users.mock';
 
 describe('GET /users/', () => {
   it('should return all users with status 200', async () => {

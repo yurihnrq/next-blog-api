@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../../config/app.config';
-import { IResponse } from '../../types';
+import app from '../../../configs/app.config';
+import { IResponse } from '../../../types';
 
 describe('invalid route handling', () => {
   it('should return status 400', async () => {

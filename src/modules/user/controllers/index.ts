@@ -1,5 +1,5 @@
 import { Prisma, User } from '@prisma/client';
-import prisma from '../configs/prisma.config';
+import prisma from '../../../configs/prisma.config';
 import bcrypt from 'bcrypt';
 
 export const getUserById: Controller = async (req, res) => {

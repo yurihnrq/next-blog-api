@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import prisma from '../configs/prisma.config';
+import prisma from '../../../configs/prisma.config';
 
 export const login: Controller = async (req, res) => {
   try {

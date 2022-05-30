@@ -5,9 +5,9 @@ import {
   createUser,
   deleteUser,
   updateUser
-} from '../controllers/users.controllers';
-import { authJWT } from '../middleware/authentication/auth.middleware';
-import { validateUserInfo } from '../middleware/validation/userInfo.middleware';
+} from '../controllers';
+import { authJWT } from '../../../middleware/authentication/auth.middleware';
+import { validateUserInfo } from '../../../middleware/validation/userInfo.middleware';
 
 const router = Router();
 

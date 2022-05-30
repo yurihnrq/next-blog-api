@@ -1,7 +1,7 @@
 import express from 'express';
-import postsRouter from '../routes/posts.routes';
-import usersRouter from '../routes/users.routes';
-import loginRouter from '../routes/login.routes';
+import postsRouter from '../modules/posts/routes';
+import usersRouter from '../modules/user/routes';
+import loginRouter from '../modules/login/routes';
 
 const app = express();
 

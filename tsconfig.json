@@ -22,5 +22,8 @@
   },
   "include": [
     "./src/**/*.ts"
-  ]
+  ],
+  "ts-node": {
+    "files": true
+  }
 }

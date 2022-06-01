@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 declare global {
   interface IResponseBody<T = unknown> {
@@ -14,6 +14,10 @@ declare global {
   interface ILoginInfo {
     userId: string;
     loginAt: string;
+  }
+
+  interface IRouter {
+    router: () => Router;
   }
 
   type Controller = (

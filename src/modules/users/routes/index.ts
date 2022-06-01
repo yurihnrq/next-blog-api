@@ -1,20 +1,17 @@
-import { Router } from 'express';
-import {
-  getUserById,
-  getAllUsers,
-  createUser,
-  deleteUser,
-  updateUser
-} from '../controllers';
+import { UsersControllers } from '../controllers';
 import authJWT from '../../../middlewares/authentication/jwt';
 import validateUserInfo from '../../../middlewares/validation/userInfo';
+import { UsersPrismaServices } from '../services';
+import { IUsersControllers, IUsersServices } from '../interfaces';
+import { UsersRouter } from './UsersRouter';
+import prisma from '../../../configs/prisma';
 
-const usersRouter = Router();
+const usersServices: IUsersServices = new UsersPrismaServices(prisma);
+const usersControllers: IUsersControllers = new UsersControllers(usersServices);
+const usersRouter: IRouter = new UsersRouter(
+  usersControllers,
+  validateUserInfo,
+  authJWT
+);
 
-usersRouter.get('/users/:id', getUserById);
-usersRouter.get('/users/', getAllUsers);
-usersRouter.post('/users/', validateUserInfo, createUser);
-usersRouter.delete('/users/:id', authJWT, deleteUser);
-usersRouter.put('/users/:id', authJWT, validateUserInfo, updateUser);
-
-export default usersRouter;
+export { usersRouter };

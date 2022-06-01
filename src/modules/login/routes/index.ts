@@ -1,8 +1,18 @@
-import { Router } from 'express';
-import { login } from '../controllers';
+import { LoginJwtServices } from '../services';
+import { LoginControllers } from '../controllers';
+import { UsersPrismaServices } from '../../users/services';
+import { ILoginControllers, ILoginServices } from '../interfaces';
+import { IUsersServices } from '../../users/interfaces';
+import { LoginRouter } from './LoginRouter';
+import prisma from '../../../configs/prisma';
 
-const router = Router();
+const loginServices: ILoginServices = new LoginJwtServices();
+const usersServices: IUsersServices = new UsersPrismaServices(prisma);
+const loginControllers: ILoginControllers = new LoginControllers(
+  loginServices,
+  usersServices
+);
 
-router.post('/login', login);
+const loginRouter: IRouter = new LoginRouter(loginControllers);
 
-export default router;
+export { loginRouter };

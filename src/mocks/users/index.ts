@@ -1,15 +1,8 @@
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  biography?: string;
-  birthDate: Date;
-}
+import { IUser } from '../../modules/users/interfaces';
 
 export const users: IUser[] = [
   {
-    id: 1,
+    id: '1',
     name: 'John Doe',
     email: 'johndoe@mail.com',
     password: '111111111',
@@ -17,7 +10,7 @@ export const users: IUser[] = [
     birthDate: new Date()
   },
   {
-    id: 2,
+    id: '2',
     name: 'Jane Doe',
     email: 'janedoe@mail.com',
     password: '222222222',
@@ -25,7 +18,7 @@ export const users: IUser[] = [
     birthDate: new Date()
   },
   {
-    id: 3,
+    id: '3',
     name: 'John Smith',
     email: 'johnsmith@mail.com',
     password: '333333333',
@@ -33,7 +26,7 @@ export const users: IUser[] = [
     birthDate: new Date()
   },
   {
-    id: 4,
+    id: '4',
     name: 'Jane Smith',
     email: 'janesmith@mail.com',
     password: '444444444',
@@ -41,7 +34,7 @@ export const users: IUser[] = [
     birthDate: new Date()
   },
   {
-    id: 5,
+    id: '5',
     name: 'Steven Doe',
     email: 'stevendoe@mail.com',
     password: '555555555',
@@ -49,7 +42,7 @@ export const users: IUser[] = [
     birthDate: new Date()
   },
   {
-    id: 6,
+    id: '6',
     name: 'Sandra Doe',
     email: 'sandradoe@mail.com',
     password: '666666666',

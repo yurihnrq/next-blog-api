@@ -1,29 +1,41 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 declare global {
-  declare interface IResponseBody<T = unknown> {
+  interface IResponseBody<T = unknown> {
     message: string;
     data?: T;
   }
 
-  export interface IResponse<T = unknown> {
+  interface IResponse<T = unknown> {
     status: number;
     body: IResponseBody<T>;
   }
 
-  export interface ILoginInfo {
+  interface ILoginInfo {
     userId: string;
     loginAt: string;
   }
 
-  export type Controller = (
-    req: Request,
-    res: Response<IResponseBody>
-  ) => Promise<Response<IResponseBody<unknown>>>;
+  interface IRouter {
+    router: () => Router;
+  }
 
-  export type Middleware = (
+  type Controller = (
     req: Request,
     res: Response<IResponseBody>,
     next: NextFunction
-  ) => Promise<Response<IResponseBody<unknown>> | void>;
+  ) => Promise<Response<IResponseBody<unknown>>>;
+
+  type Middleware = (
+    req: Request,
+    res: Response<IResponseBody>,
+    next: NextFunction
+  ) => Promise<void>;
+
+  type ErrorMiddleware = (
+    err: Error | TypeError | APIError,
+    req: Request,
+    res: Response<IResponseBody>,
+    next: NextFunction
+  ) => Promise<Response<IResponseBody<unknown>>>;
 }

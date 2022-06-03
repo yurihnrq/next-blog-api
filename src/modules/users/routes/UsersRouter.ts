@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { IUsersControllers } from '../interfaces';
 
 export class UsersRouter implements IRouter {
-  #router;
+  #router: Router;
 
   constructor(
     usersControllers: IUsersControllers,

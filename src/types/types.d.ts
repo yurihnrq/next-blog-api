@@ -20,6 +20,10 @@ declare global {
     router: () => Router;
   }
 
+  interface IRouterFactory extends IRouter {
+    buildRouter: () => IRouter;
+  }
+
   type Controller = (
     req: Request,
     res: Response<IResponseBody>,

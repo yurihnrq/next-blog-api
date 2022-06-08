@@ -30,5 +30,17 @@ describe('CreateUserService', () => {
     expect(usersRepository.create).toHaveBeenCalledWith(usersMock[0]);
   });
 
-  it('should throw ')
+  it('should throw an error if user with provided email already exists', async () => {
+    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
+      return Promise.resolve(usersMock[1]);
+    });
+
+    try {
+      await createUserService.execute(usersMock[0]);
+    } catch (error) {
+      expect((error as Error).message).toBe(
+        'User with provided email already exists.'
+      );
+    }
+  });
 });

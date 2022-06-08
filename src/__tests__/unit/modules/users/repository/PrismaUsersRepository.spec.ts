@@ -57,4 +57,22 @@ describe('PrismaUsersRepository', () => {
       skip: 10 * (1 - 1)
     });
   });
+
+  it('should create an user', async () => {
+    prisma.user.create = jest.fn().mockImplementation(() => {
+      return Promise.resolve(usersMock[0]);
+    });
+
+    await usersRepository.create(usersMock[0]);
+
+    expect(prisma.user.create).toHaveBeenCalledWith({
+      data: {
+        name: usersMock[0].name,
+        email: usersMock[0].email,
+        password: usersMock[0].password,
+        birthDate: new Date(usersMock[0].birthDate),
+        biography: usersMock[0].biography
+      }
+    });
+  });
 });

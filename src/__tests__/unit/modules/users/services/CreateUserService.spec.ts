@@ -42,5 +42,7 @@ describe('CreateUserService', () => {
         'User with provided email already exists.'
       );
     }
+
+    expect.assertions(1);
   });
 });

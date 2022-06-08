@@ -41,5 +41,7 @@ describe('GetUserByIdService', () => {
         'User with provided id does not exist.'
       );
     }
+
+    expect.assertions(1);
   });
 });

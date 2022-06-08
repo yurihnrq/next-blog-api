@@ -45,6 +45,8 @@ describe('UpdateUserService', () => {
         'User with provided id does not exist.'
       );
     }
+
+    expect.assertions(1);
   });
 
   it('should throw an error if a different user with provided email already exists', async () => {
@@ -62,5 +64,7 @@ describe('UpdateUserService', () => {
         'User with provided email already exists.'
       );
     }
+
+    expect.assertions(1);
   });
 });

@@ -96,4 +96,18 @@ describe('PrismaUsersRepository', () => {
       }
     });
   });
+
+  it('should delete an user', async () => {
+    prisma.user.delete = jest.fn().mockImplementation(() => {
+      return Promise.resolve(usersMock[0]);
+    });
+
+    await usersRepository.remove(usersMock[0].id as string);
+
+    expect(prisma.user.delete).toHaveBeenCalledWith({
+      where: {
+        id: usersMock[0].id
+      }
+    });
+  });
 });

@@ -29,4 +29,18 @@ describe('GetUserByIdService', () => {
     expect(returnedUser).toEqual(usersMock[0]);
     expect(usersRepository.getById).toHaveBeenCalledWith(usersMock[0].id);
   });
+
+  it('should throw an error if user is not found', async () => {
+    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
+      return Promise.resolve(null);
+    });
+
+    try {
+      await getUserByIdService.execute(usersMock[0].id as string);
+    } catch (error) {
+      expect((error as Error).message).toBe(
+        'User with provided id does not exist.'
+      );
+    }
+  });
 });

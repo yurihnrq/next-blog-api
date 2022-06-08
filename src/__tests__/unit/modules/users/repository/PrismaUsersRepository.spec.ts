@@ -17,7 +17,7 @@ describe('PrismaUsersRepository', () => {
     hashProvider
   );
 
-  it('should get an user by id', async () => {
+  it('should get a user by id', async () => {
     prisma.user.findUnique = jest.fn().mockImplementation(() => {
       return Promise.resolve(usersMock[0]);
     });
@@ -31,7 +31,7 @@ describe('PrismaUsersRepository', () => {
     });
   });
 
-  it('should get an user by email', async () => {
+  it('should get a user by email', async () => {
     prisma.user.findUnique = jest.fn().mockImplementation(() => {
       return Promise.resolve(usersMock[0]);
     });
@@ -58,7 +58,7 @@ describe('PrismaUsersRepository', () => {
     });
   });
 
-  it('should create an user', async () => {
+  it('should create a user', async () => {
     prisma.user.create = jest.fn().mockImplementation(() => {
       return Promise.resolve(usersMock[0]);
     });
@@ -66,6 +66,27 @@ describe('PrismaUsersRepository', () => {
     await usersRepository.create(usersMock[0]);
 
     expect(prisma.user.create).toHaveBeenCalledWith({
+      data: {
+        name: usersMock[0].name,
+        email: usersMock[0].email,
+        password: usersMock[0].password,
+        birthDate: new Date(usersMock[0].birthDate),
+        biography: usersMock[0].biography
+      }
+    });
+  });
+
+  it('should update a user', async () => {
+    prisma.user.update = jest.fn().mockImplementation(() => {
+      return Promise.resolve(usersMock[0]);
+    });
+
+    await usersRepository.update(usersMock[0]);
+
+    expect(prisma.user.update).toHaveBeenCalledWith({
+      where: {
+        id: usersMock[0].id
+      },
       data: {
         name: usersMock[0].name,
         email: usersMock[0].email,

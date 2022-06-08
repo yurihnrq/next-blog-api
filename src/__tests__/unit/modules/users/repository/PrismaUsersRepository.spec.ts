@@ -30,4 +30,18 @@ describe('PrismaUsersRepository', () => {
       }
     });
   });
+
+  it('should get an user by email', async () => {
+    prisma.user.findUnique = jest.fn().mockImplementation(() => {
+      return Promise.resolve(usersMock[0]);
+    });
+
+    await usersRepository.getByEmail(usersMock[0].email);
+
+    expect(prisma.user.findUnique).toHaveBeenCalledWith({
+      where: {
+        email: usersMock[0].email
+      }
+    });
+  });
 });

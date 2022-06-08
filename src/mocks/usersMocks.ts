@@ -1,6 +1,6 @@
 import { IUser } from '../modules/users/services/interfaces/IUser';
 
-export const users: IUser[] = [
+export const usersMock: IUser[] = [
   {
     id: '1',
     name: 'John Doe',

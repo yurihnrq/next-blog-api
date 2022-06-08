@@ -46,4 +46,21 @@ describe('UpdateUserService', () => {
       );
     }
   });
+
+  it('should throw an error if a different user with provided email already exists', async () => {
+    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
+      return Promise.resolve(usersMock[0]);
+    });
+    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
+      return Promise.resolve(usersMock[1]);
+    });
+
+    try {
+      await updateUserService.execute(usersMock[0]);
+    } catch (error) {
+      expect((error as Error).message).toBe(
+        'User with provided email already exists.'
+      );
+    }
+  });
 });

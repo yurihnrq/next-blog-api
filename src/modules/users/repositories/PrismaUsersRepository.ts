@@ -29,7 +29,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       }
     });
 
-    return user as IUser;
+    return user as IUser | null;
   };
 
   getAll = async (page: number) => {

@@ -12,7 +12,7 @@ export class CreateUserService implements ICreateUserService {
   execute = async (data: IUser): Promise<void> => {
     const existentUser = await this.#usersRepository.getByEmail(data.email);
 
-    if (existentUser) throw new Error('User already exists');
+    if (existentUser) throw new Error('User with provided email aready exists');
 
     await this.#usersRepository.create(data);
   };

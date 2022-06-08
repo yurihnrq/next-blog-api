@@ -22,4 +22,16 @@ describe('GetAllUsersService', () => {
     expect(users).toEqual(usersMock);
     expect(usersRepository.getAll).toHaveBeenCalledWith(1);
   });
+
+  it('should throw an error if no users are found', async () => {
+    jest.spyOn(usersRepository, 'getAll').mockResolvedValue([]);
+
+    try {
+      await getAllUsersService.execute(1);
+    } catch (error) {
+      expect((error as Error).message).toBe('No users found.');
+    }
+
+    expect.assertions(1);
+  });
 });

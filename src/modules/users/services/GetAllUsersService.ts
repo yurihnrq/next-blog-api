@@ -12,6 +12,8 @@ export class GetAllUsersService implements IGetAllUsersService {
   execute = async (page: number): Promise<IUser[]> => {
     const users = await this.#usersRepository.getAll(page);
 
+    if (users.length <= 0) throw new Error('No users found.');
+
     return users;
   };
 }

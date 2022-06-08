@@ -32,4 +32,18 @@ describe('UpdateUserService', () => {
     expect(usersRepository.getByEmail).toHaveBeenCalledWith(usersMock[0].email);
     expect(usersRepository.update).toHaveBeenCalled();
   });
+
+  it('should throw an error if user with provided id does not exist', async () => {
+    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
+      return Promise.resolve(null);
+    });
+
+    try {
+      await updateUserService.execute(usersMock[0]);
+    } catch (error) {
+      expect((error as Error).message).toBe(
+        'User with provided id does not exist.'
+      );
+    }
+  });
 });

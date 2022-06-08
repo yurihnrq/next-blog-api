@@ -44,4 +44,17 @@ describe('PrismaUsersRepository', () => {
       }
     });
   });
+
+  it('should get all users', async () => {
+    prisma.user.findMany = jest.fn().mockImplementation(() => {
+      return Promise.resolve(usersMock);
+    });
+
+    await usersRepository.getAll(1);
+
+    expect(prisma.user.findMany).toHaveBeenCalledWith({
+      take: 10,
+      skip: 10 * (1 - 1)
+    });
+  });
 });

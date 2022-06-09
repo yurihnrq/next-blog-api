@@ -45,7 +45,7 @@ export default {
   // modulePathIgnorePatterns: [],
 
   // A preset that is used as a base for Jest's configuration
-  preset: 'ts-jest',
+  // preset: 'ts-jest',
 
   // Automatically reset mock state before every test
   resetMocks: false,
@@ -69,11 +69,16 @@ export default {
     '/node_modules/',
     '<rootDir>/src/__mocks__/',
     '<rootDir>/src/configs/'
-  ]
+  ],
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
   //   "/node_modules/",
   //   "\\.pnp\\.[^\\/]+$"
-  // ]
+  // ],
+
+  // A map from regular expressions to paths to transformers
+  transform: {
+    '^.+\\.(t|j)sx?$': ['@swc/jest']
+  }
 };

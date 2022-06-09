@@ -5,13 +5,13 @@ import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUs
 import { PrismaUsersRepository } from '@src/modules/users/repositories/PrismaUsersRepository';
 import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
 
-describe('PrismaUsersRepository', () => {
-  const hashProvider: IHashProvider = new HashProviderMock();
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
-    prisma,
-    hashProvider
-  );
+const hashProvider: IHashProvider = new HashProviderMock();
+const usersRepository: IUsersRepository = new PrismaUsersRepository(
+  prisma,
+  hashProvider
+);
 
+describe('PrismaUsersRepository', () => {
   it('should get a user by id', async () => {
     prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 

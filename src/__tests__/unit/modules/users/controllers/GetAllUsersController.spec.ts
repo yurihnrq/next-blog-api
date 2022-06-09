@@ -14,6 +14,7 @@ const getAllUsersController: IController = new GetAllUsersController(
 
 describe('GetAllUsersController', () => {
   it('should call getAllUsersService and return all users', async () => {
+    jest.spyOn(getAllUsersService, 'execute');
     requestMock.query = {
       page: undefined
     };
@@ -28,6 +29,7 @@ describe('GetAllUsersController', () => {
       message: 'Users fetched successfully.',
       data: usersMock
     });
+    expect(getAllUsersService.execute).toHaveBeenCalled();
   });
 
   it('should parse page query param if it is provided', async () => {

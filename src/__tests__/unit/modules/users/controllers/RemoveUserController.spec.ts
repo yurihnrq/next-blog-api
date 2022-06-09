@@ -13,7 +13,7 @@ const removeUserController: IController = new RemoveUserController(
 );
 
 describe('RemoveUserController', () => {
-  it('should call removeUserService only if client user id matches the user id in the request', async () => {
+  it('should call removeUserService only if client user id matches with user id in the request', async () => {
     jest.spyOn(removeUserService, 'execute');
     requestMock.params = {
       id: '1'
@@ -31,7 +31,7 @@ describe('RemoveUserController', () => {
     expect(removeUserService.execute).toHaveBeenCalled();
   });
 
-  it('should throw an APIError if client user id does not match the user id in the request', async () => {
+  it('should throw an APIError if client user id does not match with user id in the request', async () => {
     jest.spyOn(removeUserService, 'execute');
     requestMock.params = {
       id: '1'

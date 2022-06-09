@@ -16,6 +16,7 @@ describe('GetAllUsersController', () => {
     requestMock.query = {
       page: undefined
     };
+
     const result = await getAllUsersController.execute(
       requestMock,
       responseMock
@@ -26,5 +27,17 @@ describe('GetAllUsersController', () => {
       message: 'Users fetched successfully.',
       data: usersMock
     });
+  });
+
+  it('should parse page query param if it is provided', async () => {
+    jest.spyOn(global, 'parseInt');
+    const page = '2';
+    requestMock.query = {
+      page
+    };
+
+    await getAllUsersController.execute(requestMock, responseMock);
+
+    expect(global.parseInt).toHaveBeenCalledWith(page);
   });
 });

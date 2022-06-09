@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IGetUserByIdService } from '../services/interfaces/IGetUserByIdService';
 import { IController } from '../../../types/IController';
-import APIError from '@src/models/APIError';
+import APIError from '@src/errors/APIError';
 
 export class GetUserByIdController implements IController {
   #getUserByIdService: IGetUserByIdService;

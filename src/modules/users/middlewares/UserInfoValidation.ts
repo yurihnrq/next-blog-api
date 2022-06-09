@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { IMiddleware } from '../../../types/IMiddleware';
-import APIError from '../../../models/APIError';
+import APIError from '../../../errors/APIError';
 import { IUser } from '../services/interfaces/IUser';
 
 export class UserInfoValidation implements IMiddleware {

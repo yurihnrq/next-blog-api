@@ -1,22 +1,15 @@
-import prisma from '../../../../../configs/prisma';
-import { usersMock } from '../../../../../mocks/usersMocks';
-import { IUsersRepository } from '../../../../../modules/users/repositories/interfaces/IUsersRepository';
-import { PrismaUsersRepository } from '../../../../../modules/users/repositories/PrismaUsersRepository';
-import { GetUserByIdService } from '../../../../../modules/users/services/GetUserByIdService';
-import { IGetUserByIdService } from '../../../../../modules/users/services/interfaces/IGetUserByIdService';
-import { BCryptHashProvider } from '../../../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
+import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { GetUserByIdService } from '@src/modules/users/services/GetUserByIdService';
+import { IGetUserByIdService } from '@src/modules/users/services/interfaces/IGetUserByIdService';
+
+const usersRepository: IUsersRepository = new UsersRepositoryMock();
+const getUserByIdService: IGetUserByIdService = new GetUserByIdService(
+  usersRepository
+);
 
 describe('GetUserByIdService', () => {
-  const hashProvider: IHashProvider = new BCryptHashProvider();
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
-    prisma,
-    hashProvider
-  );
-  const getUserByIdService: IGetUserByIdService = new GetUserByIdService(
-    usersRepository
-  );
-
   it('should return a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
 

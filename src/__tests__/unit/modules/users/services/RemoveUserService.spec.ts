@@ -1,22 +1,15 @@
-import prisma from '../../../../../configs/prisma';
-import { usersMock } from '../../../../../mocks/usersMocks';
-import { IUsersRepository } from '../../../../../modules/users/repositories/interfaces/IUsersRepository';
-import { PrismaUsersRepository } from '../../../../../modules/users/repositories/PrismaUsersRepository';
-import { IRemoveUserService } from '../../../../../modules/users/services/interfaces/IRemoveUserService';
-import { RemoveUserService } from '../../../../../modules/users/services/RemoveUserService';
-import { BCryptHashProvider } from '../../../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
+import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { IRemoveUserService } from '@src/modules/users/services/interfaces/IRemoveUserService';
+import { RemoveUserService } from '@src/modules/users/services/RemoveUserService';
+
+const usersRepository: IUsersRepository = new UsersRepositoryMock();
+const removeUserService: IRemoveUserService = new RemoveUserService(
+  usersRepository
+);
 
 describe('GetUserByIdService', () => {
-  const hashProvider: IHashProvider = new BCryptHashProvider();
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
-    prisma,
-    hashProvider
-  );
-  const removeUserService: IRemoveUserService = new RemoveUserService(
-    usersRepository
-  );
-
   it('should remove a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
     jest.spyOn(usersRepository, 'remove').mockImplementation();

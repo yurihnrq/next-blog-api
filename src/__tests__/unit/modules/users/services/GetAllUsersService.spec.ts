@@ -1,19 +1,12 @@
-import prisma from '../../../../../configs/prisma';
-import { usersMock } from '../../../../../mocks/usersMocks';
-import { IUsersRepository } from '../../../../../modules/users/repositories/interfaces/IUsersRepository';
-import { PrismaUsersRepository } from '../../../../../modules/users/repositories/PrismaUsersRepository';
-import { GetAllUsersService } from '../../../../../modules/users/services/GetAllUsersService';
-import { BCryptHashProvider } from '../../../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
+import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { GetAllUsersService } from '@src/modules/users/services/GetAllUsersService';
+
+const usersRepository: IUsersRepository = new UsersRepositoryMock();
+const getAllUsersService = new GetAllUsersService(usersRepository);
 
 describe('GetAllUsersService', () => {
-  const hashProvider: IHashProvider = new BCryptHashProvider();
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
-    prisma,
-    hashProvider
-  );
-  const getAllUsersService = new GetAllUsersService(usersRepository);
-
   it('should be able to get all users', async () => {
     jest.spyOn(usersRepository, 'getAll').mockResolvedValue(usersMock);
 

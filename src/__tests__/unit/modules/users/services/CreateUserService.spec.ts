@@ -1,30 +1,18 @@
-import prisma from '../../../../../configs/prisma';
-import { IUsersRepository } from '../../../../../modules/users/repositories/interfaces/IUsersRepository';
-import { PrismaUsersRepository } from '../../../../../modules/users/repositories/PrismaUsersRepository';
-import { CreateUserService } from '../../../../../modules/users/services/CreateUserService';
-import { ICreateUserService } from '../../../../../modules/users/services/interfaces/ICreateUserService';
-import { BCryptHashProvider } from '../../../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider';
-import { usersMock } from '../../../../../mocks/usersMocks';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
+import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { CreateUserService } from '@src/modules/users/services/CreateUserService';
+import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
+
+const usersRepository: IUsersRepository = new UsersRepositoryMock();
+const createUserService: ICreateUserService = new CreateUserService(
+  usersRepository
+);
 
 describe('CreateUserService', () => {
-  beforeAll(() => {
-    jest.spyOn(usersRepository, 'create').mockResolvedValue(usersMock[1]);
-  });
-
-  const hashProvider: IHashProvider = new BCryptHashProvider();
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
-    prisma,
-    hashProvider
-  );
-  const createUserService: ICreateUserService = new CreateUserService(
-    usersRepository
-  );
-
   it('should create a user', async () => {
-    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
-      return Promise.resolve(null);
-    });
+    jest.spyOn(usersRepository, 'create');
+    jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(null);
 
     await createUserService.execute(usersMock[0]);
 
@@ -32,10 +20,6 @@ describe('CreateUserService', () => {
   });
 
   it('should throw an error if user with provided email already exists', async () => {
-    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
-      return Promise.resolve(usersMock[1]);
-    });
-
     try {
       await createUserService.execute(usersMock[0]);
     } catch (error) {

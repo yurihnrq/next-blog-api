@@ -1,26 +1,19 @@
-import prisma from '../../../../../configs/prisma';
-import { IUsersRepository } from '../../../../../modules/users/repositories/interfaces/IUsersRepository';
-import { PrismaUsersRepository } from '../../../../../modules/users/repositories/PrismaUsersRepository';
-import { BCryptHashProvider } from '../../../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider';
-import { usersMock } from '../../../../../mocks/usersMocks';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { HashProviderMock } from '@mocks/providers/HashProviderMock';
+import prisma from '@src/configs/prisma';
+import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { PrismaUsersRepository } from '@src/modules/users/repositories/PrismaUsersRepository';
+import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
 
 describe('PrismaUsersRepository', () => {
-  const hashProvider: IHashProvider = new BCryptHashProvider();
-  jest
-    .spyOn(hashProvider, 'generateHash')
-    .mockImplementation((password: string) => {
-      return Promise.resolve(password);
-    });
+  const hashProvider: IHashProvider = new HashProviderMock();
   const usersRepository: IUsersRepository = new PrismaUsersRepository(
     prisma,
     hashProvider
   );
 
   it('should get a user by id', async () => {
-    prisma.user.findUnique = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 
     await usersRepository.getById('1');
 
@@ -32,9 +25,7 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should get a user by email', async () => {
-    prisma.user.findUnique = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 
     await usersRepository.getByEmail(usersMock[0].email);
 
@@ -46,9 +37,7 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should get all users', async () => {
-    prisma.user.findMany = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock);
-    });
+    prisma.user.findMany = jest.fn().mockResolvedValue(usersMock);
 
     await usersRepository.getAll(1);
 
@@ -59,9 +48,7 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should create a user', async () => {
-    prisma.user.create = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    prisma.user.create = jest.fn().mockResolvedValue(usersMock[0]);
 
     await usersRepository.create(usersMock[0]);
 
@@ -77,9 +64,7 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should update a user', async () => {
-    prisma.user.update = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    prisma.user.update = jest.fn().mockResolvedValue(usersMock[0]);
 
     await usersRepository.update(usersMock[0]);
 
@@ -98,9 +83,7 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should delete an user', async () => {
-    prisma.user.delete = jest.fn().mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    prisma.user.delete = jest.fn().mockResolvedValue(usersMock[0]);
 
     await usersRepository.remove(usersMock[0].id as string);
 

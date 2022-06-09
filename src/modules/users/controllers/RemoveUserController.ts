@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { IRemoveUserService } from '../services/interfaces/IRemoveUserService';
 import { IController } from '../../../types/IController';
+import APIError from '@src/errors/APIError';
 
 export class RemoveUserController implements IController {
   #removeUserService: IRemoveUserService;
@@ -11,6 +12,9 @@ export class RemoveUserController implements IController {
 
   execute = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
+
+    if (res.locals.userId !== id)
+      throw new APIError(401, 'Unauthorized request.');
 
     await this.#removeUserService.execute(id);
 

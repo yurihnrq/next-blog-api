@@ -1,10 +1,11 @@
 import { IGetAllUsersService } from '@src/modules/users/services/interfaces/IGetAllUsersService';
-import { GetAllUsersServiceMock } from '@mocks/modules/users/services/GetAllUsersServiceMock';
 import { GetAllUsersController } from '@src/modules/users/controllers/GetAllUsersController';
 import { IController } from '@src/types/IController';
-import { requestMock } from '@src/__mocks__/express/requestMock';
-import { responseMock } from '@src/__mocks__/express/responseMock';
-import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
+
+import { requestMock } from '@mocks/express/requestMock';
+import { responseMock } from '@mocks/express/responseMock';
+import { usersMock } from '@mocks/modules/users/usersMocks';
+import { GetAllUsersServiceMock } from '@mocks/modules/users/services/GetAllUsersServiceMock';
 
 const getAllUsersService: IGetAllUsersService = new GetAllUsersServiceMock();
 const getAllUsersController: IController = new GetAllUsersController(

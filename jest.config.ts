@@ -14,7 +14,11 @@ export default {
   coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/src/mocks/'],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/src/__mocks__/',
+    '<rootDir>/src/configs/'
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',
@@ -58,12 +62,14 @@ export default {
   // ],
 
   // The test environment that will be used for testing
-  testEnvironment: 'jest-environment-node'
+  testEnvironment: 'jest-environment-node',
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/src/__mocks__/',
+    '<rootDir>/src/configs/'
+  ]
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

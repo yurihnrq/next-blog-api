@@ -8,14 +8,15 @@ import { IHashProvider } from '../../../../../providers/interfaces/IHashProvider
 import { usersMock } from '../../../../../mocks/usersMocks';
 
 describe('CreateUserService', () => {
+  beforeAll(() => {
+    jest.spyOn(usersRepository, 'create').mockResolvedValue(usersMock[1]);
+  });
+
   const hashProvider: IHashProvider = new BCryptHashProvider();
   const usersRepository: IUsersRepository = new PrismaUsersRepository(
     prisma,
     hashProvider
   );
-  jest.spyOn(usersRepository, 'create').mockImplementation(() => {
-    return Promise.resolve(usersMock[1]);
-  });
   const createUserService: ICreateUserService = new CreateUserService(
     usersRepository
   );

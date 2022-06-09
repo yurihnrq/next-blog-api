@@ -18,12 +18,8 @@ describe('UpdateUserService', () => {
   );
 
   it('should update a user', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
-    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
-      return Promise.resolve(null);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
+    jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(null);
     jest.spyOn(usersRepository, 'update').mockImplementation();
 
     await updateUserService.execute(usersMock[0]);
@@ -34,9 +30,7 @@ describe('UpdateUserService', () => {
   });
 
   it('should throw an error if user with provided id does not exist', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(null);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
 
     try {
       await updateUserService.execute(usersMock[0]);
@@ -50,12 +44,8 @@ describe('UpdateUserService', () => {
   });
 
   it('should throw an error if a different user with provided email already exists', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
-    jest.spyOn(usersRepository, 'getByEmail').mockImplementation(() => {
-      return Promise.resolve(usersMock[1]);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
+    jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(usersMock[1]);
 
     try {
       await updateUserService.execute(usersMock[0]);

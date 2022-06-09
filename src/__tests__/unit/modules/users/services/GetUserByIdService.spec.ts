@@ -18,9 +18,7 @@ describe('GetUserByIdService', () => {
   );
 
   it('should return a user', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
 
     const returnedUser = await getUserByIdService.execute(
       usersMock[0].id as string
@@ -31,9 +29,7 @@ describe('GetUserByIdService', () => {
   });
 
   it('should throw an error if user is not found', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(null);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
 
     try {
       await getUserByIdService.execute(usersMock[0].id as string);

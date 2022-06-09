@@ -18,9 +18,7 @@ describe('GetUserByIdService', () => {
   );
 
   it('should remove a user', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(usersMock[0]);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
     jest.spyOn(usersRepository, 'remove').mockImplementation();
 
     await removeUserService.execute(usersMock[0].id as string);
@@ -30,9 +28,7 @@ describe('GetUserByIdService', () => {
   });
 
   it('should throw an error if user with provided id does not exist', async () => {
-    jest.spyOn(usersRepository, 'getById').mockImplementation(() => {
-      return Promise.resolve(null);
-    });
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
 
     try {
       await removeUserService.execute(usersMock[0].id as string);

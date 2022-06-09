@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { IMiddleware } from '../../../@types/IMiddleware';
+import { IMiddleware } from '../../../types/IMiddleware';
 import APIError from '../../../models/APIError';
 import { IUser } from '../services/interfaces/IUser';
 

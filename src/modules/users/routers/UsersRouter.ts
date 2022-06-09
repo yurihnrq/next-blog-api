@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { IMiddleware } from '../../../@types/IMiddleware';
+import { IMiddleware } from '../../../types/IMiddleware';
 import { createUserController } from '../controllers/factories/createUserController';
 import { getAllUsersController } from '../controllers/factories/getAllUsersController';
 import { UserInfoValidation } from '../middlewares/UserInfoValidation';

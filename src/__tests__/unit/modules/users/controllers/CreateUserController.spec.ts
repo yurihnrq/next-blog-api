@@ -1,5 +1,5 @@
 import { CreateUserController } from '@src/modules/users/controllers/CreateUserController';
-import { IController } from '@src/modules/users/controllers/interfaces/IController';
+import { IController } from '@src/types/IController';
 import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { requestMock } from '@mocks/express/requestMock';

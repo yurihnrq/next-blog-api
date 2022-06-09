@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ICreateUserService } from '../services/interfaces/ICreateUserService';
-import { IController } from './interfaces/IController';
+import { IController } from '../../../types/IController';
 
 export class CreateUserController implements IController {
   #createUserService: ICreateUserService;

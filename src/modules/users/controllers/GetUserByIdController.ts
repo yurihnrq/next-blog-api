@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IGetUserByIdService } from '../services/interfaces/IGetUserByIdService';
-import { IController } from './interfaces/IController';
+import { IController } from '../../../types/IController';
 
 export class GetUserByIdController implements IController {
   #getUserByIdService: IGetUserByIdService;

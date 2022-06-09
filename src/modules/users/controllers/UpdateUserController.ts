@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IUpdateUserService } from '../services/interfaces/IUpdateUserService';
-import { IController } from './interfaces/IController';
+import { IController } from '../../../types/IController';
 
 export class UpdateUserController implements IController {
   #updateUserService: IUpdateUserService;

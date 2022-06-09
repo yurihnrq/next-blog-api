@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IRemoveUserService } from '../services/interfaces/IRemoveUserService';
-import { IController } from './interfaces/IController';
+import { IController } from '../../../types/IController';
 
 export class RemoveUserController implements IController {
   #removeUserService: IRemoveUserService;

@@ -1,3 +1,5 @@
+import { IAuthInfo } from './IAuthInfo';
+
 export interface IGenerateTokenService {
-  execute(userId: string): Promise<string>;
+  execute(authInfo: IAuthInfo): Promise<string>;
 }

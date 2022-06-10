@@ -9,16 +9,14 @@ const generateTokenService: IGenerateTokenService = new GenerateTokenService(
   tokenProvider
 );
 
-const testId = 'test-id';
+const authInfo: IAuthInfo = {
+  userId: 'test-id',
+  authAt: new Date()
+};
 
 describe('GenerateTokenService', () => {
-  beforeAll(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date('10/06/2022'));
-  });
-
   it('should return a token', async () => {
-    const token = await generateTokenService.execute(testId);
+    const token = await generateTokenService.execute(authInfo);
 
     expect(token).toBeDefined();
   });
@@ -26,12 +24,7 @@ describe('GenerateTokenService', () => {
   it('should call tokenProvider to generate a token with IAuthInfo object as payload', async () => {
     jest.spyOn(tokenProvider, 'generateToken');
 
-    await generateTokenService.execute(testId);
-
-    const authInfo: IAuthInfo = {
-      userId: testId,
-      authAt: new Date()
-    };
+    await generateTokenService.execute(authInfo);
 
     expect(tokenProvider.generateToken).toHaveBeenCalledWith(authInfo);
   });

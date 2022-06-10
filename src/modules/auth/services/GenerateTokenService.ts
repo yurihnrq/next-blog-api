@@ -9,11 +9,8 @@ export class GenerateTokenService implements IGenerateTokenService {
     this.#tokenProvider = tokenProvider;
   }
 
-  execute = async (userId: string): Promise<string> => {
-    const token = this.#tokenProvider.generateToken<IAuthInfo>({
-      userId,
-      authAt: new Date()
-    });
+  execute = async (authInfo: IAuthInfo): Promise<string> => {
+    const token = this.#tokenProvider.generateToken<IAuthInfo>(authInfo);
 
     return token;
   };

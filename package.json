@@ -48,6 +48,8 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
+    "@swc/core": "^1.2.197",
+    "@swc/jest": "^0.2.21",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.1",
@@ -59,13 +61,12 @@
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
-    "jest": "^28.1.0",
+    "jest": "^28.1.1",
     "lint-staged": "^12.4.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
     "prisma": "^3.14.0",
     "supertest": "^6.2.3",
-    "ts-jest": "^28.0.2",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.4"
   },
@@ -76,7 +77,7 @@
     "*.{ts,js}": [
       "prettier --write src/**/*.ts",
       "eslint --cache --fix",
-      "jest --bail --findRelatedTests"
+      "jest --bail --findRelatedTests --passWithNoTests"
     ]
   }
 }

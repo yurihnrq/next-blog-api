@@ -11,5 +11,6 @@ describe('GenerateTokenService', () => {
     );
 
     expect(token).toBeDefined();
+    expect(token).toBe('token');
   });
 });

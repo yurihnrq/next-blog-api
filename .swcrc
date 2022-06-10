@@ -1,0 +1,27 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "target": "es2020",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@mocks/*": [
+        "src/__mocks__/*"
+      ]
+    },
+    "baseUrl": "."
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "exclude": [
+    "__tests__",
+    "__mocks__"
+  ]
+}

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { IMiddleware } from '../../../types/IMiddleware';
 import { CreateUserControllerFactory } from '../controllers/factories/CreateUserControllerFactory';
 import { GetAllUsersControllerFactory } from '../controllers/factories/GetAllUsersControllerFactory';
+import { GetUserByIdControllerFactory } from '../controllers/factories/GetUserByIdControllerFactory';
 import { UserInfoValidation } from '../middlewares/UserInfoValidation';
 
 export const UsersRouter = () => {
@@ -16,6 +17,8 @@ export const UsersRouter = () => {
   );
 
   router.get('/users/', GetAllUsersControllerFactory().execute);
+
+  router.get('/users/:id', GetUserByIdControllerFactory().execute);
 
   return router;
 };

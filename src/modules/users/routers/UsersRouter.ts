@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { IMiddleware } from '../../../types/IMiddleware';
-import { createUserController } from '../controllers/factories/createUserController';
-import { getAllUsersController } from '../controllers/factories/getAllUsersController';
+import { CreateUserControllerFactory } from '../controllers/factories/CreateUserControllerFactory';
+import { GetAllUsersControllerFactory } from '../controllers/factories/GetAllUsersControllerFactory';
 import { UserInfoValidation } from '../middlewares/UserInfoValidation';
 
 export const UsersRouter = () => {
@@ -12,10 +12,10 @@ export const UsersRouter = () => {
   router.post(
     '/users/',
     userInfoValidation.execute,
-    createUserController().execute
+    CreateUserControllerFactory().execute
   );
 
-  router.get('/users/', getAllUsersController().execute);
+  router.get('/users/', GetAllUsersControllerFactory().execute);
 
   return router;
 };

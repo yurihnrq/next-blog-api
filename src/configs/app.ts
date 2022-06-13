@@ -1,3 +1,4 @@
+import { AuthRouter } from '@src/modules/auth/routers/AuthRouter';
 import express from 'express';
 // express-async-errors must be imported to ensure that errors thrown
 // in async functions are handled by the error handler.
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use(AuthRouter());
 app.use(UsersRouter());
 
 export default app;

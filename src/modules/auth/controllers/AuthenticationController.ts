@@ -20,11 +20,11 @@ export class AuthenticationController implements IController {
 
     const authInfo = await this.#clientAuthService.execute(email, password);
 
-    await this.#generateTokenService.execute(authInfo);
+    const token = await this.#generateTokenService.execute(authInfo);
 
     return res.status(200).json({
       message: 'Authentication successful.',
-      data: 'token'
+      data: token
     });
   };
 }

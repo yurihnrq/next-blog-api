@@ -2,12 +2,16 @@ import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuth
 import { ClientAuthService } from '@src/modules/auth/services/ClientAuthService';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
-import { AuthRepositoryMock } from '@mocks/modules/auth/repositories/AuthRepositoryMock';
+import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
 import APIError from '@src/errors/APIError';
+import { HashProviderMock } from '@mocks/providers/HashProviderMock';
+import { AuthRepositoryMock } from '@mocks/modules/auth/repositories/AuthRepositoryMock';
 
 const authRepository: IAuthRepository = new AuthRepositoryMock();
+const hashProvider: IHashProvider = new HashProviderMock();
 const clientAuthService: IClientAuthService = new ClientAuthService(
-  authRepository
+  authRepository,
+  hashProvider
 );
 
 const loginInfo = {
@@ -39,6 +43,20 @@ describe('ClientAuthService', () => {
 
   it('should throw an APIError if no user is found with provided email', async () => {
     jest.spyOn(authRepository, 'getByEmail').mockResolvedValue(null);
+
+    try {
+      await clientAuthService.execute(loginInfo.email, loginInfo.password);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).message).toBe('Invalid credentials.');
+      expect((error as APIError).status).toBe(401);
+    }
+
+    expect.assertions(3);
+  });
+
+  it('should throw an APIError if hashProvider returns false for password comparison', async () => {
+    jest.spyOn(hashProvider, 'compareHash').mockResolvedValue(false);
 
     try {
       await clientAuthService.execute(loginInfo.email, loginInfo.password);

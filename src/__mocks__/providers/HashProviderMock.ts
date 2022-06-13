@@ -5,7 +5,7 @@ export class HashProviderMock implements IHashProvider {
     return password;
   }
 
-  public async compareHash(password: string, hash: string): Promise<boolean> {
-    return password === hash;
+  public async compareHash(_password: string, _hash: string): Promise<boolean> {
+    return true;
   }
 }

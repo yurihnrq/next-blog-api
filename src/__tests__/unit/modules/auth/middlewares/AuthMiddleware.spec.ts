@@ -3,12 +3,17 @@ import { IMiddleware } from '@src/types/IMiddleware';
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import APIError from '@src/errors/APIError';
+import { TokenProviderMock } from '@src/__mocks__/providers/TokenProviderMock';
+import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 
-const authMiddleware: IMiddleware = new AuthMiddleware();
-
-requestMock.headers.authorization = 'Bearer 123';
+const tokenProvider: ITokenProvider = new TokenProviderMock();
+const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
 
 describe('AuthMiddleware', () => {
+  beforeEach(() => {
+    requestMock.headers.authorization = 'Bearer 123';
+  });
+
   it('should call next function', async () => {
     const next = jest.fn();
 
@@ -30,5 +35,14 @@ describe('AuthMiddleware', () => {
     }
 
     expect.assertions(3);
+  });
+
+  it('should call tokenProvider to validate with splitted token', async () => {
+    const splitted = requestMock.headers.authorization?.split(' ')[1];
+    jest.spyOn(tokenProvider, 'verifyToken');
+
+    await authMiddleware.execute(requestMock, responseMock, jest.fn());
+
+    expect(tokenProvider.verifyToken).toHaveBeenCalledWith(splitted);
   });
 });

@@ -4,17 +4,33 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
 import { ClientAuthServiceMock } from '@mocks/modules/auth/services/ClientAuthServiceMock';
+import { IGenerateTokenService } from '@src/modules/auth/services/interfaces/IGenerateTokenService';
+import { GenerateTokenServiceMock } from '@mocks/modules/auth/services/GenerateTokenServiceMock';
+import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
 const clientAuthService: IClientAuthService = new ClientAuthServiceMock();
+const generateTokenService: IGenerateTokenService =
+  new GenerateTokenServiceMock();
 const authenticationController: IController = new AuthenticationController(
-  clientAuthService
+  clientAuthService,
+  generateTokenService
 );
 
 const token = 'token';
 const email = 'test@mail.com';
 const password = 'test-password';
 
+requestMock.body = {
+  email,
+  password
+};
+
 describe('AuthenticationController', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('13-06-2022'));
+  });
+
   it('should return a response with a token and a message', async () => {
     await authenticationController.execute(requestMock, responseMock);
 
@@ -27,13 +43,22 @@ describe('AuthenticationController', () => {
 
   it('should get IAuthInfo object from clientAuthService', async () => {
     jest.spyOn(clientAuthService, 'execute');
-    requestMock.body = {
-      email,
-      password
-    };
 
     await authenticationController.execute(requestMock, responseMock);
 
     expect(clientAuthService.execute).toHaveBeenCalledWith(email, password);
+  });
+
+  it('should call generateTokenService with IAuthInfo object', async () => {
+    const authInfo: IAuthInfo = {
+      userId: '1',
+      authAt: new Date()
+    };
+    jest.spyOn(clientAuthService, 'execute').mockResolvedValue(authInfo);
+    jest.spyOn(generateTokenService, 'execute');
+
+    await authenticationController.execute(requestMock, responseMock);
+
+    expect(generateTokenService.execute).toHaveBeenCalledWith(authInfo);
   });
 });

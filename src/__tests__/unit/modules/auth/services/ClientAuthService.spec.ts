@@ -6,6 +6,7 @@ import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
 import APIError from '@src/errors/APIError';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import { AuthRepositoryMock } from '@mocks/modules/auth/repositories/AuthRepositoryMock';
+import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 
 const authRepository: IAuthRepository = new AuthRepositoryMock();
 const hashProvider: IHashProvider = new HashProviderMock();
@@ -67,5 +68,14 @@ describe('ClientAuthService', () => {
     }
 
     expect.assertions(3);
+  });
+
+  it('should return an IAuthInfo object with fetched user id', async () => {
+    const authInfo: IAuthInfo = await clientAuthService.execute(
+      loginInfo.email,
+      loginInfo.password
+    );
+
+    expect(authInfo.userId).toBe(usersMock[0].id);
   });
 });

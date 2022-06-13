@@ -26,7 +26,7 @@ export class ClientAuthService implements IClientAuthService {
     if (!isPasswordValid) throw new APIError(401, 'Invalid credentials.');
 
     return {
-      userId: 'userId',
+      userId: existentUser.id as string,
       authAt: new Date()
     };
   };

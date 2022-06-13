@@ -5,13 +5,27 @@ import { responseMock } from '@mocks/express/responseMock';
 import APIError from '@src/errors/APIError';
 import { TokenProviderMock } from '@src/__mocks__/providers/TokenProviderMock';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
+import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
 const tokenProvider: ITokenProvider = new TokenProviderMock();
 const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
 
+const token = 'Bearer 123';
+const splitted = token.split(' ')[1];
+
+beforeAll(() => {
+  jest.useFakeTimers();
+  jest.setSystemTime(new Date('13-06-2022'));
+});
+
+const authInfo: IAuthInfo = {
+  userId: '123',
+  authAt: new Date()
+};
+
 describe('AuthMiddleware', () => {
   beforeEach(() => {
-    requestMock.headers.authorization = 'Bearer 123';
+    requestMock.headers.authorization = token;
   });
 
   it('should call next function', async () => {
@@ -38,11 +52,18 @@ describe('AuthMiddleware', () => {
   });
 
   it('should call tokenProvider to validate with splitted token', async () => {
-    const splitted = requestMock.headers.authorization?.split(' ')[1];
     jest.spyOn(tokenProvider, 'verifyToken');
 
     await authMiddleware.execute(requestMock, responseMock, jest.fn());
 
     expect(tokenProvider.verifyToken).toHaveBeenCalledWith(splitted);
+  });
+
+  it('should set res.locals with IAuthInfo object returned by tokenProvider', async () => {
+    jest.spyOn(tokenProvider, 'verifyToken').mockReturnValue(authInfo);
+
+    await authMiddleware.execute(requestMock, responseMock, jest.fn());
+
+    expect(responseMock.locals.authInfo).toEqual(authInfo);
   });
 });

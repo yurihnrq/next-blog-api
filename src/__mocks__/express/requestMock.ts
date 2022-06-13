@@ -1,5 +1,8 @@
 import { Request } from 'express';
 
 export const requestMock = {
-  body: {}
+  body: {},
+  headers: {
+    authorization: undefined
+  }
 } as Request;

@@ -11,10 +11,10 @@ describe('JwtTokenProvider', () => {
     loginAt: new Date()
   };
 
-  it('should generate a token', () => {
+  it('should generate a token', async () => {
     jest.spyOn(jwt, 'sign');
 
-    const token = tokenProvider.generateToken(payload);
+    const token = await tokenProvider.generateToken(payload);
 
     expect(jwt.sign).toHaveBeenCalledWith(payload, secret, {
       expiresIn: '1h'
@@ -22,22 +22,22 @@ describe('JwtTokenProvider', () => {
     expect(token).toBeDefined();
   });
 
-  it('should return payload for valid token', () => {
+  it('should return payload for valid token', async () => {
     jest.spyOn(jwt, 'verify');
-    const token = tokenProvider.generateToken(payload);
+    const token = await tokenProvider.generateToken(payload);
 
-    const res: typeof payload = tokenProvider.verifyToken(token);
+    const res: typeof payload = await tokenProvider.verifyToken(token);
 
     expect(res.userId).toEqual(payload.userId);
     expect(jwt.verify).toHaveBeenCalledWith(token, secret);
   });
 
-  it('should throw an error for invalid token', () => {
+  it('should throw an error for invalid token', async () => {
     jest.spyOn(jwt, 'verify');
     const token = 'invalid-token';
 
     try {
-      tokenProvider.verifyToken(token);
+      await tokenProvider.verifyToken(token);
     } catch (error) {
       expect(error).toBeInstanceOf(JsonWebTokenError);
     }

@@ -60,7 +60,7 @@ describe('AuthMiddleware', () => {
   });
 
   it('should set res.locals with IAuthInfo object returned by tokenProvider', async () => {
-    jest.spyOn(tokenProvider, 'verifyToken').mockReturnValue(authInfo);
+    jest.spyOn(tokenProvider, 'verifyToken').mockResolvedValue(authInfo);
 
     await authMiddleware.execute(requestMock, responseMock, jest.fn());
 

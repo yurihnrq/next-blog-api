@@ -9,11 +9,11 @@ export class JwtTokenProvider implements ITokenProvider {
     this.#secret = secret;
   }
 
-  generateToken = <T extends object>(payload: T): string => {
+  generateToken = async <T extends object>(payload: T): Promise<string> => {
     return jwt.sign(payload as object, this.#secret, { expiresIn: '1h' });
   };
 
-  verifyToken = <T extends object>(token: string): T => {
+  verifyToken = async <T extends object>(token: string): Promise<T> => {
     return jwt.verify(token, this.#secret) as T;
   };
 }

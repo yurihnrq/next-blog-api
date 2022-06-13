@@ -18,7 +18,7 @@ export class AuthMiddleware implements IMiddleware {
 
     const splitted = token.split(' ')[1];
 
-    const authInfo = this.#tokenProvider.verifyToken<IAuthInfo>(splitted);
+    const authInfo = await this.#tokenProvider.verifyToken<IAuthInfo>(splitted);
 
     res.locals.authInfo = authInfo;
 

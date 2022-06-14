@@ -16,8 +16,6 @@ export class RemoveUserController implements IController {
 
     const { userId } = res.locals.authInfo as IAuthInfo;
 
-    console.log('userId', userId);
-
     if (!userId || userId !== id)
       throw new APIError(401, 'Unauthorized request.');
 

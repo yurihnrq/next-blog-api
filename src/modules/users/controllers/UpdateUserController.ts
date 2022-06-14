@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { IUpdateUserService } from '../services/interfaces/IUpdateUserService';
-import { IController } from '../../../types/IController';
+import { IController } from '@src/types/IController';
 import APIError from '@src/errors/APIError';
+import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
 export class UpdateUserController implements IController {
   #updateUserService: IUpdateUserService;
@@ -12,9 +13,10 @@ export class UpdateUserController implements IController {
 
   execute = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-    const { userId } = res.locals;
+    const { userId } = res.locals.authInfo as IAuthInfo;
 
-    if (userId !== id) throw new APIError(401, 'Unauthorized request.');
+    if (!userId || userId !== id)
+      throw new APIError(401, 'Unauthorized request.');
 
     const { name, email, password, birthDate, biography } = req.body;
 

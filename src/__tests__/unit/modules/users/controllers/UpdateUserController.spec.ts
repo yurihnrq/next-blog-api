@@ -5,6 +5,7 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { UpdateUserServiceMock } from '@mocks/modules/users/services/UpdateUserServiceMock';
 import APIError from '@src/errors/APIError';
+import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
 const updateUserService: IUpdateUserService = new UpdateUserServiceMock();
 const updateUserController = new UpdateUserController(updateUserService);
@@ -15,9 +16,10 @@ describe('UpdateUserController', () => {
     requestMock.params = {
       id: '1'
     };
-    responseMock.locals = {
-      userId: '1'
-    };
+    responseMock.locals.authInfo = {
+      userId: '1',
+      authAt: new Date()
+    } as IAuthInfo;
 
     const result = await updateUserController.execute(
       requestMock,
@@ -32,9 +34,10 @@ describe('UpdateUserController', () => {
     requestMock.params = {
       id: '1'
     };
-    responseMock.locals = {
-      userId: '2'
-    };
+    responseMock.locals.authInfo = {
+      userId: '2',
+      authAt: new Date()
+    } as IAuthInfo;
 
     try {
       await updateUserController.execute(requestMock, responseMock);

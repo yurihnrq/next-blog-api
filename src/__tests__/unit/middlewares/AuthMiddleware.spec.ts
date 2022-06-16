@@ -1,4 +1,4 @@
-import { AuthMiddleware } from '@src/modules/auth/middlewares/AuthMiddleware';
+import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { IMiddleware } from '@src/types/IMiddleware';
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';

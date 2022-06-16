@@ -1,13 +1,13 @@
-import { AuthMiddleware } from '@src/modules/auth/middlewares/AuthMiddleware';
+import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';
-import { IMiddleware } from '../../../types/IMiddleware';
-import { CreateUserControllerFactory } from '../controllers/factories/CreateUserControllerFactory';
-import { GetAllUsersControllerFactory } from '../controllers/factories/GetAllUsersControllerFactory';
-import { GetUserByIdControllerFactory } from '../controllers/factories/GetUserByIdControllerFactory';
-import { RemoveUserControllerFactory } from '../controllers/factories/RemoveUserControllerFactory';
-import { UpdateUserControllerFactory } from '../controllers/factories/UpdateUserControllerFactory';
+import { IMiddleware } from '../types/IMiddleware';
+import { CreateUserControllerFactory } from '../modules/users/controllers/factories/CreateUserControllerFactory';
+import { GetAllUsersControllerFactory } from '../modules/users/controllers/factories/GetAllUsersControllerFactory';
+import { GetUserByIdControllerFactory } from '../modules/users/controllers/factories/GetUserByIdControllerFactory';
+import { RemoveUserControllerFactory } from '../modules/users/controllers/factories/RemoveUserControllerFactory';
+import { UpdateUserControllerFactory } from '../modules/users/controllers/factories/UpdateUserControllerFactory';
 import { UserInfoValidation } from '../middlewares/UserInfoValidation';
 
 export const UsersRouter = () => {

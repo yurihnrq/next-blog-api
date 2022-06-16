@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { AuthenticationControllerFactory } from '../controllers/factories/AuthenticationControllerFactory';
+import { AuthenticationControllerFactory } from '../modules/auth/controllers/factories/AuthenticationControllerFactory';
 
 export const AuthRouter = () => {
   const router = Router();

@@ -1,5 +1,5 @@
-import { BCryptHashProvider } from '../../../providers/BCryptHashProvider';
-import { IHashProvider } from '../../../providers/interfaces/IHashProvider';
+import { BCryptHashProvider } from '@src/providers/BCryptHashProvider';
+import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
 import bcrypt from 'bcrypt';
 
 describe('BCryptHashProvider', () => {

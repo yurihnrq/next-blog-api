@@ -1,8 +1,8 @@
-import APIError from '@src/errors/APIError';
-import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
-import { IMiddleware } from '@src/types/IMiddleware';
+import APIError from '../errors/APIError';
+import { ITokenProvider } from '../providers/interfaces/ITokenProvider';
+import { IMiddleware } from '../types/IMiddleware';
 import { NextFunction, Request, Response } from 'express';
-import { IAuthInfo } from '../services/interfaces/IAuthInfo';
+import { IAuthInfo } from '../modules/auth/services/interfaces/IAuthInfo';
 
 export class AuthMiddleware implements IMiddleware {
   #tokenProvider: ITokenProvider;

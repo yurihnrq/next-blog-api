@@ -32,4 +32,20 @@ describe('PrismaPostRepository', () => {
     });
     expect(post).toEqual(postsMock[0]);
   });
+
+  it('should create a post', async () => {
+    prisma.post.create = jest.fn().mockImplementation();
+
+    await postRepository.create(postsMock[1]);
+
+    expect(prisma.post.create).toHaveBeenCalledWith({
+      data: {
+        id: postsMock[1].id,
+        title: postsMock[1].title,
+        content: postsMock[1].content,
+        authorId: postsMock[1].authorId,
+        createdAt: new Date(postsMock[1].createdAt)
+      }
+    });
+  });
 });

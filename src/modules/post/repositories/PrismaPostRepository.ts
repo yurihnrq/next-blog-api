@@ -31,11 +31,19 @@ export class PrismaPostRepository implements IPostRepository {
     return post;
   }
 
-  create(_post: Post): void {
-    throw new Error('Method not implemented.');
+  async create(post: IPost): Promise<void> {
+    await this.#prisma.post.create({
+      data: {
+        id: post.id as string,
+        title: post.title,
+        content: post.content,
+        authorId: post.authorId,
+        createdAt: new Date(post.createdAt)
+      }
+    });
   }
 
-  update(_post: Post): void {
+  update(_post: IPost): void {
     throw new Error('Method not implemented.');
   }
 

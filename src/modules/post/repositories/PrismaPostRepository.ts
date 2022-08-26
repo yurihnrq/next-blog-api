@@ -13,13 +13,13 @@ export class PrismaPostRepository implements IPostRepository {
   }
 
   async getById(id: string): Promise<Post | null> {
-    this.#prisma.post.findUnique({
+    const post = await this.#prisma.post.findUnique({
       where: {
         id: id
       }
     });
 
-    return null;
+    return post;
   }
 
   create(_post: Post): void {

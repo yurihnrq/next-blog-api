@@ -20,23 +20,23 @@ export const UsersRouter = () => {
   const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
 
   router.post(
-    '/users/',
+    '/user/',
     userInfoValidation.execute,
     CreateUserControllerFactory().execute
   );
 
   router.get('/users/', GetAllUsersControllerFactory().execute);
 
-  router.get('/users/:id', GetUserByIdControllerFactory().execute);
+  router.get('/user/:id', GetUserByIdControllerFactory().execute);
 
   router.delete(
-    '/users/:id',
+    '/user/:id',
     authMiddleware.execute,
     RemoveUserControllerFactory().execute
   );
 
   router.put(
-    '/users/:id',
+    '/user/:id',
     authMiddleware.execute,
     userInfoValidation.execute,
     UpdateUserControllerFactory().execute

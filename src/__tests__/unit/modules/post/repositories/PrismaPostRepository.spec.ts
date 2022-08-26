@@ -71,4 +71,16 @@ describe('PrismaPostRepository', () => {
       }
     });
   });
+
+  it('should delete a post', async () => {
+    prisma.post.delete = jest.fn().mockImplementation();
+
+    await postRepository.delete('1');
+
+    expect(prisma.post.delete).toHaveBeenCalledWith({
+      where: {
+        id: '1'
+      }
+    });
+  });
 });

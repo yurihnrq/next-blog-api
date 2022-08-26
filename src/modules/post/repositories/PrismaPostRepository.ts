@@ -1,4 +1,5 @@
 import { Post, PrismaClient } from '@prisma/client';
+import { IPost } from '../interfaces/IPost';
 import { IPostRepository } from './interface/IPostRepository';
 
 export class PrismaPostRepository implements IPostRepository {
@@ -8,11 +9,19 @@ export class PrismaPostRepository implements IPostRepository {
     this.#prisma = prismaClient;
   }
 
-  getAll(_page: number): Promise<Post[]> {
-    throw new Error('Method not implemented.');
+  getAll(page: number): Promise<IPost[]> {
+    const posts = this.#prisma.post.findMany({
+      take: 5,
+      skip: 5 * (page - 1),
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return posts;
   }
 
-  async getById(id: string): Promise<Post | null> {
+  async getById(id: string): Promise<IPost | null> {
     const post = await this.#prisma.post.findUnique({
       where: {
         id: id

@@ -5,6 +5,11 @@ import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 const postRepository = new PrismaPostRepository(prisma);
 
 describe('PrismaPostRepository', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime();
+  });
+
   it('should get all posts', async () => {
     prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
 
@@ -45,6 +50,24 @@ describe('PrismaPostRepository', () => {
         content: postsMock[1].content,
         authorId: postsMock[1].authorId,
         createdAt: new Date(postsMock[1].createdAt)
+      }
+    });
+  });
+
+  it('should update a post', async () => {
+    prisma.post.update = jest.fn().mockImplementation();
+
+    await postRepository.update(postsMock[0]);
+
+    expect(prisma.post.update).toHaveBeenCalledWith({
+      data: {
+        title: postsMock[0].title,
+        content: postsMock[0].content,
+        authorId: postsMock[0].authorId,
+        updatedAt: new Date()
+      },
+      where: {
+        id: postsMock[0].id
       }
     });
   });

@@ -1,4 +1,4 @@
-import { Post, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { IPost } from '../interfaces/IPost';
 import { IPostRepository } from './interface/IPostRepository';
 
@@ -43,8 +43,18 @@ export class PrismaPostRepository implements IPostRepository {
     });
   }
 
-  update(_post: IPost): void {
-    throw new Error('Method not implemented.');
+  async update(post: IPost): Promise<void> {
+    await this.#prisma.post.update({
+      data: {
+        title: post.title,
+        content: post.content,
+        authorId: post.authorId,
+        updatedAt: new Date()
+      },
+      where: {
+        id: post.id
+      }
+    });
   }
 
   delete(_id: string): void {

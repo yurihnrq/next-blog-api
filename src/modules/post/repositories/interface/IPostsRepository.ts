@@ -1,6 +1,6 @@
 import { IPost } from '../../interfaces/IPost';
 
-export interface IPostRepository {
+export interface IPostsRepository {
   getAll(page: number): Promise<IPost[]>;
   getById(id: string): Promise<IPost | null>;
   create(post: IPost): Promise<void>;

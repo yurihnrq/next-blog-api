@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { IPost } from '../interfaces/IPost';
-import { IPostRepository } from './interface/IPostRepository';
+import { IPostsRepository } from './interface/IPostsRepository';
 
-export class PrismaPostRepository implements IPostRepository {
+export class PrismaPostsRepository implements IPostsRepository {
   #prisma: PrismaClient;
 
   constructor(prismaClient: PrismaClient) {

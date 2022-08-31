@@ -1,8 +1,8 @@
 import prisma from '@src/configs/prisma';
-import { PrismaPostRepository } from '@src/modules/post/repositories/PrismaPostRepository';
+import { PrismaPostsRepository } from '@src/modules/post/repositories/PrismaPostsRepository';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 
-const postRepository = new PrismaPostRepository(prisma);
+const postsRepository = new PrismaPostsRepository(prisma);
 
 describe('PrismaPostRepository', () => {
   beforeAll(() => {
@@ -13,7 +13,7 @@ describe('PrismaPostRepository', () => {
   it('should get all posts', async () => {
     prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
 
-    const posts = await postRepository.getAll(1);
+    const posts = await postsRepository.getAll(1);
 
     expect(prisma.post.findMany).toHaveBeenCalledWith({
       take: 5,
@@ -28,7 +28,7 @@ describe('PrismaPostRepository', () => {
   it('should get a post by id', async () => {
     prisma.post.findUnique = jest.fn().mockResolvedValue(postsMock[0]);
 
-    const post = await postRepository.getById('1');
+    const post = await postsRepository.getById('1');
 
     expect(prisma.post.findUnique).toHaveBeenCalledWith({
       where: {
@@ -41,7 +41,7 @@ describe('PrismaPostRepository', () => {
   it('should create a post', async () => {
     prisma.post.create = jest.fn().mockImplementation();
 
-    await postRepository.create(postsMock[1]);
+    await postsRepository.create(postsMock[1]);
 
     expect(prisma.post.create).toHaveBeenCalledWith({
       data: {
@@ -57,7 +57,7 @@ describe('PrismaPostRepository', () => {
   it('should update a post', async () => {
     prisma.post.update = jest.fn().mockImplementation();
 
-    await postRepository.update(postsMock[0]);
+    await postsRepository.update(postsMock[0]);
 
     expect(prisma.post.update).toHaveBeenCalledWith({
       data: {
@@ -75,7 +75,7 @@ describe('PrismaPostRepository', () => {
   it('should delete a post', async () => {
     prisma.post.delete = jest.fn().mockImplementation();
 
-    await postRepository.delete('1');
+    await postsRepository.delete('1');
 
     expect(prisma.post.delete).toHaveBeenCalledWith({
       where: {

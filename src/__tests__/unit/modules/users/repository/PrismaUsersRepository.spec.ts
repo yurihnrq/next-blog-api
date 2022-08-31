@@ -15,36 +15,39 @@ describe('PrismaUsersRepository', () => {
   it('should get a user by id', async () => {
     prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 
-    await usersRepository.getById('1');
+    const user = await usersRepository.getById('1');
 
     expect(prisma.user.findUnique).toHaveBeenCalledWith({
       where: {
         id: '1'
       }
     });
+    expect(user).toEqual(usersMock[0]);
   });
 
   it('should get a user by email', async () => {
     prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 
-    await usersRepository.getByEmail(usersMock[0].email);
+    const user = await usersRepository.getByEmail(usersMock[0].email);
 
     expect(prisma.user.findUnique).toHaveBeenCalledWith({
       where: {
         email: usersMock[0].email
       }
     });
+    expect(user).toEqual(usersMock[0]);
   });
 
   it('should get all users', async () => {
     prisma.user.findMany = jest.fn().mockResolvedValue(usersMock);
 
-    await usersRepository.getAll(1);
+    const users = await usersRepository.getAll(1);
 
     expect(prisma.user.findMany).toHaveBeenCalledWith({
       take: 10,
       skip: 10 * (1 - 1)
     });
+    expect(users).toEqual(usersMock);
   });
 
   it('should create a user', async () => {

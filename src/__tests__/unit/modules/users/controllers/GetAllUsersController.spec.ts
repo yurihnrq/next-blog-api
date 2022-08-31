@@ -1,6 +1,5 @@
 import { IGetAllUsersService } from '@src/modules/users/services/interfaces/IGetAllUsersService';
 import { GetAllUsersController } from '@src/modules/users/controllers/GetAllUsersController';
-import { IController } from '@src/types/IController';
 
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
@@ -27,6 +26,7 @@ describe('GetAllUsersController', () => {
     expect(result.status).toHaveBeenCalledWith(200);
     expect(result.json).toHaveBeenCalledWith({
       message: 'Users fetched successfully.',
+      success: true,
       data: usersMock
     });
     expect(getAllUsersService.execute).toHaveBeenCalled();

@@ -2,7 +2,6 @@ import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';
-import { IMiddleware } from '../types/IMiddleware';
 import { CreateUserControllerFactory } from '../modules/users/controllers/factories/CreateUserControllerFactory';
 import { GetAllUsersControllerFactory } from '../modules/users/controllers/factories/GetAllUsersControllerFactory';
 import { GetUserByIdControllerFactory } from '../modules/users/controllers/factories/GetUserByIdControllerFactory';

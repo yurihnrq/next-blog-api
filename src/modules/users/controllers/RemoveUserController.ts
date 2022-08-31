@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { IRemoveUserService } from '../services/interfaces/IRemoveUserService';
-import { IController } from '../../../types/IController';
 import APIError from '@src/errors/APIError';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
@@ -11,7 +10,7 @@ export class RemoveUserController implements IController {
     this.#removeUserService = removeUserService;
   }
 
-  execute = async (req: Request, res: Response): Promise<Response> => {
+  execute = async (req: Request, res: IResponse): Promise<Response> => {
     const { id } = req.params;
 
     const { userId } = res.locals.authInfo as IAuthInfo;
@@ -22,7 +21,9 @@ export class RemoveUserController implements IController {
     await this.#removeUserService.execute(id);
 
     return res.status(200).json({
-      message: 'User deleted successfully'
+      success: true,
+      message: 'User deleted successfully.',
+      data: null
     });
   };
 }

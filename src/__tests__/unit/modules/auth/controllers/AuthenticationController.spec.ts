@@ -1,5 +1,4 @@
 import { AuthenticationController } from '@src/modules/auth/controllers/AuthenticationController';
-import { IController } from '@src/types/IController';
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
@@ -45,6 +44,7 @@ describe('AuthenticationController', () => {
 
     expect(responseMock.status).toHaveBeenCalledWith(200);
     expect(responseMock.json).toHaveBeenCalledWith({
+      success: true,
       message: 'Authentication successful.',
       data: token
     });
@@ -74,6 +74,7 @@ describe('AuthenticationController', () => {
     await authenticationController.execute(requestMock, responseMock);
 
     expect(responseMock.json).toHaveBeenCalledWith({
+      success: true,
       message: 'Authentication successful.',
       data: `test-${token}`
     });

@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { IHashProvider } from '../../../providers/interfaces/IHashProvider';
-import { IUser } from '../services/interfaces/IUser';
+import { IUser } from '../interfaces/IUser';
 import { IUsersRepository } from './interfaces/IUsersRepository';
 
 export class PrismaUsersRepository implements IUsersRepository {

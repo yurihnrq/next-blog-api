@@ -1,4 +1,4 @@
-import { IUser } from '../../services/interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 
 export interface IUsersRepository {
   getById(id: string): Promise<IUser | null>;

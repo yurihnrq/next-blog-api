@@ -1,4 +1,4 @@
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/IUser';
 
 export interface IAuthRepository {
   getByEmail(email: string): Promise<IUser | null>;

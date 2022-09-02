@@ -1,5 +1,6 @@
+import { IUser } from '@src/modules/users/interfaces/IUser';
 import { IGetUserByIdService } from '@src/modules/users/services/interfaces/IGetUserByIdService';
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+
 import { usersMock } from '../usersMocks';
 
 export class GetUserByIdServiceMock implements IGetUserByIdService {

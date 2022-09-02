@@ -1,5 +1,6 @@
 import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuthRepository';
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/IUser';
+
 import { usersMock } from '../../users/usersMocks';
 
 export class AuthRepositoryMock implements IAuthRepository {

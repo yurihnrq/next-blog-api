@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
 import { IRemovePostService } from '@src/modules/post/services/interfaces/IRemovePostService';
 import { RemovePostService } from '@src/modules/post/services/RemovePostService';
@@ -12,11 +13,26 @@ const removePostService: IRemovePostService = new RemovePostService(
 describe('RemovePostService', () => {
   it('shoule remove a post', async () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(postsMock[0]);
-    jest.spyOn(postsRepository, 'delete').mockImplementation();
+    jest.spyOn(postsRepository, 'delete');
 
     await removePostService.execute(postsMock[0].id as string);
 
     expect(postsRepository.getById).toHaveBeenCalledWith(postsMock[0].id);
     expect(postsRepository.delete).toHaveBeenCalledWith(postsMock[0].id);
+  });
+
+  it('should throw an error if post with provided id does not exist', async () => {
+    jest.spyOn(postsRepository, 'getById').mockResolvedValue(null);
+
+    try {
+      await removePostService.execute(postsMock[0].id as string);
+    } catch (error) {
+      expect((error as APIError).status).toBe(404);
+      expect((error as APIError).message).toBe(
+        'Post with provided id does not exist.'
+      );
+    }
+
+    expect.assertions(2);
   });
 });

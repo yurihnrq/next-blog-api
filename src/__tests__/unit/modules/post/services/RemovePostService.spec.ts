@@ -13,12 +13,12 @@ const removePostService: IRemovePostService = new RemovePostService(
 describe('RemovePostService', () => {
   it('shoule remove a post', async () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(postsMock[0]);
-    jest.spyOn(postsRepository, 'delete');
+    jest.spyOn(postsRepository, 'remove');
 
     await removePostService.execute(postsMock[0].id as string);
 
     expect(postsRepository.getById).toHaveBeenCalledWith(postsMock[0].id);
-    expect(postsRepository.delete).toHaveBeenCalledWith(postsMock[0].id);
+    expect(postsRepository.remove).toHaveBeenCalledWith(postsMock[0].id);
   });
 
   it('should throw an error if post with provided id does not exist', async () => {

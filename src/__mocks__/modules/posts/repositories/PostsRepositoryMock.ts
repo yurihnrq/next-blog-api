@@ -19,7 +19,7 @@ export class PostsRepositoryMock implements IPostsRepository {
     return Promise.resolve();
   }
 
-  delete(_id: string): Promise<void> {
+  remove(_id: string): Promise<void> {
     return Promise.resolve();
   }
 }

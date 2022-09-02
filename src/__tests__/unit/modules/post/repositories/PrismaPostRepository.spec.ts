@@ -75,7 +75,7 @@ describe('PrismaPostRepository', () => {
   it('should delete a post', async () => {
     prisma.post.delete = jest.fn().mockImplementation();
 
-    await postsRepository.delete('1');
+    await postsRepository.remove('1');
 
     expect(prisma.post.delete).toHaveBeenCalledWith({
       where: {

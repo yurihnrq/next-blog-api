@@ -5,5 +5,5 @@ export interface IPostsRepository {
   getById(id: string): Promise<IPost | null>;
   create(post: IPost): Promise<void>;
   update(post: IPost): Promise<void>;
-  delete(id: string): Promise<void>;
+  remove(id: string): Promise<void>;
 }

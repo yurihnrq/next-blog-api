@@ -57,7 +57,7 @@ export class PrismaPostsRepository implements IPostsRepository {
     });
   }
 
-  async delete(id: string): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.#prisma.post.delete({
       where: {
         id: id

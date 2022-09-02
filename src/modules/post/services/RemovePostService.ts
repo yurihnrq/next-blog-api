@@ -14,6 +14,6 @@ export class RemovePostService implements IRemovePostService {
 
     if (!post) throw new APIError(404, 'Post with provided id does not exist.');
 
-    await this.#postsRepository.delete(id);
+    await this.#postsRepository.remove(id);
   }
 }

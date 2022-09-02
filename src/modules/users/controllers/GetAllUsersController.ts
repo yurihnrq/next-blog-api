@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IGetAllUsersService } from '../services/interfaces/IGetAllUsersService';
-import { IUser } from '../services/interfaces/IUser';
+import { IUser } from '../IUser/interfaces/IUser';
 
 export class GetAllUsersController implements IController {
   #getAllUsersService: IGetAllUsersService;

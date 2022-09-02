@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
 import { GetAllPostsService } from '@src/modules/post/services/GetAllPostsService';
 import { IGetAllPostsService } from '@src/modules/post/services/interfaces/IGetAllPostsService';
@@ -17,5 +18,18 @@ describe('GetAllPostsService', () => {
 
     expect(posts).toEqual(postsMock);
     expect(postsRepository.getAll).toHaveBeenCalledWith(1);
+  });
+
+  it('should throw an APIError if no posts are found', async () => {
+    jest.spyOn(postsRepository, 'getAll').mockResolvedValue([]);
+
+    try {
+      await getAllPostsService.execute(1);
+    } catch (error) {
+      expect((error as APIError).status).toBe(404);
+      expect((error as APIError).message).toBe('No posts found.');
+    }
+
+    expect.assertions(2);
   });
 });

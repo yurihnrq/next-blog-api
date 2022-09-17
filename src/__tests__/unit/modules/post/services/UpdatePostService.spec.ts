@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
 import { IUpdatePostService } from '@src/modules/post/services/interfaces/IUpdatePostService';
 import { UpdatePostService } from '@src/modules/post/services/UpdatePostService';
@@ -16,5 +17,20 @@ describe('UpdatePostService', () => {
     await updatePostService.execute(postsMock[0]);
 
     expect(postsRepository.update).toHaveBeenCalled();
+  });
+
+  it('should throw an APIError if post with provided id does not exist', async () => {
+    jest.spyOn(postsRepository, 'getById').mockResolvedValue(null);
+
+    try {
+      await updatePostService.execute(postsMock[0]);
+    } catch (error) {
+      expect((error as APIError).status).toBe(404);
+      expect((error as APIError).message).toBe(
+        'Post with provided id does not exist.'
+      );
+    }
+
+    expect.assertions(2);
   });
 });

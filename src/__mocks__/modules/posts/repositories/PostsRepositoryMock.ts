@@ -8,7 +8,7 @@ export class PostsRepositoryMock implements IPostsRepository {
   }
 
   getById(id: string): Promise<IPost | null> {
-    return Promise.resolve(postsMock[Number(id)] || null);
+    return Promise.resolve(postsMock[Number(id) - 1] || null);
   }
 
   create(_post: IPost): Promise<void> {

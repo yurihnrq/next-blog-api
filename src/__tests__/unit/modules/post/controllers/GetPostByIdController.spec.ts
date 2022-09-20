@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { GetPostByIdController } from '@src/modules/post/controllers/GetPostByIdController';
 import { IGetPostByIdService } from '@src/modules/post/services/interfaces/IGetPostByIdService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
@@ -11,8 +12,11 @@ const getPostByIdController: IController = new GetPostByIdController(
 );
 
 describe('GetPostByIdController', () => {
-  it('should call getPostByIdService and return a post', async () => {
+  beforeEach(() => {
     jest.spyOn(getPostByIdService, 'execute');
+  });
+
+  it('should call getPostByIdService and return a post', async () => {
     requestMock.query = {
       id: '1'
     };
@@ -29,5 +33,21 @@ describe('GetPostByIdController', () => {
       data: postsMock[1]
     });
     expect(getPostByIdService.execute).toHaveBeenCalledWith('1');
+  });
+
+  it('should throw an APIError if post id is not provided', async () => {
+    requestMock.query = {
+      id: undefined
+    };
+
+    try {
+      await getPostByIdController.execute(requestMock, responseMock);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(400);
+      expect((error as APIError).message).toBe('Post id is required.');
+    }
+
+    expect.assertions(3);
   });
 });

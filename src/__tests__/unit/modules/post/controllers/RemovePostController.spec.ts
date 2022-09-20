@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { RemovePostController } from '@src/modules/post/controllers/RemovePostController';
 import { IRemovePostService } from '@src/modules/post/services/interfaces/IRemovePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
@@ -30,5 +31,19 @@ describe('RemovePostController', () => {
     expect(removePostService.execute).toHaveBeenCalledWith('1');
   });
 
-  it('should throw ')
+  it('should throw an APIError if post id is not provided', async () => {
+    requestMock.query = {
+      id: undefined
+    };
+
+    try {
+      await removePostController.execute(requestMock, responseMock);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(400);
+      expect((error as APIError).message).toBe('Post id is required.');
+    }
+
+    expect.assertions(3);
+  });
 });

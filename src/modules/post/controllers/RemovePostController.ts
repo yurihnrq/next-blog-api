@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { Request, Response } from 'express';
 import { IRemovePostService } from '../services/interfaces/IRemovePostService';
 
@@ -10,6 +11,8 @@ export class RemovePostController implements IController {
 
   execute = async (req: Request, res: IResponse): Promise<Response> => {
     const { id } = req.query;
+
+    if (!id) throw new APIError(400, 'Post id is required.');
 
     await this.#removePostService.execute(id as string);
 

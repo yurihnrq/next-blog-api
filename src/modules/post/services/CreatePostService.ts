@@ -1,4 +1,4 @@
-import { IPost } from '../interfaces/IPost';
+import { ICreatePostDTO } from '../interfaces/ICreatePostDTO';
 import { IPostsRepository } from '../repositories/interface/IPostsRepository';
 import { ICreatePostService } from './interfaces/ICreatePostService';
 
@@ -9,7 +9,7 @@ export class CreatePostService implements ICreatePostService {
     this.#postsRepository = postsRepository;
   }
 
-  async execute(post: IPost): Promise<void> {
+  async execute(post: ICreatePostDTO): Promise<void> {
     await this.#postsRepository.create(post);
   }
 }

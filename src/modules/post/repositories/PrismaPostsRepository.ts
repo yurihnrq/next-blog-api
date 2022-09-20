@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { IPost } from '../interfaces/IPost';
+import { ICreatePostDTO } from '../interfaces/ICreatePostDTO';
 import { IPostsRepository } from './interface/IPostsRepository';
 
 export class PrismaPostsRepository implements IPostsRepository {
@@ -31,14 +32,13 @@ export class PrismaPostsRepository implements IPostsRepository {
     return post;
   }
 
-  async create(post: IPost): Promise<void> {
+  async create(post: ICreatePostDTO): Promise<void> {
     await this.#prisma.post.create({
       data: {
-        id: post.id as string,
         title: post.title,
         content: post.content,
         authorId: post.authorId,
-        createdAt: new Date(post.createdAt)
+        createdAt: new Date()
       }
     });
   }

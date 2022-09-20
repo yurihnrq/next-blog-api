@@ -30,4 +30,16 @@ describe('GetAllPostsController', () => {
     });
     expect(getAllPostsService.execute).toHaveBeenCalledWith(1);
   });
+
+  it('should parse page query param if it is provided', async () => {
+    jest.spyOn(global, 'parseInt');
+    const page = '2';
+    requestMock.query = {
+      page
+    };
+
+    await getAllPostsController.execute(requestMock, responseMock);
+
+    expect(global.parseInt).toHaveBeenCalledWith(page);
+  });
 });

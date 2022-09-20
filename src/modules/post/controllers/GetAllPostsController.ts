@@ -9,7 +9,11 @@ export class GetAllPostsController implements IController {
   }
 
   execute = async (req: Request, res: IResponse): Promise<Response> => {
-    const posts = await this.#getAllPostsService.execute(1);
+    const { page } = req.query;
+
+    const pageInt = page ? parseInt(page as string) : 1;
+
+    const posts = await this.#getAllPostsService.execute(pageInt);
 
     return res.status(200).json({
       success: true,

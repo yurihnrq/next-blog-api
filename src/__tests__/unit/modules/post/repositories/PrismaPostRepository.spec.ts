@@ -60,17 +60,20 @@ describe('PrismaPostRepository', () => {
   it('should update a post', async () => {
     prisma.post.update = jest.fn().mockImplementation();
 
-    await postsRepository.update(postsMock[0]);
+    await postsRepository.update({
+      id: postsMock[1].id as string,
+      title: postsMock[1].title,
+      content: postsMock[1].content
+    });
 
     expect(prisma.post.update).toHaveBeenCalledWith({
       data: {
-        title: postsMock[0].title,
-        content: postsMock[0].content,
-        authorId: postsMock[0].authorId,
+        title: postsMock[1].title,
+        content: postsMock[1].content,
         updatedAt: new Date()
       },
       where: {
-        id: postsMock[0].id
+        id: postsMock[1].id
       }
     });
   });

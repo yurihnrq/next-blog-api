@@ -1,4 +1,6 @@
+import { ICreatePostDTO } from '@src/modules/post/interfaces/ICreatePostDTO';
 import { IPost } from '@src/modules/post/interfaces/IPost';
+import { IUpdatePostDTO } from '@src/modules/post/interfaces/IUpdatePostDTO';
 import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
 import { postsMock } from '../postsMock';
 
@@ -11,11 +13,11 @@ export class PostsRepositoryMock implements IPostsRepository {
     return Promise.resolve(postsMock[Number(id) - 1] || null);
   }
 
-  create(_post: IPost): Promise<void> {
+  create(_post: ICreatePostDTO): Promise<void> {
     return Promise.resolve();
   }
 
-  update(_post: IPost): Promise<void> {
+  update(_post: IUpdatePostDTO): Promise<void> {
     return Promise.resolve();
   }
 

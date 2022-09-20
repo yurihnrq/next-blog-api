@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { IPost } from '../interfaces/IPost';
 import { ICreatePostDTO } from '../interfaces/ICreatePostDTO';
 import { IPostsRepository } from './interface/IPostsRepository';
+import { IUpdatePostDTO } from '../interfaces/IUpdatePostDTO';
 
 export class PrismaPostsRepository implements IPostsRepository {
   #prisma: PrismaClient;
@@ -43,12 +44,11 @@ export class PrismaPostsRepository implements IPostsRepository {
     });
   }
 
-  async update(post: IPost): Promise<void> {
+  async update(post: IUpdatePostDTO): Promise<void> {
     await this.#prisma.post.update({
       data: {
         title: post.title,
         content: post.content,
-        authorId: post.authorId,
         updatedAt: new Date()
       },
       where: {

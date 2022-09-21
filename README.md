@@ -37,7 +37,7 @@ interface IResponse<T = unknow> {
 
 Notice that response will always contain the same fields, but the `data` may be `null`.
 ### Error responses
-When a response return an error status code (4** or 5**), it will be described in the `message` field. Thus, the success field will be `false`/
+When a response return an error status code (4** or 5**), it will be described in the `message` field. Thus, the success field will be `false`.
 
 Remember that this is a RESTful API and the reponses always will be devlivered with correct status codes following the [IANA HTTP status code standard](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 

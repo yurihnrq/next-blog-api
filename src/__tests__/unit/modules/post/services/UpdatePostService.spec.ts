@@ -16,13 +16,15 @@ describe('UpdatePostService', () => {
     await updatePostService.execute({
       id: '1',
       title: 'New title',
-      content: 'New content'
+      content: 'New content',
+      updateAuthorId: '1'
     });
 
     expect(postsRepository.update).toHaveBeenCalledWith({
       id: '1',
       title: 'New title',
-      content: 'New content'
+      content: 'New content',
+      updateAuthorId: '1'
     });
   });
 
@@ -33,15 +35,45 @@ describe('UpdatePostService', () => {
       await updatePostService.execute({
         id: '1',
         title: 'New title',
-        content: 'New content'
+        content: 'New content',
+        updateAuthorId: '1'
       });
     } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).status).toBe(404);
       expect((error as APIError).message).toBe(
         'Post with provided id does not exist.'
       );
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
+  });
+
+  it('should throw an APIError if a user tries to update other user post', async () => {
+    jest.spyOn(postsRepository, 'getById').mockResolvedValue({
+      id: '1',
+      title: 'Old title',
+      content: 'Old content',
+      authorId: '1',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    try {
+      await updatePostService.execute({
+        id: '1',
+        title: 'New title',
+        content: 'New content',
+        updateAuthorId: '2'
+      });
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(403);
+      expect((error as APIError).message).toBe(
+        'You are not allowed to update this post.'
+      );
+    }
+
+    expect.assertions(3);
   });
 });

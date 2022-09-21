@@ -11,7 +11,7 @@ export class CreatePostController implements IController {
 
   execute = async (req: Request, res: IResponse): Promise<Response> => {
     const { title, content } = req.body;
-    const { userId } = res.locals as IAuthInfo;
+    const { userId } = res.locals.authInfo as IAuthInfo;
 
     await this.#createPostService.execute({
       authorId: userId,

@@ -16,7 +16,7 @@ describe('CreatePostController', () => {
       title: postsMock[0].title,
       content: postsMock[0].content
     };
-    responseMock.locals = {
+    responseMock.locals.authInfo = {
       userId: postsMock[0].authorId
     };
     jest.spyOn(createPostService, 'execute');

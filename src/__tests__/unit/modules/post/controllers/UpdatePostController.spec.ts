@@ -20,6 +20,9 @@ describe('UpdatePostController', () => {
     requestMock.query = {
       id: '1'
     };
+    responseMock.locals.authInfo = {
+      userId: '1'
+    };
 
     const result = await updatePostController.execute(
       requestMock,
@@ -35,7 +38,8 @@ describe('UpdatePostController', () => {
     expect(updatePostService.execute).toHaveBeenCalledWith({
       id: '1',
       title: 'New title',
-      content: 'New content'
+      content: 'New content',
+      updateAuthorId: '1'
     });
   });
 
@@ -46,6 +50,9 @@ describe('UpdatePostController', () => {
     };
     requestMock.query = {
       id: undefined
+    };
+    responseMock.locals.authInfo = {
+      userId: '1'
     };
 
     try {

@@ -10,7 +10,7 @@ export class UpdatePostController implements IController {
     this.#updatePostService = updatePostService;
   }
 
-  async execute(req: Request, res: IResponse): Promise<Response> {
+  execute = async (req: Request, res: IResponse): Promise<Response> => {
     const { title, content } = req.body;
     const { id } = req.params;
     const { userId } = res.locals.authInfo as IAuthInfo;
@@ -29,5 +29,5 @@ export class UpdatePostController implements IController {
       message: 'Post updated successfully.',
       data: null
     });
-  }
+  };
 }

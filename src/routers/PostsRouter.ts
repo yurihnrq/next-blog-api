@@ -3,6 +3,7 @@ import { CreatePostControllerFactory } from '@src/modules/post/controllers/facto
 import { GetAllPostsControllerFactory } from '@src/modules/post/controllers/factories/GetAllPostsControllerFactory';
 import { GetPostByIdControllerFactory } from '@src/modules/post/controllers/factories/GetPostByIdControllerFactory';
 import { RemovePostControllerFactory } from '@src/modules/post/controllers/factories/RemovePostControllerFactory';
+import { UpdatePostControllerFactory } from '@src/modules/post/controllers/factories/UpdatePostControllerFactory';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';
@@ -29,6 +30,12 @@ export const PostsRouter = () => {
     '/post/:id',
     authMiddleware.execute,
     RemovePostControllerFactory().execute
+  );
+
+  router.put(
+    '/post/:id',
+    authMiddleware.execute,
+    UpdatePostControllerFactory().execute
   );
 
   return router;

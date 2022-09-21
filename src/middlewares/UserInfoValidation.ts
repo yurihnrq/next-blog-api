@@ -1,7 +1,7 @@
+import { IUser } from '@src/modules/users/interfaces/IUser';
 import { NextFunction, Request, Response } from 'express';
-import { IMiddleware } from '../types/IMiddleware';
+
 import APIError from '../errors/APIError';
-import { IUser } from '../modules/users/services/interfaces/IUser';
 
 export class UserInfoValidation implements IMiddleware {
   execute = async (

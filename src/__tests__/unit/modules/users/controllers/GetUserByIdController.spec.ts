@@ -1,6 +1,5 @@
 import { IGetUserByIdService } from '@src/modules/users/services/interfaces/IGetUserByIdService';
 import { GetUserByIdController } from '@src/modules/users/controllers/GetUserByIdController';
-import { IController } from '@src/types/IController';
 
 import { requestMock } from '@mocks/express/requestMock';
 import { GetUserByIdServiceMock } from '@mocks/modules/users/services/GetUserByIdServiceMock';
@@ -30,6 +29,7 @@ describe('GetUserByIdController', () => {
 
     expect(result.status).toHaveBeenCalledWith(200);
     expect(result.json).toHaveBeenCalledWith({
+      success: true,
       message: 'User fetched successfully.',
       data: usersMock[0]
     });

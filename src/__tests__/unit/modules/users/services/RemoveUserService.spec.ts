@@ -12,7 +12,7 @@ const removeUserService: IRemoveUserService = new RemoveUserService(
 describe('GetUserByIdService', () => {
   it('should remove a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
-    jest.spyOn(usersRepository, 'remove').mockImplementation();
+    jest.spyOn(usersRepository, 'remove');
 
     await removeUserService.execute(usersMock[0].id as string);
 

@@ -6,6 +6,7 @@ import express from 'express';
 import 'express-async-errors';
 import { UsersRouter } from '../routers/UsersRouter';
 import { AuthRouter } from '../routers/AuthRouter';
+import { PostsRouter } from '@src/routers/PostsRouter';
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(express.json());
 
 app.use(AuthRouter());
 app.use(UsersRouter());
+app.use(PostsRouter());
 
 export default app;

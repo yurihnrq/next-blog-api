@@ -1,5 +1,6 @@
+import { IUser } from '@src/modules/users/interfaces/IUser';
 import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+
 import { usersMock } from '../usersMocks';
 
 export class UsersRepositoryMock implements IUsersRepository {

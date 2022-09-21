@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { ICreateUserService } from '../services/interfaces/ICreateUserService';
-import { IController } from '../../../types/IController';
 
 export class CreateUserController implements IController {
   #createUserService: ICreateUserService;
@@ -9,7 +8,7 @@ export class CreateUserController implements IController {
     this.#createUserService = createUserService;
   }
 
-  execute = async (req: Request, res: Response): Promise<Response> => {
+  execute = async (req: Request, res: IResponse): Promise<Response> => {
     const { name, email, password, birthDate, biography } = req.body;
 
     await this.#createUserService.execute({
@@ -21,7 +20,9 @@ export class CreateUserController implements IController {
     });
 
     return res.status(201).json({
-      message: 'User created successfully.'
+      success: true,
+      message: 'User created successfully.',
+      data: null
     });
   };
 }

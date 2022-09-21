@@ -1,4 +1,4 @@
-import { IUser } from './interfaces/IUser';
+import { IUser } from '../interfaces/IUser';
 import { IUsersRepository } from '../repositories/interfaces/IUsersRepository';
 import { IGetAllUsersService } from './interfaces/IGetAllUsersService';
 

@@ -1,6 +1,5 @@
 import { RemoveUserController } from '@src/modules/users/controllers/RemoveUserController';
 import { IRemoveUserService } from '@src/modules/users/services/interfaces/IRemoveUserService';
-import { IController } from '@src/types/IController';
 
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';

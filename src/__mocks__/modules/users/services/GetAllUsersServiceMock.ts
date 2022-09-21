@@ -1,5 +1,6 @@
+import { IUser } from '@src/modules/users/interfaces/IUser';
 import { IGetAllUsersService } from '@src/modules/users/services/interfaces/IGetAllUsersService';
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+
 import { usersMock } from '../usersMocks';
 
 export class GetAllUsersServiceMock implements IGetAllUsersService {

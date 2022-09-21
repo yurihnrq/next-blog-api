@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { IUser } from '@src/modules/users/services/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/IUser';
 import { IAuthRepository } from './interfaces/IAuthRepository';
 
 export class PrismaAuthRepository implements IAuthRepository {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import { IUser } from '../interfaces/IUser';
 import { IGetAllUsersService } from '../services/interfaces/IGetAllUsersService';
-import { IController } from '../../../types/IController';
 
 export class GetAllUsersController implements IController {
   #getAllUsersService: IGetAllUsersService;
@@ -9,7 +9,10 @@ export class GetAllUsersController implements IController {
     this.#getAllUsersService = getAllUsersService;
   }
 
-  execute = async (req: Request, res: Response): Promise<Response> => {
+  execute = async (
+    req: Request,
+    res: IResponse<IUser[]>
+  ): Promise<Response> => {
     const { page } = req.query;
 
     const pageInt = page ? parseInt(page as string) : 1;
@@ -17,6 +20,7 @@ export class GetAllUsersController implements IController {
     const users = await this.#getAllUsersService.execute(pageInt);
 
     return res.status(200).json({
+      success: true,
       message: 'Users fetched successfully.',
       data: users
     });

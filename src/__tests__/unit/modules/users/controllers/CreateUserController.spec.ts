@@ -1,5 +1,4 @@
 import { CreateUserController } from '@src/modules/users/controllers/CreateUserController';
-import { IController } from '@src/types/IController';
 import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { requestMock } from '@mocks/express/requestMock';
@@ -24,7 +23,9 @@ describe('CreateUserController', () => {
     });
     expect(responseMock.status).toHaveBeenCalledWith(201);
     expect(responseMock.json).toHaveBeenCalledWith({
-      message: 'User created successfully.'
+      success: true,
+      message: 'User created successfully.',
+      data: null
     });
   });
 });

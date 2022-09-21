@@ -2,7 +2,6 @@ import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';
-import { IMiddleware } from '../types/IMiddleware';
 import { CreateUserControllerFactory } from '../modules/users/controllers/factories/CreateUserControllerFactory';
 import { GetAllUsersControllerFactory } from '../modules/users/controllers/factories/GetAllUsersControllerFactory';
 import { GetUserByIdControllerFactory } from '../modules/users/controllers/factories/GetUserByIdControllerFactory';
@@ -20,23 +19,23 @@ export const UsersRouter = () => {
   const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
 
   router.post(
-    '/users/',
+    '/user/',
     userInfoValidation.execute,
     CreateUserControllerFactory().execute
   );
 
   router.get('/users/', GetAllUsersControllerFactory().execute);
 
-  router.get('/users/:id', GetUserByIdControllerFactory().execute);
+  router.get('/user/:id', GetUserByIdControllerFactory().execute);
 
   router.delete(
-    '/users/:id',
+    '/user/:id',
     authMiddleware.execute,
     RemoveUserControllerFactory().execute
   );
 
   router.put(
-    '/users/:id',
+    '/user/:id',
     authMiddleware.execute,
     userInfoValidation.execute,
     UpdateUserControllerFactory().execute

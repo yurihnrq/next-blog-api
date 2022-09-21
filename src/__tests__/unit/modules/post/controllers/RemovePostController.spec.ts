@@ -13,7 +13,7 @@ const removePostController: IController = new RemovePostController(
 describe('RemovePostController', () => {
   it('should call removePostService and return a response', async () => {
     jest.spyOn(removePostService, 'execute');
-    requestMock.query = {
+    requestMock.params = {
       id: '1'
     };
 
@@ -32,8 +32,8 @@ describe('RemovePostController', () => {
   });
 
   it('should throw an APIError if post id is not provided', async () => {
-    requestMock.query = {
-      id: undefined
+    requestMock.params = {
+      id: undefined as unknown as string
     };
 
     try {

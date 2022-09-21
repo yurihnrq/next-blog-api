@@ -12,7 +12,7 @@ export class UpdatePostController implements IController {
 
   async execute(req: Request, res: IResponse): Promise<Response> {
     const { title, content } = req.body;
-    const { id } = req.query;
+    const { id } = req.params;
     const { userId } = res.locals.authInfo as IAuthInfo;
 
     if (!id) throw new APIError(400, 'Post id is required.');

@@ -17,7 +17,7 @@ describe('GetPostByIdController', () => {
   });
 
   it('should call getPostByIdService and return a post', async () => {
-    requestMock.query = {
+    requestMock.params = {
       id: '1'
     };
 
@@ -36,8 +36,8 @@ describe('GetPostByIdController', () => {
   });
 
   it('should throw an APIError if post id is not provided', async () => {
-    requestMock.query = {
-      id: undefined
+    requestMock.params = {
+      id: undefined as unknown as string
     };
 
     try {

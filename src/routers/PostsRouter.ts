@@ -1,6 +1,7 @@
 import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { CreatePostControllerFactory } from '@src/modules/post/controllers/factories/CreatePostControllerFactory';
 import { GetAllPostsControllerFactory } from '@src/modules/post/controllers/factories/GetAllPostsControllerFactory';
+import { GetPostByIdControllerFactory } from '@src/modules/post/controllers/factories/GetPostByIdControllerFactory';
 import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';
@@ -18,6 +19,8 @@ export const PostsRouter = () => {
     authMiddleware.execute,
     CreatePostControllerFactory().execute
   );
+
+  router.get('/post/:id', GetPostByIdControllerFactory().execute);
 
   router.get('/posts', GetAllPostsControllerFactory().execute);
 

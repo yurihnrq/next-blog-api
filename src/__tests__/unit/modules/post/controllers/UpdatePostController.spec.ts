@@ -17,7 +17,7 @@ describe('UpdatePostController', () => {
       title: 'New title',
       content: 'New content'
     };
-    requestMock.query = {
+    requestMock.params = {
       id: '1'
     };
     responseMock.locals.authInfo = {
@@ -48,8 +48,8 @@ describe('UpdatePostController', () => {
       title: 'New title',
       content: 'New content'
     };
-    requestMock.query = {
-      id: undefined
+    requestMock.params = {
+      id: undefined as unknown as string
     };
     responseMock.locals.authInfo = {
       userId: '1'

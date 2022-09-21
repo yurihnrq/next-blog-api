@@ -10,7 +10,7 @@ export class RemovePostController implements IController {
   }
 
   execute = async (req: Request, res: IResponse): Promise<Response> => {
-    const { id } = req.query;
+    const { id } = req.params;
 
     if (!id) throw new APIError(400, 'Post id is required.');
 

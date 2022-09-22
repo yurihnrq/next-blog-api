@@ -4,7 +4,7 @@ import APIError from '../errors/APIError';
 
 export class ExceptionMiddleware implements IErrorMiddleware {
   execute = async (
-    err: APIError,
+    err: Error,
     _req: Request,
     res: Response,
     _next: NextFunction

@@ -24,9 +24,10 @@ describe('GetAllUsersService', () => {
       await getAllUsersService.execute(1);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(204);
       expect((error as APIError).message).toBe('No users found.');
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
   });
 });

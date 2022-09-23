@@ -30,12 +30,13 @@ describe('UpdateUserService', () => {
       await updateUserService.execute(usersMock[0]);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(404);
       expect((error as APIError).message).toBe(
         'User with provided id does not exist.'
       );
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
   });
 
   it('should throw an APIError if a different user with provided email already exists', async () => {
@@ -46,11 +47,12 @@ describe('UpdateUserService', () => {
       await updateUserService.execute(usersMock[0]);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(409);
       expect((error as APIError).message).toBe(
         'User with provided email already exists.'
       );
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
   });
 });

@@ -25,11 +25,12 @@ describe('CreateUserService', () => {
       await createUserService.execute(usersMock[0]);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(409);
       expect((error as APIError).message).toBe(
         'User with provided email already exists.'
       );
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
   });
 });

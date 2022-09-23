@@ -28,11 +28,12 @@ describe('GetUserByIdService', () => {
       await removeUserService.execute(usersMock[0].id as string);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(404);
       expect((error as APIError).message).toBe(
         'User with provided id does not exist.'
       );
     }
 
-    expect.assertions(2);
+    expect.assertions(3);
   });
 });

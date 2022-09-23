@@ -20,7 +20,7 @@ describe('Exception Middleware', () => {
     });
   });
 
-  it('should return a defined response if the error raised isn\'t an APIError', async () => {
+  it('should return a defined response if the error raised is not an APIError', async () => {
     const apiErr = new Error('NullPointerException');
 
     const definedError = new APIError(500, 'Server Internal Error, try again.');

@@ -9,14 +9,20 @@ export class ExceptionMiddleware implements IErrorMiddleware {
     res: Response,
     _next: NextFunction
   ): Promise<Response> => {
-    if (!(err instanceof APIError)) {
-      err = new APIError(500, 'Server Internal Error, try again.');
+    let returnedError: APIError;
+
+    if (err instanceof APIError) {
+      returnedError = err;
+    } else {
+      returnedError = new APIError(500, 'Server Internal Error, try again.');
     }
 
-    return res.status(err.status).json({
+    console.error(err);
+
+    return res.status(returnedError.status).json({
       success: false,
-      message: 'An error has occurred.',
-      data: err
+      message: returnedError.message,
+      data: null
     });
   };
 }

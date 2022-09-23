@@ -28,7 +28,7 @@ declare global {
 
   interface IErrorMiddleware extends IMiddleware {
     execute: (
-      err: APIError,
+      err: Error,
       req: Request,
       res: IResponse,
       next: NextFunction

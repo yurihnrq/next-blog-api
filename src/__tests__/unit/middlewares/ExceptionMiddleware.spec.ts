@@ -20,8 +20,8 @@ describe('Exception Middleware', () => {
     expect(responseMock.status).toHaveBeenCalledWith(400);
     expect(responseMock.json).toHaveBeenCalledWith({
       success: false,
-      message: 'An error has occurred.',
-      data: apiErr
+      message: apiErr.message,
+      data: null
     });
   });
 
@@ -36,8 +36,8 @@ describe('Exception Middleware', () => {
     expect(responseMock.status).toHaveBeenCalledWith(500);
     expect(responseMock.json).toHaveBeenCalledWith({
       success: false,
-      message: 'An error has occurred.',
-      data: definedError
+      message: definedError.message,
+      data: null
     });
   });
 });

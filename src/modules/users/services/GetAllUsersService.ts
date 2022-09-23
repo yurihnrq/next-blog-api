@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { IUser } from '../interfaces/IUser';
 import { IUsersRepository } from '../repositories/interfaces/IUsersRepository';
 import { IGetAllUsersService } from './interfaces/IGetAllUsersService';
@@ -12,7 +13,7 @@ export class GetAllUsersService implements IGetAllUsersService {
   execute = async (page: number): Promise<IUser[]> => {
     const users = await this.#usersRepository.getAll(page);
 
-    if (users.length <= 0) throw new Error('No users found.');
+    if (users.length <= 0) throw new APIError(204, 'No users found.');
 
     return users;
   };

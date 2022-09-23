@@ -1,3 +1,4 @@
+import APIError from '@src/errors/APIError';
 import { IUser } from '../interfaces/IUser';
 import { IUsersRepository } from '../repositories/interfaces/IUsersRepository';
 import { ICreateUserService } from './interfaces/ICreateUserService';
@@ -13,7 +14,7 @@ export class CreateUserService implements ICreateUserService {
     const existentUser = await this.#usersRepository.getByEmail(data.email);
 
     if (existentUser)
-      throw new Error('User with provided email already exists.');
+      throw new APIError(409, 'User with provided email already exists.');
 
     await this.#usersRepository.create(data);
   };

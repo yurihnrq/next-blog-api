@@ -3,6 +3,7 @@ import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepo
 import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
 import { CreateUserService } from '@src/modules/users/services/CreateUserService';
 import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
+import APIError from '@src/errors/APIError';
 
 const usersRepository: IUsersRepository = new UsersRepositoryMock();
 const createUserService: ICreateUserService = new CreateUserService(
@@ -19,15 +20,17 @@ describe('CreateUserService', () => {
     expect(usersRepository.create).toHaveBeenCalledWith(usersMock[0]);
   });
 
-  it('should throw an error if user with provided email already exists', async () => {
+  it('should throw an APIError if user with provided email already exists', async () => {
     try {
       await createUserService.execute(usersMock[0]);
     } catch (error) {
-      expect((error as Error).message).toBe(
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(409);
+      expect((error as APIError).message).toBe(
         'User with provided email already exists.'
       );
     }
 
-    expect.assertions(1);
+    expect.assertions(3);
   });
 });

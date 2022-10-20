@@ -17,9 +17,15 @@ export class AuthMiddleware implements IMiddleware {
 
     const splitted = token.split(' ')[1];
 
-    const authInfo = await this.#tokenProvider.verifyToken<IAuthInfo>(splitted);
+    try {
+      const authInfo = await this.#tokenProvider.verifyToken<IAuthInfo>(
+        splitted
+      );
 
-    res.locals.authInfo = authInfo;
+      res.locals.authInfo = authInfo;
+    } catch {
+      throw new APIError(401, 'Unauthorized request.');
+    }
 
     next();
   };

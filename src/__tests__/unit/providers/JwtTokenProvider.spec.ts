@@ -17,7 +17,7 @@ describe('JwtTokenProvider', () => {
     const token = await tokenProvider.generateToken(payload);
 
     expect(jwt.sign).toHaveBeenCalledWith(payload, secret, {
-      expiresIn: '1h'
+      expiresIn: '7d'
     });
     expect(token).toBeDefined();
   });

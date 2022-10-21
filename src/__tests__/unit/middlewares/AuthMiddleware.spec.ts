@@ -11,6 +11,7 @@ const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
 
 const token = 'Bearer 123';
 const splitted = token.split(' ')[1];
+const next = jest.fn();
 
 beforeAll(() => {
   jest.useFakeTimers();
@@ -28,16 +29,27 @@ describe('AuthMiddleware', () => {
   });
 
   it('should call next function', async () => {
-    const next = jest.fn();
-
     await authMiddleware.execute(requestMock, responseMock, next);
 
     expect(next).toHaveBeenCalled();
   });
 
   it('should throw an APIError if no token is provided', async () => {
-    const next = jest.fn();
     requestMock.headers.authorization = undefined;
+
+    try {
+      await authMiddleware.execute(requestMock, responseMock, next);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(401);
+      expect((error as APIError).message).toBe('Unauthorized request.');
+    }
+
+    expect.assertions(3);
+  });
+
+  it('should throw an APIError if tokenProvider throws an exception', async () => {
+    jest.spyOn(tokenProvider, 'verifyToken').mockRejectedValue(new Error());
 
     try {
       await authMiddleware.execute(requestMock, responseMock, next);
@@ -53,7 +65,7 @@ describe('AuthMiddleware', () => {
   it('should call tokenProvider to validate with splitted token', async () => {
     jest.spyOn(tokenProvider, 'verifyToken');
 
-    await authMiddleware.execute(requestMock, responseMock, jest.fn());
+    await authMiddleware.execute(requestMock, responseMock, next);
 
     expect(tokenProvider.verifyToken).toHaveBeenCalledWith(splitted);
   });
@@ -61,7 +73,7 @@ describe('AuthMiddleware', () => {
   it('should set res.locals with IAuthInfo object returned by tokenProvider', async () => {
     jest.spyOn(tokenProvider, 'verifyToken').mockResolvedValue(authInfo);
 
-    await authMiddleware.execute(requestMock, responseMock, jest.fn());
+    await authMiddleware.execute(requestMock, responseMock, next);
 
     expect(responseMock.locals.authInfo).toEqual(authInfo);
   });

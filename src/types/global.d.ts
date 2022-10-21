@@ -1,4 +1,3 @@
-import APIError from '@src/errors/APIError';
 import { Request, Response, NextFunction } from 'express';
 import { Send } from 'express-serve-static-core';
 

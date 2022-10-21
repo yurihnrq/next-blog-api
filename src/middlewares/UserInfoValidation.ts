@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import APIError from '../errors/APIError';
 
-export class UserInfoValidation implements IMiddleware {
+export class UserInfoValidation implements APIMiddleware {
   execute = async (
     req: Request,
     _res: Response,

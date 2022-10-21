@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import APIError from '../errors/APIError';
 
-export class ExceptionMiddleware implements IErrorMiddleware {
+export class ExceptionMiddleware implements APIErrorMiddleware {
   execute = async (
     err: Error,
     _req: Request,

@@ -10,7 +10,7 @@ import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 const clientAuthService: IClientAuthService = new ClientAuthServiceMock();
 const generateTokenService: IGenerateTokenService =
   new GenerateTokenServiceMock();
-const authenticationController: IController = new AuthenticationController(
+const authenticationController: APIController = new AuthenticationController(
   clientAuthService,
   generateTokenService
 );

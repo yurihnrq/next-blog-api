@@ -2,14 +2,14 @@ import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuth
 import { ClientAuthService } from '@src/modules/auth/services/ClientAuthService';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import APIError from '@src/errors/APIError';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import { AuthRepositoryMock } from '@mocks/modules/auth/repositories/AuthRepositoryMock';
 import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 
 const authRepository: IAuthRepository = new AuthRepositoryMock();
-const hashProvider: IHashProvider = new HashProviderMock();
+const hashProvider: HashProvider = new HashProviderMock();
 const clientAuthService: IClientAuthService = new ClientAuthService(
   authRepository,
   hashProvider

@@ -6,7 +6,7 @@ import { responseMock } from '@mocks/express/responseMock';
 import { CreateUserServiceMock } from '@mocks/modules/users/services/CreateUserServiceMock';
 
 const createUserService: ICreateUserService = new CreateUserServiceMock();
-const createUserController: IController = new CreateUserController(
+const createUserController: APIController = new CreateUserController(
   createUserService
 );
 

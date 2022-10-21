@@ -7,7 +7,7 @@ import { usersMock } from '@mocks/modules/users/usersMocks';
 import { GetAllUsersServiceMock } from '@mocks/modules/users/services/GetAllUsersServiceMock';
 
 const getAllUsersService: IGetAllUsersService = new GetAllUsersServiceMock();
-const getAllUsersController: IController = new GetAllUsersController(
+const getAllUsersController: APIController = new GetAllUsersController(
   getAllUsersService
 );
 

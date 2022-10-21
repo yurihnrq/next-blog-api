@@ -1,9 +1,8 @@
-import APIError from '@src/errors/APIError';
 import { Request, Response, NextFunction } from 'express';
 import { Send } from 'express-serve-static-core';
 
 declare global {
-  interface IResponse<T = unknown> extends Response {
+  interface APIResponse<T = unknown> extends Response {
     json: Send<
       {
         success: boolean;
@@ -14,23 +13,23 @@ declare global {
     >;
   }
 
-  interface IController {
-    execute: (req: Request, res: IResponse) => Promise<Response>;
+  interface APIController {
+    execute: (req: Request, res: APIResponse) => Promise<Response>;
   }
 
-  interface IMiddleware {
+  interface APIMiddleware {
     execute: (
       req: Request,
-      res: IResponse,
+      res: APIResponse,
       next: NextFunction
     ) => Promise<void>;
   }
 
-  interface IErrorMiddleware extends IMiddleware {
+  interface APIErrorMiddleware extends APIMiddleware {
     execute: (
       err: Error,
       req: Request,
-      res: IResponse,
+      res: APIResponse,
       next: NextFunction
     ) => Promise<Response>;
   }

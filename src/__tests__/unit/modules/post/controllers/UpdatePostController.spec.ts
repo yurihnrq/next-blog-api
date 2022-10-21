@@ -6,7 +6,7 @@ import { responseMock } from '@src/__mocks__/express/responseMock';
 import { UpdatePostServiceMock } from '@src/__mocks__/modules/posts/services/UpdatePostServiceMock';
 
 const updatePostService: IUpdatePostService = new UpdatePostServiceMock();
-const updatePostController: IController = new UpdatePostController(
+const updatePostController: APIController = new UpdatePostController(
   updatePostService
 );
 

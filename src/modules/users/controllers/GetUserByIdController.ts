@@ -3,14 +3,17 @@ import { IGetUserByIdService } from '../services/interfaces/IGetUserByIdService'
 import APIError from '@src/errors/APIError';
 import { IUser } from '../interfaces/IUser';
 
-export class GetUserByIdController implements IController {
+export class GetUserByIdController implements APIController {
   #getUserByIdService: IGetUserByIdService;
 
   constructor(getUserByIdService: IGetUserByIdService) {
     this.#getUserByIdService = getUserByIdService;
   }
 
-  execute = async (req: Request, res: IResponse<IUser>): Promise<Response> => {
+  execute = async (
+    req: Request,
+    res: APIResponse<IUser>
+  ): Promise<Response> => {
     const { id } = req.params;
 
     if (!id) throw new APIError(400, 'User id is required.');

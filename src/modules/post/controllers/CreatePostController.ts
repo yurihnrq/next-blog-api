@@ -2,14 +2,14 @@ import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { Request, Response } from 'express';
 import { ICreatePostService } from '../services/interfaces/ICreatePostService';
 
-export class CreatePostController implements IController {
+export class CreatePostController implements APIController {
   #createPostService: ICreatePostService;
 
   constructor(createPostService: ICreatePostService) {
     this.#createPostService = createPostService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { title, content } = req.body;
     const { userId } = res.locals.authInfo as IAuthInfo;
 

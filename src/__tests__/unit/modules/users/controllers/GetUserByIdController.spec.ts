@@ -8,7 +8,7 @@ import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 import APIError from '@src/errors/APIError';
 
 const getUserByIdService: IGetUserByIdService = new GetUserByIdServiceMock();
-const getUserByIdController: IController = new GetUserByIdController(
+const getUserByIdController: APIController = new GetUserByIdController(
   getUserByIdService
 );
 

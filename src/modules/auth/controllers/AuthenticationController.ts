@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { IClientAuthService } from '../services/interfaces/IClientAuthService';
 import { IGenerateTokenService } from '../services/interfaces/IGenerateTokenService';
 
-export class AuthenticationController implements IController {
+export class AuthenticationController implements APIController {
   #clientAuthService: IClientAuthService;
   #generateTokenService: IGenerateTokenService;
 
@@ -14,7 +14,10 @@ export class AuthenticationController implements IController {
     this.#generateTokenService = generateTokenService;
   }
 
-  execute = async (req: Request, res: IResponse<string>): Promise<Response> => {
+  execute = async (
+    req: Request,
+    res: APIResponse<string>
+  ): Promise<Response> => {
     const { email, password } = req.body;
 
     const authInfo = await this.#clientAuthService.execute(email, password);

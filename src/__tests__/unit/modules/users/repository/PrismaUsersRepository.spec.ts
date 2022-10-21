@@ -3,9 +3,9 @@ import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import prisma from '@src/configs/prisma';
 import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
 import { PrismaUsersRepository } from '@src/modules/users/repositories/PrismaUsersRepository';
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
 
-const hashProvider: IHashProvider = new HashProviderMock();
+const hashProvider: HashProvider = new HashProviderMock();
 const usersRepository: IUsersRepository = new PrismaUsersRepository(
   prisma,
   hashProvider

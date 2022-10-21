@@ -3,14 +3,14 @@ import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { Request, Response } from 'express';
 import { IUpdatePostService } from '../services/interfaces/IUpdatePostService';
 
-export class UpdatePostController implements IController {
+export class UpdatePostController implements APIController {
   #updatePostService: IUpdatePostService;
 
   constructor(updatePostService: IUpdatePostService) {
     this.#updatePostService = updatePostService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { title, content } = req.body;
     const { id } = req.params;
     const { userId } = res.locals.authInfo as IAuthInfo;

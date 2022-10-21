@@ -1,12 +1,12 @@
 import APIError from '../errors/APIError';
-import { ITokenProvider } from '../providers/interfaces/ITokenProvider';
+import { TokenProvider } from '../providers/interfaces/TokenProvider';
 import { NextFunction, Request, Response } from 'express';
 import { IAuthInfo } from '../modules/auth/services/interfaces/IAuthInfo';
 
-export class AuthMiddleware implements IMiddleware {
-  #tokenProvider: ITokenProvider;
+export class AuthMiddleware implements APIMiddleware {
+  #tokenProvider: TokenProvider;
 
-  constructor(tokenProvider: ITokenProvider) {
+  constructor(tokenProvider: TokenProvider) {
     this.#tokenProvider = tokenProvider;
   }
 

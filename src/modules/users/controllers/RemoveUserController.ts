@@ -3,14 +3,14 @@ import { IRemoveUserService } from '../services/interfaces/IRemoveUserService';
 import APIError from '@src/errors/APIError';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
-export class RemoveUserController implements IController {
+export class RemoveUserController implements APIController {
   #removeUserService: IRemoveUserService;
 
   constructor(removeUserService: IRemoveUserService) {
     this.#removeUserService = removeUserService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { id } = req.params;
 
     const { userId } = res.locals.authInfo as IAuthInfo;

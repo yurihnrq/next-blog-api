@@ -3,14 +3,14 @@ import { Request } from 'express';
 import { Response } from 'express-serve-static-core';
 import { IGetPostByIdService } from '../services/interfaces/IGetPostByIdService';
 
-export class GetPostByIdController implements IController {
+export class GetPostByIdController implements APIController {
   #getPostByIdService: IGetPostByIdService;
 
   constructor(getPostByIdService: IGetPostByIdService) {
     this.#getPostByIdService = getPostByIdService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { id } = req.params;
 
     if (!id) throw new APIError(400, 'Post id is required.');

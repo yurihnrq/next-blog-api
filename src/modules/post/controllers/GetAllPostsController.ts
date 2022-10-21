@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { IGetAllPostsService } from '../services/interfaces/IGetAllPostsService';
 
-export class GetAllPostsController implements IController {
+export class GetAllPostsController implements APIController {
   #getAllPostsService: IGetAllPostsService;
 
   constructor(getAllPostsService: IGetAllPostsService) {
     this.#getAllPostsService = getAllPostsService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { page } = req.query;
 
     const pageInt = page ? parseInt(page as string) : 1;

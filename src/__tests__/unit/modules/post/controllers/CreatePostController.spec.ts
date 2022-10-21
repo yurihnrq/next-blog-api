@@ -6,7 +6,7 @@ import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { CreatePostServiceMock } from '@src/__mocks__/modules/posts/services/CreatePostServiceMock';
 
 const createPostService: ICreatePostService = new CreatePostServiceMock();
-const createPostController: IController = new CreatePostController(
+const createPostController: APIController = new CreatePostController(
   createPostService
 );
 

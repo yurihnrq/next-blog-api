@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
-import { IHashProvider } from './interfaces/IHashProvider';
+import { HashProvider } from './interfaces/HashProvider';
 
-export class BCryptHashProvider implements IHashProvider {
+export class BCryptHashProvider implements HashProvider {
   generateHash = async (payload: string): Promise<string> => {
     return bcrypt.hash(payload, 8);
   };

@@ -6,7 +6,7 @@ import { responseMock } from '@src/__mocks__/express/responseMock';
 import { RemovePostServiceMock } from '@src/__mocks__/modules/posts/services/RemovePostServiceMock';
 
 const removePostService: IRemovePostService = new RemovePostServiceMock();
-const removePostController: IController = new RemovePostController(
+const removePostController: APIController = new RemovePostController(
   removePostService
 );
 

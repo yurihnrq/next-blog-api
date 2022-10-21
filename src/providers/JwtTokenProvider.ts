@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 
-import { ITokenProvider } from './interfaces/ITokenProvider';
+import { TokenProvider } from './interfaces/TokenProvider';
 
-export class JwtTokenProvider implements ITokenProvider {
+export class JwtTokenProvider implements TokenProvider {
   #secret: string;
 
   constructor(secret: string) {

@@ -3,11 +3,11 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import APIError from '@src/errors/APIError';
 import { TokenProviderMock } from '@src/__mocks__/providers/TokenProviderMock';
-import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
+import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
-const tokenProvider: ITokenProvider = new TokenProviderMock();
-const authMiddleware: IMiddleware = new AuthMiddleware(tokenProvider);
+const tokenProvider: TokenProvider = new TokenProviderMock();
+const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);
 
 const token = 'Bearer 123';
 const splitted = token.split(' ')[1];

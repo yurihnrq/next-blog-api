@@ -1,11 +1,11 @@
-import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
+import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { IAuthInfo } from './interfaces/IAuthInfo';
 import { IGenerateTokenService } from './interfaces/IGenerateTokenService';
 
 export class GenerateTokenService implements IGenerateTokenService {
-  #tokenProvider: ITokenProvider;
+  #tokenProvider: TokenProvider;
 
-  constructor(tokenProvider: ITokenProvider) {
+  constructor(tokenProvider: TokenProvider) {
     this.#tokenProvider = tokenProvider;
   }
 

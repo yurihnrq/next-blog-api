@@ -8,7 +8,7 @@ import APIError from '@src/errors/APIError';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
 const removeUserService: IRemoveUserService = new RemoveUserServiceMock();
-const removeUserController: IController = new RemoveUserController(
+const removeUserController: APIController = new RemoveUserController(
   removeUserService
 );
 

@@ -6,7 +6,7 @@ import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { GetAllPostsServiceMock } from '@src/__mocks__/modules/posts/services/GetAllPostsServiceMock';
 
 const getAllPostsService: IGetAllPostsService = new GetAllPostsServiceMock();
-const getAllPostsController: IController = new GetAllPostsController(
+const getAllPostsController: APIController = new GetAllPostsController(
   getAllPostsService
 );
 

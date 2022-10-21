@@ -3,12 +3,14 @@
  * https://jestjs.io/docs/configuration
  */
 
-export default {
+import { Config } from 'jest';
+
+const config: Config = {
   // Automatically clear mock calls, instances, contexts and results before every test
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  // collectCoverage: true,
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
@@ -17,7 +19,8 @@ export default {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/src/__mocks__/',
-    '<rootDir>/src/configs/'
+    '<rootDir>/src/configs/',
+    '<rootDir>/dist/'
   ],
 
   // Indicates which provider should be used to instrument code for coverage
@@ -68,7 +71,8 @@ export default {
   testPathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/src/__mocks__/',
-    '<rootDir>/src/configs/'
+    '<rootDir>/src/configs/',
+    '<rootDir>/dist/'
   ],
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
@@ -77,8 +81,12 @@ export default {
   //   "\\.pnp\\.[^\\/]+$"
   // ],
 
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest']
+    '^.+\\.(t|j)sx?$': '@swc/jest'
   }
 };
+
+export default config;

@@ -3,14 +3,14 @@ import { IUpdateUserService } from '../services/interfaces/IUpdateUserService';
 import APIError from '@src/errors/APIError';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
-export class UpdateUserController implements IController {
+export class UpdateUserController implements APIController {
   #updateUserService: IUpdateUserService;
 
   constructor(updateUserService: IUpdateUserService) {
     this.#updateUserService = updateUserService;
   }
 
-  execute = async (req: Request, res: IResponse<null>): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse<null>): Promise<Response> => {
     const { id } = req.params;
     const { userId } = res.locals.authInfo as IAuthInfo;
 

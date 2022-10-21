@@ -1,13 +1,13 @@
 import { PrismaClient } from '@prisma/client';
-import { IHashProvider } from '../../../providers/interfaces/IHashProvider';
+import { HashProvider } from '../../../providers/interfaces/HashProvider';
 import { IUser } from '../interfaces/IUser';
 import { IUsersRepository } from './interfaces/IUsersRepository';
 
 export class PrismaUsersRepository implements IUsersRepository {
   #prismaClient: PrismaClient;
-  #hashProvider: IHashProvider;
+  #hashProvider: HashProvider;
 
-  constructor(prismaClient: PrismaClient, hashProvider: IHashProvider) {
+  constructor(prismaClient: PrismaClient, hashProvider: HashProvider) {
     this.#prismaClient = prismaClient;
     this.#hashProvider = hashProvider;
   }

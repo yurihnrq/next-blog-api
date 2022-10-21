@@ -1,10 +1,10 @@
 import { GenerateTokenService } from '@src/modules/auth/services/GenerateTokenService';
 import { IGenerateTokenService } from '@src/modules/auth/services/interfaces/IGenerateTokenService';
-import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
+import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { TokenProviderMock } from '@mocks/providers/TokenProviderMock';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 
-const tokenProvider: ITokenProvider = new TokenProviderMock();
+const tokenProvider: TokenProvider = new TokenProviderMock();
 const generateTokenService: IGenerateTokenService = new GenerateTokenService(
   tokenProvider
 );

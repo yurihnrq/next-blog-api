@@ -7,7 +7,7 @@ import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { GetPostByIdServiceMock } from '@src/__mocks__/modules/posts/services/GetPostByIdServiceMock';
 
 const getPostByIdService: IGetPostByIdService = new GetPostByIdServiceMock();
-const getPostByIdController: IController = new GetPostByIdController(
+const getPostByIdController: APIController = new GetPostByIdController(
   getPostByIdService
 );
 

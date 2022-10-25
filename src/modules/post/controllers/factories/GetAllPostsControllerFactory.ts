@@ -1,11 +1,11 @@
 import { PrismaPostsRepositoryFactory } from '@src/modules/post/repositories/factories/PrismaPostsRepositoryFactory';
-import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
+import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
 import { GetAllPostsService } from '../../services/GetAllPostsService';
 import { IGetAllPostsService } from '../../services/interfaces/IGetAllPostsService';
 import { GetAllPostsController } from '../GetAllPostsController';
 
 export const GetAllPostsControllerFactory = () => {
-  const postsRepository: IPostsRepository = PrismaPostsRepositoryFactory();
+  const postsRepository: PostsRepository = PrismaPostsRepositoryFactory();
 
   const getAllPostsService: IGetAllPostsService = new GetAllPostsService(
     postsRepository

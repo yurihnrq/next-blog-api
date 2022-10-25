@@ -1,16 +1,16 @@
 import APIError from '@src/errors/APIError';
-import { IPost } from '../interfaces/IPost';
-import { IPostsRepository } from '../repositories/interface/IPostsRepository';
+import { Post } from '../interfaces/Post';
+import { PostsRepository } from '../repositories/interface/PostsRepository';
 import { IGetPostByIdService } from './interfaces/IGetPostByIdService';
 
 export class GetPostByIdService implements IGetPostByIdService {
-  #postsRepository: IPostsRepository;
+  #postsRepository: PostsRepository;
 
-  constructor(postsRepository: IPostsRepository) {
+  constructor(postsRepository: PostsRepository) {
     this.#postsRepository = postsRepository;
   }
 
-  async execute(id: string): Promise<IPost> {
+  async execute(id: string): Promise<Post> {
     const post = await this.#postsRepository.getById(id);
 
     if (!post) throw new APIError(404, 'Post with provided id does not exist.');

@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { IPostsRepository } from '../repositories/interface/IPostsRepository';
+import { PostsRepository } from '../repositories/interface/PostsRepository';
 import { IRemovePostService } from './interfaces/IRemovePostService';
 
 export class RemovePostService implements IRemovePostService {
-  #postsRepository: IPostsRepository;
+  #postsRepository: PostsRepository;
 
-  constructor(postsRepository: IPostsRepository) {
+  constructor(postsRepository: PostsRepository) {
     this.#postsRepository = postsRepository;
   }
 

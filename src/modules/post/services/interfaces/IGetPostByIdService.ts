@@ -1,5 +1,5 @@
-import { IPost } from '../../interfaces/IPost';
+import { Post } from '../../interfaces/Post';
 
 export interface IGetPostByIdService {
-  execute(id: string): Promise<IPost>;
+  execute(id: string): Promise<Post>;
 }

@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
+import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
 import { IRemovePostService } from '@src/modules/post/services/interfaces/IRemovePostService';
 import { RemovePostService } from '@src/modules/post/services/RemovePostService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
-const postsRepository: IPostsRepository = new PostsRepositoryMock();
+const postsRepository: PostsRepository = new PostsRepositoryMock();
 const removePostService: IRemovePostService = new RemovePostService(
   postsRepository
 );

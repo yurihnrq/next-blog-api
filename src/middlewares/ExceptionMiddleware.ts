@@ -6,7 +6,7 @@ export class ExceptionMiddleware implements APIErrorMiddleware {
   execute = async (
     err: Error,
     _req: Request,
-    res: Response,
+    res: APIResponse,
     _next: NextFunction
   ): Promise<Response> => {
     let returnedError: APIError;
@@ -17,7 +17,7 @@ export class ExceptionMiddleware implements APIErrorMiddleware {
       returnedError = new APIError(500, 'Server Internal Error, try again.');
     }
 
-    console.error(err);
+    if (process.env.NODE_ENV !== 'test') console.error(err);
 
     return res.status(returnedError.status).json({
       success: false,

@@ -1,15 +1,15 @@
-import { ICreatePostDTO } from '../interfaces/ICreatePostDTO';
-import { IPostsRepository } from '../repositories/interface/IPostsRepository';
+import { CreatePostDTO } from '../interfaces/CreatePostDTO';
+import { PostsRepository } from '../repositories/interface/PostsRepository';
 import { ICreatePostService } from './interfaces/ICreatePostService';
 
 export class CreatePostService implements ICreatePostService {
-  #postsRepository: IPostsRepository;
+  #postsRepository: PostsRepository;
 
-  constructor(postsRepository: IPostsRepository) {
+  constructor(postsRepository: PostsRepository) {
     this.#postsRepository = postsRepository;
   }
 
-  async execute(post: ICreatePostDTO): Promise<void> {
+  async execute(post: CreatePostDTO): Promise<void> {
     await this.#postsRepository.create(post);
   }
 }

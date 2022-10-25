@@ -1,4 +1,4 @@
-export interface ICreatePostDTO {
+export interface CreatePostDTO {
   authorId: string;
   title: string;
   content: string;

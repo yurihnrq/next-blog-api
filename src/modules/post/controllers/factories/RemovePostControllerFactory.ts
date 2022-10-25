@@ -1,11 +1,11 @@
 import { PrismaPostsRepositoryFactory } from '../../repositories/factories/PrismaPostsRepositoryFactory';
-import { IPostsRepository } from '../../repositories/interface/IPostsRepository';
+import { PostsRepository } from '../../repositories/interface/PostsRepository';
 import { IRemovePostService } from '../../services/interfaces/IRemovePostService';
 import { RemovePostService } from '../../services/RemovePostService';
 import { RemovePostController } from '../RemovePostController';
 
 export const RemovePostControllerFactory = () => {
-  const postsRepository: IPostsRepository = PrismaPostsRepositoryFactory();
+  const postsRepository: PostsRepository = PrismaPostsRepositoryFactory();
 
   const removePostService: IRemovePostService = new RemovePostService(
     postsRepository

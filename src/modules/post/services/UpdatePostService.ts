@@ -1,16 +1,16 @@
 import APIError from '@src/errors/APIError';
-import { IUpdatePostDTO } from '../interfaces/IUpdatePostDTO';
-import { IPostsRepository } from '../repositories/interface/IPostsRepository';
+import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';
+import { PostsRepository } from '../repositories/interface/PostsRepository';
 import { IUpdatePostService } from './interfaces/IUpdatePostService';
 
 export class UpdatePostService implements IUpdatePostService {
-  #postsRepository: IPostsRepository;
+  #postsRepository: PostsRepository;
 
-  constructor(postsRepository: IPostsRepository) {
+  constructor(postsRepository: PostsRepository) {
     this.#postsRepository = postsRepository;
   }
 
-  async execute(data: IUpdatePostDTO): Promise<void> {
+  async execute(data: UpdatePostDTO): Promise<void> {
     const existentPost = await this.#postsRepository.getById(data.id as string);
 
     if (!existentPost)

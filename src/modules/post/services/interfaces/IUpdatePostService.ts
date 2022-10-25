@@ -1,5 +1,5 @@
-import { IUpdatePostDTO } from '../../interfaces/IUpdatePostDTO';
+import { UpdatePostDTO } from '../../interfaces/UpdatePostDTO';
 
 export interface IUpdatePostService {
-  execute(data: IUpdatePostDTO): Promise<void>;
+  execute(data: UpdatePostDTO): Promise<void>;
 }

@@ -1,17 +1,17 @@
 import { PrismaClient } from '@prisma/client';
-import { IPost } from '../interfaces/IPost';
-import { ICreatePostDTO } from '../interfaces/ICreatePostDTO';
-import { IPostsRepository } from './interface/IPostsRepository';
-import { IUpdatePostDTO } from '../interfaces/IUpdatePostDTO';
+import { Post } from '../interfaces/Post';
+import { CreatePostDTO } from '../interfaces/CreatePostDTO';
+import { PostsRepository } from './interface/PostsRepository';
+import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';
 
-export class PrismaPostsRepository implements IPostsRepository {
+export class PrismaPostsRepository implements PostsRepository {
   #prisma: PrismaClient;
 
   constructor(prismaClient: PrismaClient) {
     this.#prisma = prismaClient;
   }
 
-  getAll(page: number): Promise<IPost[]> {
+  getAll(page: number): Promise<Post[]> {
     const posts = this.#prisma.post.findMany({
       take: 5,
       skip: 5 * (page - 1),
@@ -23,7 +23,7 @@ export class PrismaPostsRepository implements IPostsRepository {
     return posts;
   }
 
-  async getById(id: string): Promise<IPost | null> {
+  async getById(id: string): Promise<Post | null> {
     const post = await this.#prisma.post.findUnique({
       where: {
         id: id
@@ -33,7 +33,7 @@ export class PrismaPostsRepository implements IPostsRepository {
     return post;
   }
 
-  async create(post: ICreatePostDTO): Promise<void> {
+  async create(post: CreatePostDTO): Promise<void> {
     await this.#prisma.post.create({
       data: {
         title: post.title,
@@ -44,7 +44,7 @@ export class PrismaPostsRepository implements IPostsRepository {
     });
   }
 
-  async update(post: IUpdatePostDTO): Promise<void> {
+  async update(post: UpdatePostDTO): Promise<void> {
     await this.#prisma.post.update({
       data: {
         title: post.title,

@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
+import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
 import { GetAllPostsService } from '@src/modules/post/services/GetAllPostsService';
 import { IGetAllPostsService } from '@src/modules/post/services/interfaces/IGetAllPostsService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
-const postsRepository: IPostsRepository = new PostsRepositoryMock();
+const postsRepository: PostsRepository = new PostsRepositoryMock();
 const getAllPostsService: IGetAllPostsService = new GetAllPostsService(
   postsRepository
 );

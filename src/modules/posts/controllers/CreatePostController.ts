@@ -1,11 +1,11 @@
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { Request, Response } from 'express';
-import { ICreatePostService } from '../services/interfaces/ICreatePostService';
+import { CreatePostService } from '../services/interfaces/CreatePostService';
 
 export class CreatePostController implements APIController {
-  #createPostService: ICreatePostService;
+  #createPostService: CreatePostService;
 
-  constructor(createPostService: ICreatePostService) {
+  constructor(createPostService: CreatePostService) {
     this.#createPostService = createPostService;
   }
 

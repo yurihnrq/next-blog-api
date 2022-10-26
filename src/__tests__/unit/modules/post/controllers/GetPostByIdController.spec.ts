@@ -1,12 +1,12 @@
 import APIError from '@src/errors/APIError';
-import { GetPostByIdController } from '@src/modules/post/controllers/GetPostByIdController';
-import { IGetPostByIdService } from '@src/modules/post/services/interfaces/IGetPostByIdService';
+import { GetPostByIdController } from '@src/modules/posts/controllers/GetPostByIdController';
+import { GetPostByIdService } from '@src/modules/posts/services/interfaces/GetPostByIdService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { GetPostByIdServiceMock } from '@src/__mocks__/modules/posts/services/GetPostByIdServiceMock';
 
-const getPostByIdService: IGetPostByIdService = new GetPostByIdServiceMock();
+const getPostByIdService: GetPostByIdService = new GetPostByIdServiceMock();
 const getPostByIdController: APIController = new GetPostByIdController(
   getPostByIdService
 );

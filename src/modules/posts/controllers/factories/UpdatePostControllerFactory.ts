@@ -1,15 +1,13 @@
 import { PrismaPostsRepositoryFactory } from '../../repositories/factories/PrismaPostsRepositoryFactory';
 import { PostsRepository } from '../../repositories/interface/PostsRepository';
-import { IUpdatePostService } from '../../services/interfaces/IUpdatePostService';
-import { UpdatePostService } from '../../services/UpdatePostService';
+import { UpdatePost } from '../../services/UpdatePost';
+import { UpdatePostService } from '../../services/interfaces/UpdatePostService';
 import { UpdatePostController } from '../UpdatePostController';
 
 export const UpdatePostControllerFactory = () => {
   const postsRepository: PostsRepository = PrismaPostsRepositoryFactory();
 
-  const updatePostService: IUpdatePostService = new UpdatePostService(
-    postsRepository
-  );
+  const updatePostService: UpdatePostService = new UpdatePost(postsRepository);
 
   return new UpdatePostController(updatePostService);
 };

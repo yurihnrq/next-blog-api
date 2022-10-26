@@ -1,14 +1,12 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
-import { GetAllPostsService } from '@src/modules/post/services/GetAllPostsService';
-import { IGetAllPostsService } from '@src/modules/post/services/interfaces/IGetAllPostsService';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { GetAllPosts } from '@src/modules/posts/services/GetAllPosts';
+import { GetAllPostsService } from '@src/modules/posts/services/interfaces/GetAllPostsService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
 const postsRepository: PostsRepository = new PostsRepositoryMock();
-const getAllPostsService: IGetAllPostsService = new GetAllPostsService(
-  postsRepository
-);
+const getAllPostsService: GetAllPostsService = new GetAllPosts(postsRepository);
 
 describe('GetAllPostsService', () => {
   it('should return all posts', async () => {

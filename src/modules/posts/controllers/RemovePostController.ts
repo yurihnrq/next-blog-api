@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
 import { Request, Response } from 'express';
-import { IRemovePostService } from '../services/interfaces/IRemovePostService';
+import { RemovePostService } from '../services/interfaces/RemovePostService';
 
 export class RemovePostController implements APIController {
-  #removePostService: IRemovePostService;
+  #removePostService: RemovePostService;
 
-  constructor(removePostService: IRemovePostService) {
+  constructor(removePostService: RemovePostService) {
     this.#removePostService = removePostService;
   }
 

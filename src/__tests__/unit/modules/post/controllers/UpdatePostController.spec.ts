@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { UpdatePostController } from '@src/modules/post/controllers/UpdatePostController';
-import { IUpdatePostService } from '@src/modules/post/services/interfaces/IUpdatePostService';
+import { UpdatePostController } from '@src/modules/posts/controllers/UpdatePostController';
+import { UpdatePostService } from '@src/modules/posts/services/interfaces/UpdatePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { UpdatePostServiceMock } from '@src/__mocks__/modules/posts/services/UpdatePostServiceMock';
 
-const updatePostService: IUpdatePostService = new UpdatePostServiceMock();
+const updatePostService: UpdatePostService = new UpdatePostServiceMock();
 const updatePostController: APIController = new UpdatePostController(
   updatePostService
 );

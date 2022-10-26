@@ -1,5 +1,5 @@
 import prisma from '@src/configs/prisma';
-import { PrismaPostsRepository } from '@src/modules/post/repositories/PrismaPostsRepository';
+import { PrismaPostsRepository } from '@src/modules/posts/repositories/PrismaPostsRepository';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 
 const postsRepository = new PrismaPostsRepository(prisma);
@@ -63,7 +63,8 @@ describe('PrismaPostRepository', () => {
     await postsRepository.update({
       id: postsMock[1].id as string,
       title: postsMock[1].title,
-      content: postsMock[1].content
+      content: postsMock[1].content,
+      updateAuthorId: postsMock[1].authorId
     });
 
     expect(prisma.post.update).toHaveBeenCalledWith({

@@ -1,9 +1,9 @@
 import APIError from '@src/errors/APIError';
 import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';
 import { PostsRepository } from '../repositories/interface/PostsRepository';
-import { IUpdatePostService } from './interfaces/IUpdatePostService';
+import { UpdatePostService } from './interfaces/UpdatePostService';
 
-export class UpdatePostService implements IUpdatePostService {
+export class UpdatePost implements UpdatePostService {
   #postsRepository: PostsRepository;
 
   constructor(postsRepository: PostsRepository) {

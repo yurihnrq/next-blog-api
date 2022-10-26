@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { IGetAllPostsService } from '../services/interfaces/IGetAllPostsService';
+import { GetAllPostsService } from '../services/interfaces/GetAllPostsService';
 
 export class GetAllPostsController implements APIController {
-  #getAllPostsService: IGetAllPostsService;
+  #getAllPostsService: GetAllPostsService;
 
-  constructor(getAllPostsService: IGetAllPostsService) {
+  constructor(getAllPostsService: GetAllPostsService) {
     this.#getAllPostsService = getAllPostsService;
   }
 

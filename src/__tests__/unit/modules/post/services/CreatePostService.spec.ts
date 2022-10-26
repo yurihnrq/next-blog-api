@@ -1,13 +1,11 @@
-import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
-import { CreatePostService } from '@src/modules/post/services/CreatePostService';
-import { ICreatePostService } from '@src/modules/post/services/interfaces/ICreatePostService';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { CreatePost } from '@src/modules/posts/services/CreatePost';
+import { CreatePostService } from '@src/modules/posts/services/interfaces/CreatePostService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
 const postsRepository: PostsRepository = new PostsRepositoryMock();
-const createPostService: ICreatePostService = new CreatePostService(
-  postsRepository
-);
+const createPostService: CreatePostService = new CreatePost(postsRepository);
 
 describe('CreatePostService', () => {
   it('should create a post', async () => {

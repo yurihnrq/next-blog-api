@@ -1,12 +1,12 @@
 import APIError from '@src/errors/APIError';
 import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
 import { Request, Response } from 'express';
-import { IUpdatePostService } from '../services/interfaces/IUpdatePostService';
+import { UpdatePostService } from '../services/interfaces/UpdatePostService';
 
 export class UpdatePostController implements APIController {
-  #updatePostService: IUpdatePostService;
+  #updatePostService: UpdatePostService;
 
-  constructor(updatePostService: IUpdatePostService) {
+  constructor(updatePostService: UpdatePostService) {
     this.#updatePostService = updatePostService;
   }
 

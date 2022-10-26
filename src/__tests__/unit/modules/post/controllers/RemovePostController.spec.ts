@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { RemovePostController } from '@src/modules/post/controllers/RemovePostController';
-import { IRemovePostService } from '@src/modules/post/services/interfaces/IRemovePostService';
+import { RemovePostController } from '@src/modules/posts/controllers/RemovePostController';
+import { RemovePostService } from '@src/modules/posts/services/interfaces/RemovePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { RemovePostServiceMock } from '@src/__mocks__/modules/posts/services/RemovePostServiceMock';
 
-const removePostService: IRemovePostService = new RemovePostServiceMock();
+const removePostService: RemovePostService = new RemovePostServiceMock();
 const removePostController: APIController = new RemovePostController(
   removePostService
 );

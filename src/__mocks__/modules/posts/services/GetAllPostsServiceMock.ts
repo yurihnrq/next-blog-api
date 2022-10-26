@@ -1,8 +1,8 @@
 import { Post } from '@src/modules/post/interfaces/IPost';
-import { IGetAllPostsService } from '@src/modules/post/services/interfaces/IGetAllPostsService';
+import { GetAllPostsService } from '@src/modules/posts/services/interfaces/GetAllPostsService';
 import { postsMock } from '../postsMock';
 
-export class GetAllPostsServiceMock implements IGetAllPostsService {
+export class GetAllPostsServiceMock implements GetAllPostsService {
   execute = async (_page: number): Promise<Post[]> => {
     return Promise.resolve(postsMock);
   };

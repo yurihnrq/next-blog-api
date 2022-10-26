@@ -1,8 +1,8 @@
 import { Post } from '@src/modules/post/interfaces/IPost';
-import { IGetPostByIdService } from '@src/modules/post/services/interfaces/IGetPostByIdService';
+import { GetPostByIdService } from '@src/modules/posts/services/interfaces/IGetPostByIdService';
 import { postsMock } from '../postsMock';
 
-export class GetPostByIdServiceMock implements IGetPostByIdService {
+export class GetPostByIdServiceMock implements GetPostByIdService {
   execute(id: string): Promise<Post> {
     return Promise.resolve(postsMock[Number(id)]);
   }

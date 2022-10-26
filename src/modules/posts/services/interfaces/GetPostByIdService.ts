@@ -1,5 +1,5 @@
 import { Post } from '../../interfaces/Post';
 
-export interface IGetPostByIdService {
+export interface GetPostByIdService {
   execute(id: string): Promise<Post>;
 }

@@ -1,14 +1,12 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
-import { IRemovePostService } from '@src/modules/post/services/interfaces/IRemovePostService';
-import { RemovePostService } from '@src/modules/post/services/RemovePostService';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { RemovePostService } from '@src/modules/posts/services/interfaces/RemovePostService';
+import { RemovePost } from '@src/modules/posts/services/RemovePost';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
 const postsRepository: PostsRepository = new PostsRepositoryMock();
-const removePostService: IRemovePostService = new RemovePostService(
-  postsRepository
-);
+const removePostService: RemovePostService = new RemovePost(postsRepository);
 
 describe('RemovePostService', () => {
   it('shoule remove a post', async () => {

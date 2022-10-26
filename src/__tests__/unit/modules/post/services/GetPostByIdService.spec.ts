@@ -1,14 +1,12 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
-import { GetPostByIdService } from '@src/modules/post/services/GetPostByIdService';
-import { IGetPostByIdService } from '@src/modules/post/services/interfaces/IGetPostByIdService';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { GetPostById } from '@src/modules/posts/services/GetPostById';
+import { GetPostByIdService } from '@src/modules/posts/services/interfaces/GetPostByIdService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
 const postsRepository: PostsRepository = new PostsRepositoryMock();
-const getPostByIdService: IGetPostByIdService = new GetPostByIdService(
-  postsRepository
-);
+const getPostByIdService: GetPostByIdService = new GetPostById(postsRepository);
 
 describe('GetPostByIdService', () => {
   it('it should return a post', async () => {

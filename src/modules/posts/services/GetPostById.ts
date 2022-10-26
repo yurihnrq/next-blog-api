@@ -1,19 +1,20 @@
 import APIError from '@src/errors/APIError';
+import { Post } from '../interfaces/Post';
 import { PostsRepository } from '../repositories/interface/PostsRepository';
-import { IRemovePostService } from './interfaces/IRemovePostService';
+import { GetPostByIdService } from './interfaces/GetPostByIdService';
 
-export class RemovePostService implements IRemovePostService {
+export class GetPostById implements GetPostByIdService {
   #postsRepository: PostsRepository;
 
   constructor(postsRepository: PostsRepository) {
     this.#postsRepository = postsRepository;
   }
 
-  async execute(id: string): Promise<void> {
+  async execute(id: string): Promise<Post> {
     const post = await this.#postsRepository.getById(id);
 
     if (!post) throw new APIError(404, 'Post with provided id does not exist.');
 
-    await this.#postsRepository.remove(id);
+    return post;
   }
 }

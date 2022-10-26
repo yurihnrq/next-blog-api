@@ -1,8 +1,8 @@
 import { CreatePostDTO } from '../interfaces/CreatePostDTO';
 import { PostsRepository } from '../repositories/interface/PostsRepository';
-import { ICreatePostService } from './interfaces/ICreatePostService';
+import { CreatePostService } from './interfaces/CreatePostService';
 
-export class CreatePostService implements ICreatePostService {
+export class CreatePost implements CreatePostService {
   #postsRepository: PostsRepository;
 
   constructor(postsRepository: PostsRepository) {

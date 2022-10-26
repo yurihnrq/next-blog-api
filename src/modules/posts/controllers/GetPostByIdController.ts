@@ -1,12 +1,12 @@
 import APIError from '@src/errors/APIError';
 import { Request } from 'express';
 import { Response } from 'express-serve-static-core';
-import { IGetPostByIdService } from '../services/interfaces/IGetPostByIdService';
+import { GetPostByIdService } from '../services/interfaces/GetPostByIdService';
 
 export class GetPostByIdController implements APIController {
-  #getPostByIdService: IGetPostByIdService;
+  #getPostByIdService: GetPostByIdService;
 
-  constructor(getPostByIdService: IGetPostByIdService) {
+  constructor(getPostByIdService: GetPostByIdService) {
     this.#getPostByIdService = getPostByIdService;
   }
 

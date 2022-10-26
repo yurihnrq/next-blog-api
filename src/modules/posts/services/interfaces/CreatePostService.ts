@@ -1,5 +1,5 @@
 import { CreatePostDTO } from '../../interfaces/CreatePostDTO';
 
-export interface ICreatePostService {
+export interface CreatePostService {
   execute(post: CreatePostDTO): Promise<void>;
 }

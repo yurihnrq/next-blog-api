@@ -1,13 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '@src/modules/post/repositories/interface/PostsRepository';
-import { IUpdatePostService } from '@src/modules/post/services/interfaces/IUpdatePostService';
-import { UpdatePostService } from '@src/modules/post/services/UpdatePostService';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { UpdatePostService } from '@src/modules/posts/services/interfaces/UpdatePostService';
+import { UpdatePost } from '@src/modules/posts/services/UpdatePost';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';
 
 const postsRepository: PostsRepository = new PostsRepositoryMock();
-const updatePostService: IUpdatePostService = new UpdatePostService(
-  postsRepository
-);
+const updatePostService: UpdatePostService = new UpdatePost(postsRepository);
 
 describe('UpdatePostService', () => {
   it('should update a post', async () => {

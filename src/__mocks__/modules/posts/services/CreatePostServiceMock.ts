@@ -1,7 +1,7 @@
 import { Post } from '@src/modules/post/interfaces/IPost';
-import { ICreatePostService } from '@src/modules/post/services/interfaces/ICreatePostService';
+import { CreatePostService } from '@src/modules/posts/services/interfaces/CreatePostService';
 
-export class CreatePostServiceMock implements ICreatePostService {
+export class CreatePostServiceMock implements CreatePostService {
   execute(_post: Post): Promise<void> {
     return Promise.resolve();
   }

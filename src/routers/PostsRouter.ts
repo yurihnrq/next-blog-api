@@ -1,9 +1,9 @@
 import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
-import { CreatePostControllerFactory } from '@src/modules/post/controllers/factories/CreatePostControllerFactory';
-import { GetAllPostsControllerFactory } from '@src/modules/post/controllers/factories/GetAllPostsControllerFactory';
-import { GetPostByIdControllerFactory } from '@src/modules/post/controllers/factories/GetPostByIdControllerFactory';
-import { RemovePostControllerFactory } from '@src/modules/post/controllers/factories/RemovePostControllerFactory';
-import { UpdatePostControllerFactory } from '@src/modules/post/controllers/factories/UpdatePostControllerFactory';
+import { CreatePostControllerFactory } from '@src/modules/posts/controllers/factories/CreatePostControllerFactory';
+import { GetAllPostsControllerFactory } from '@src/modules/posts/controllers/factories/GetAllPostsControllerFactory';
+import { GetPostByIdControllerFactory } from '@src/modules/posts/controllers/factories/GetPostByIdControllerFactory';
+import { RemovePostControllerFactory } from '@src/modules/posts/controllers/factories/RemovePostControllerFactory';
+import { UpdatePostControllerFactory } from '@src/modules/posts/controllers/factories/UpdatePostControllerFactory';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { Router } from 'express';

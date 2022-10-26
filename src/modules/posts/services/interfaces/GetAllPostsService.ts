@@ -1,5 +1,5 @@
 import { Post } from '../../interfaces/Post';
 
-export interface IGetAllPostsService {
+export interface GetAllPostsService {
   execute(page: number): Promise<Post[]>;
 }

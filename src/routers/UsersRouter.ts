@@ -1,6 +1,6 @@
 import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
+import { JwtToken } from '@src/providers/JwtToken';
 import { Router } from 'express';
 import { CreateUserControllerFactory } from '../modules/users/controllers/factories/CreateUserControllerFactory';
 import { GetAllUsersControllerFactory } from '../modules/users/controllers/factories/GetAllUsersControllerFactory';
@@ -13,7 +13,7 @@ export const UsersRouter = () => {
   const router = Router();
 
   const userInfoValidation: APIMiddleware = new UserInfoValidation();
-  const tokenProvider: TokenProvider = new JwtTokenProvider(
+  const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
   );
   const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);

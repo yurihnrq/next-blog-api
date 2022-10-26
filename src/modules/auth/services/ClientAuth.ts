@@ -1,14 +1,14 @@
 import APIError from '@src/errors/APIError';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
-import { IAuthRepository } from '../repositories/interfaces/IAuthRepository';
+import { AuthRepository } from '../repositories/interfaces/AuthRepository';
 import { AuthInfo } from './interfaces/AuthInfo';
 import { ClientAuthService } from './interfaces/ClientAuthService';
 
 export class ClientAuth implements ClientAuthService {
-  #authRepository: IAuthRepository;
+  #authRepository: AuthRepository;
   #hashProvider: HashProvider;
 
-  constructor(authRepository: IAuthRepository, hashProvider: HashProvider) {
+  constructor(authRepository: AuthRepository, hashProvider: HashProvider) {
     this.#authRepository = authRepository;
     this.#hashProvider = hashProvider;
   }

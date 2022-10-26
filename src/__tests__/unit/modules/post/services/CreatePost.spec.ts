@@ -7,7 +7,7 @@ import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/P
 const postsRepository: PostsRepository = new PostsRepositoryMock();
 const createPostService: CreatePostService = new CreatePost(postsRepository);
 
-describe('CreatePostService', () => {
+describe('CreatePost', () => {
   it('should create a post', async () => {
     jest.spyOn(postsRepository, 'create');
 

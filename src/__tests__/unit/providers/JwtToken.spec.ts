@@ -1,11 +1,11 @@
 import jwt, { JsonWebTokenError } from 'jsonwebtoken';
 
 import { TokenProvider } from '../../../providers/interfaces/TokenProvider';
-import { JwtTokenProvider } from '../../../providers/JwtTokenProvider';
+import { JwtToken } from '../../../providers/JwtToken';
 
-describe('JwtTokenProvider', () => {
+describe('JwtToken', () => {
   const secret = 'secret';
-  const tokenProvider: TokenProvider = new JwtTokenProvider(secret);
+  const tokenProvider: TokenProvider = new JwtToken(secret);
   const payload = {
     userId: '1',
     loginAt: new Date()

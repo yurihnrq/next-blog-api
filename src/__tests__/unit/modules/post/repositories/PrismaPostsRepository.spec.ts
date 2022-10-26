@@ -4,7 +4,7 @@ import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 
 const postsRepository = new PrismaPostsRepository(prisma);
 
-describe('PrismaPostRepository', () => {
+describe('PrismaPostsRepository', () => {
   beforeAll(() => {
     jest.useFakeTimers();
     jest.setSystemTime();

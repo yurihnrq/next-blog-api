@@ -7,7 +7,7 @@ import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/P
 const postsRepository: PostsRepository = new PostsRepositoryMock();
 const updatePostService: UpdatePostService = new UpdatePost(postsRepository);
 
-describe('UpdatePostService', () => {
+describe('UpdatePost', () => {
   it('should update a post', async () => {
     jest.spyOn(postsRepository, 'update');
 

@@ -1,9 +1,9 @@
-import { BCryptHashProvider } from '@src/providers/BCryptHashProvider';
+import { BCryptHash } from '@src/providers/BCryptHash';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import bcrypt from 'bcrypt';
 
-describe('BCryptHashProvider', () => {
-  const provider: HashProvider = new BCryptHashProvider();
+describe('BCryptHash', () => {
+  const provider: HashProvider = new BCryptHash();
 
   it('should generate a hash', async () => {
     jest.spyOn(bcrypt, 'hash');

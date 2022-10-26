@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 import { TokenProvider } from './interfaces/TokenProvider';
 
-export class JwtTokenProvider implements TokenProvider {
+export class JwtToken implements TokenProvider {
   #secret: string;
 
   constructor(secret: string) {

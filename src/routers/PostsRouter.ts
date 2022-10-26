@@ -5,13 +5,13 @@ import { GetPostByIdControllerFactory } from '@src/modules/posts/controllers/fac
 import { RemovePostControllerFactory } from '@src/modules/posts/controllers/factories/RemovePostControllerFactory';
 import { UpdatePostControllerFactory } from '@src/modules/posts/controllers/factories/UpdatePostControllerFactory';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
+import { JwtToken } from '@src/providers/JwtToken';
 import { Router } from 'express';
 
 export const PostsRouter = () => {
   const router = Router();
 
-  const tokenProvider: TokenProvider = new JwtTokenProvider(
+  const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
   );
   const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);

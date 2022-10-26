@@ -8,7 +8,7 @@ import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/P
 const postsRepository: PostsRepository = new PostsRepositoryMock();
 const getAllPostsService: GetAllPostsService = new GetAllPosts(postsRepository);
 
-describe('GetAllPostsService', () => {
+describe('GetAllPosts', () => {
   it('should return all posts', async () => {
     jest.spyOn(postsRepository, 'getAll');
 

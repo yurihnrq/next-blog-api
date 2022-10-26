@@ -1,4 +1,4 @@
-import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuthRepository';
+import { AuthRepository } from '@src/modules/auth/repositories/interfaces/AuthRepository';
 import { ClientAuth } from '@src/modules/auth/services/ClientAuth';
 import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientAuthService';
@@ -8,7 +8,7 @@ import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import { AuthRepositoryMock } from '@mocks/modules/auth/repositories/AuthRepositoryMock';
 import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 
-const authRepository: IAuthRepository = new AuthRepositoryMock();
+const authRepository: AuthRepository = new AuthRepositoryMock();
 const hashProvider: HashProvider = new HashProviderMock();
 const clientAuthService: ClientAuthService = new ClientAuth(
   authRepository,
@@ -20,7 +20,7 @@ const loginInfo = {
   password: 'test-password'
 };
 
-describe('ClientAuthService', () => {
+describe('ClientAuth', () => {
   it('should return an AuthInfo object', async () => {
     const authInfo: AuthInfo = await clientAuthService.execute(
       loginInfo.email,

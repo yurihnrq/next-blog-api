@@ -14,7 +14,7 @@ const authInfo: AuthInfo = {
   authAt: new Date()
 };
 
-describe('GenerateTokenService', () => {
+describe('GenerateToken', () => {
   it('should return a token', async () => {
     const token = await generateTokenService.execute(authInfo);
 

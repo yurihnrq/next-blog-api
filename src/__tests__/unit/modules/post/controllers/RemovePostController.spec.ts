@@ -3,9 +3,9 @@ import { RemovePostController } from '@src/modules/posts/controllers/RemovePostC
 import { RemovePostService } from '@src/modules/posts/services/interfaces/RemovePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
-import { RemovePostServiceMock } from '@src/__mocks__/modules/posts/services/RemovePostServiceMock';
+import { RemovePostMock } from '@src/__mocks__/modules/posts/services/RemovePostMock';
 
-const removePostService: RemovePostService = new RemovePostServiceMock();
+const removePostService: RemovePostService = new RemovePostMock();
 const removePostController: APIController = new RemovePostController(
   removePostService
 );

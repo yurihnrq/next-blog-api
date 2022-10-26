@@ -3,9 +3,9 @@ import { UpdatePostController } from '@src/modules/posts/controllers/UpdatePostC
 import { UpdatePostService } from '@src/modules/posts/services/interfaces/UpdatePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
-import { UpdatePostServiceMock } from '@src/__mocks__/modules/posts/services/UpdatePostServiceMock';
+import { UpdatePostMock } from '@src/__mocks__/modules/posts/services/UpdatePostMock';
 
-const updatePostService: UpdatePostService = new UpdatePostServiceMock();
+const updatePostService: UpdatePostService = new UpdatePostMock();
 const updatePostController: APIController = new UpdatePostController(
   updatePostService
 );

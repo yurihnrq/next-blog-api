@@ -5,7 +5,7 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { RemoveUserServiceMock } from '@src/__mocks__/modules/users/services/RemoveUserServiceMock';
 import APIError from '@src/errors/APIError';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
 const removeUserService: IRemoveUserService = new RemoveUserServiceMock();
 const removeUserController: APIController = new RemoveUserController(
@@ -21,7 +21,7 @@ describe('RemoveUserController', () => {
     responseMock.locals.authInfo = {
       userId: '1',
       authAt: new Date()
-    } as IAuthInfo;
+    } as AuthInfo;
 
     const result = await removeUserController.execute(
       requestMock,
@@ -40,7 +40,7 @@ describe('RemoveUserController', () => {
     responseMock.locals.authInfo = {
       userId: '2',
       authAt: new Date()
-    } as IAuthInfo;
+    } as AuthInfo;
 
     try {
       await removeUserController.execute(requestMock, responseMock);

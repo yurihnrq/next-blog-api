@@ -4,7 +4,7 @@ import { responseMock } from '@mocks/express/responseMock';
 import APIError from '@src/errors/APIError';
 import { TokenProviderMock } from '@src/__mocks__/providers/TokenProviderMock';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
 const tokenProvider: TokenProvider = new TokenProviderMock();
 const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);
@@ -17,7 +17,7 @@ beforeAll(() => {
   jest.setSystemTime(new Date('13-06-2022'));
 });
 
-const authInfo: IAuthInfo = {
+const authInfo: AuthInfo = {
   userId: '123',
   authAt: new Date()
 };
@@ -58,7 +58,7 @@ describe('AuthMiddleware', () => {
     expect(tokenProvider.verifyToken).toHaveBeenCalledWith(splitted);
   });
 
-  it('should set res.locals with IAuthInfo object returned by tokenProvider', async () => {
+  it('should set res.locals with AuthInfo object returned by tokenProvider', async () => {
     jest.spyOn(tokenProvider, 'verifyToken').mockResolvedValue(authInfo);
 
     await authMiddleware.execute(requestMock, responseMock, jest.fn());

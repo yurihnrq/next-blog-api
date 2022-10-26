@@ -1,10 +1,10 @@
 import APIError from '@src/errors/APIError';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { IAuthRepository } from '../repositories/interfaces/IAuthRepository';
-import { IAuthInfo } from './interfaces/IAuthInfo';
-import { IClientAuthService } from './interfaces/IClientAuthService';
+import { AuthInfo } from './interfaces/AuthInfo';
+import { ClientAuthService } from './interfaces/ClientAuthService';
 
-export class ClientAuthService implements IClientAuthService {
+export class ClientAuth implements ClientAuthService {
   #authRepository: IAuthRepository;
   #hashProvider: HashProvider;
 
@@ -13,7 +13,7 @@ export class ClientAuthService implements IClientAuthService {
     this.#hashProvider = hashProvider;
   }
 
-  execute = async (email: string, password: string): Promise<IAuthInfo> => {
+  execute = async (email: string, password: string): Promise<AuthInfo> => {
     const existentUser = await this.#authRepository.getByEmail(email);
 
     if (!existentUser) throw new APIError(401, 'Invalid credentials.');

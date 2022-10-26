@@ -4,9 +4,9 @@ import { GetPostByIdService } from '@src/modules/posts/services/interfaces/GetPo
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
-import { GetPostByIdServiceMock } from '@src/__mocks__/modules/posts/services/GetPostByIdServiceMock';
+import { GetPostByIdMock } from '@src/__mocks__/modules/posts/services/GetPostByIdMock';
 
-const getPostByIdService: GetPostByIdService = new GetPostByIdServiceMock();
+const getPostByIdService: GetPostByIdService = new GetPostByIdMock();
 const getPostByIdController: APIController = new GetPostByIdController(
   getPostByIdService
 );

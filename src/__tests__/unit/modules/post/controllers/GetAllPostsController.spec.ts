@@ -3,9 +3,9 @@ import { GetAllPostsService } from '@src/modules/posts/services/interfaces/GetAl
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
-import { GetAllPostsServiceMock } from '@src/__mocks__/modules/posts/services/GetAllPostsServiceMock';
+import { GetAllPostsMock } from '@src/__mocks__/modules/posts/services/GetAllPostsMock';
 
-const getAllPostsService: GetAllPostsService = new GetAllPostsServiceMock();
+const getAllPostsService: GetAllPostsService = new GetAllPostsMock();
 const getAllPostsController: APIController = new GetAllPostsController(
   getAllPostsService
 );

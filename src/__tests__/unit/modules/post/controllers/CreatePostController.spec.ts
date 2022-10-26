@@ -3,9 +3,9 @@ import { CreatePostService } from '@src/modules/posts/services/interfaces/Create
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
-import { CreatePostServiceMock } from '@src/__mocks__/modules/posts/services/CreatePostServiceMock';
+import { CreatePostMock } from '@src/__mocks__/modules/posts/services/CreatePostMock';
 
-const createPostService: CreatePostService = new CreatePostServiceMock();
+const createPostService: CreatePostService = new CreatePostMock();
 const createPostController: APIController = new CreatePostController(
   createPostService
 );

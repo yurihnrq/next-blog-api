@@ -1,4 +1,4 @@
-export interface IAuthInfo {
+export interface AuthInfo {
   userId: string;
   authAt: Date;
 }

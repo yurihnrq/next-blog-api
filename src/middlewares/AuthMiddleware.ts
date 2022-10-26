@@ -1,7 +1,7 @@
 import APIError from '../errors/APIError';
 import { TokenProvider } from '../providers/interfaces/TokenProvider';
 import { NextFunction, Request, Response } from 'express';
-import { IAuthInfo } from '../modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '../modules/auth/services/interfaces/AuthInfo';
 
 export class AuthMiddleware implements APIMiddleware {
   #tokenProvider: TokenProvider;
@@ -17,7 +17,7 @@ export class AuthMiddleware implements APIMiddleware {
 
     const splitted = token.split(' ')[1];
 
-    const authInfo = await this.#tokenProvider.verifyToken<IAuthInfo>(splitted);
+    const authInfo = await this.#tokenProvider.verifyToken<AuthInfo>(splitted);
 
     res.locals.authInfo = authInfo;
 

@@ -1,7 +1,7 @@
 import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuthRepository';
-import { ClientAuthService } from '@src/modules/auth/services/ClientAuthService';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
-import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
+import { ClientAuth } from '@src/modules/auth/services/ClientAuth';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientAuthService';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import APIError from '@src/errors/APIError';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
@@ -10,7 +10,7 @@ import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 
 const authRepository: IAuthRepository = new AuthRepositoryMock();
 const hashProvider: HashProvider = new HashProviderMock();
-const clientAuthService: IClientAuthService = new ClientAuthService(
+const clientAuthService: ClientAuthService = new ClientAuth(
   authRepository,
   hashProvider
 );
@@ -21,8 +21,8 @@ const loginInfo = {
 };
 
 describe('ClientAuthService', () => {
-  it('should return an IAuthInfo object', async () => {
-    const authInfo: IAuthInfo = await clientAuthService.execute(
+  it('should return an AuthInfo object', async () => {
+    const authInfo: AuthInfo = await clientAuthService.execute(
       loginInfo.email,
       loginInfo.password
     );
@@ -30,10 +30,10 @@ describe('ClientAuthService', () => {
     expect(authInfo).toBeDefined();
   });
 
-  it('should return an IAuthInfo object only if fetch a user with provided email from repository', async () => {
+  it('should return an AuthInfo object only if fetch a user with provided email from repository', async () => {
     jest.spyOn(authRepository, 'getByEmail');
 
-    const authInfo: IAuthInfo = await clientAuthService.execute(
+    const authInfo: AuthInfo = await clientAuthService.execute(
       loginInfo.email,
       loginInfo.password
     );
@@ -70,8 +70,8 @@ describe('ClientAuthService', () => {
     expect.assertions(3);
   });
 
-  it('should return an IAuthInfo object with fetched user id', async () => {
-    const authInfo: IAuthInfo = await clientAuthService.execute(
+  it('should return an AuthInfo object with fetched user id', async () => {
+    const authInfo: AuthInfo = await clientAuthService.execute(
       loginInfo.email,
       loginInfo.password
     );

@@ -1,11 +1,11 @@
 import { IAuthRepository } from '../../repositories/interfaces/IAuthRepository';
-import { ClientAuthService } from '../../services/ClientAuthService';
-import { IClientAuthService } from '../../services/interfaces/IClientAuthService';
+import { ClientAuth } from '../../services/ClientAuth';
+import { ClientAuthService } from '../../services/interfaces/ClientAuthService';
 import { PrismaAuthRepositoryFactory } from '../../repositories/factories/PrismaAuthRepositoryFactory';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { BCryptHashProvider } from '@src/providers/BCryptHashProvider';
-import { IGenerateTokenService } from '../../services/interfaces/IGenerateTokenService';
-import { GenerateTokenService } from '../../services/GenerateTokenService';
+import { GenerateTokenService } from '../../services/interfaces/GenerateTokenService';
+import { GenerateToken } from '../../services/GenerateTokenService';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
 import { AuthenticationController } from '../AuthenticationController';
@@ -15,7 +15,7 @@ export const AuthenticationControllerFactory = () => {
 
   const hashProvider: HashProvider = new BCryptHashProvider();
 
-  const clientAuthService: IClientAuthService = new ClientAuthService(
+  const clientAuthService: ClientAuthService = new ClientAuth(
     authRepository,
     hashProvider
   );
@@ -24,7 +24,7 @@ export const AuthenticationControllerFactory = () => {
     process.env.JWT_SECRET as string
   );
 
-  const generateTokenService: IGenerateTokenService = new GenerateTokenService(
+  const generateTokenService: GenerateTokenService = new GenerateToken(
     tokenProvider
   );
 

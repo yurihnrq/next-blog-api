@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { IClientAuthService } from '../services/interfaces/IClientAuthService';
-import { IGenerateTokenService } from '../services/interfaces/IGenerateTokenService';
+import { ClientAuthService } from '../services/interfaces/ClientAuthService';
+import { GenerateTokenService } from '../services/interfaces/GenerateTokenService';
 
 export class AuthenticationController implements APIController {
-  #clientAuthService: IClientAuthService;
-  #generateTokenService: IGenerateTokenService;
+  #clientAuthService: ClientAuthService;
+  #generateTokenService: GenerateTokenService;
 
   constructor(
-    clientAuthService: IClientAuthService,
-    generateTokenService: IGenerateTokenService
+    clientAuthService: ClientAuthService,
+    generateTokenService: GenerateTokenService
   ) {
     this.#clientAuthService = clientAuthService;
     this.#generateTokenService = generateTokenService;

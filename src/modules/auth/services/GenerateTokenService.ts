@@ -1,16 +1,16 @@
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { IAuthInfo } from './interfaces/IAuthInfo';
-import { IGenerateTokenService } from './interfaces/IGenerateTokenService';
+import { AuthInfo } from './interfaces/AuthInfo';
+import { GenerateTokenService } from './interfaces/GenerateTokenService';
 
-export class GenerateTokenService implements IGenerateTokenService {
+export class GenerateToken implements GenerateTokenService {
   #tokenProvider: TokenProvider;
 
   constructor(tokenProvider: TokenProvider) {
     this.#tokenProvider = tokenProvider;
   }
 
-  execute = async (authInfo: IAuthInfo): Promise<string> => {
-    const token = this.#tokenProvider.generateToken<IAuthInfo>(authInfo);
+  execute = async (authInfo: AuthInfo): Promise<string> => {
+    const token = this.#tokenProvider.generateToken<AuthInfo>(authInfo);
 
     return token;
   };

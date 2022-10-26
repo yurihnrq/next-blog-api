@@ -1,15 +1,15 @@
-import { GenerateTokenService } from '@src/modules/auth/services/GenerateTokenService';
-import { IGenerateTokenService } from '@src/modules/auth/services/interfaces/IGenerateTokenService';
+import { GenerateToken } from '@src/modules/auth/services/GenerateTokenService';
+import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { TokenProviderMock } from '@mocks/providers/TokenProviderMock';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
 const tokenProvider: TokenProvider = new TokenProviderMock();
-const generateTokenService: IGenerateTokenService = new GenerateTokenService(
+const generateTokenService: GenerateTokenService = new GenerateToken(
   tokenProvider
 );
 
-const authInfo: IAuthInfo = {
+const authInfo: AuthInfo = {
   userId: 'test-id',
   authAt: new Date()
 };
@@ -21,7 +21,7 @@ describe('GenerateTokenService', () => {
     expect(token).toBeDefined();
   });
 
-  it('should call tokenProvider to generate a token with IAuthInfo object as payload', async () => {
+  it('should call tokenProvider to generate a token with AuthInfo object as payload', async () => {
     jest.spyOn(tokenProvider, 'generateToken');
 
     await generateTokenService.execute(authInfo);

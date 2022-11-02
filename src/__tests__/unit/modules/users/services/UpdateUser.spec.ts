@@ -4,20 +4,26 @@ import { UsersRepository } from '@src/modules/users/repositories/interfaces/User
 import { UpdateUserService } from '@src/modules/users/services/interfaces/UpdateUserService';
 import { UpdateUser } from '@src/modules/users/services/UpdateUser';
 import APIError from '@src/errors/APIError';
+import { UpdateUserDTO } from '@src/modules/users/interfaces/UpdateUserDTO';
 
 const usersRepository: UsersRepository = new UsersRepositoryMock();
 const updateUserService: UpdateUserService = new UpdateUser(usersRepository);
 
+const userData: UpdateUserDTO = {
+  ...usersMock[0],
+  id: usersMock[0].id as string
+};
+
 describe('UpdateUser service', () => {
   it('should update a user', async () => {
-    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(userData);
     jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(null);
     jest.spyOn(usersRepository, 'update').mockImplementation();
 
-    await updateUserService.execute(usersMock[0]);
+    await updateUserService.execute(userData);
 
-    expect(usersRepository.getById).toHaveBeenCalledWith(usersMock[0].id);
-    expect(usersRepository.getByEmail).toHaveBeenCalledWith(usersMock[0].email);
+    expect(usersRepository.getById).toHaveBeenCalledWith(userData.id);
+    expect(usersRepository.getByEmail).toHaveBeenCalledWith(userData.email);
     expect(usersRepository.update).toHaveBeenCalled();
   });
 
@@ -25,7 +31,7 @@ describe('UpdateUser service', () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
 
     try {
-      await updateUserService.execute(usersMock[0]);
+      await updateUserService.execute(userData);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).status).toBe(404);
@@ -38,11 +44,11 @@ describe('UpdateUser service', () => {
   });
 
   it('should throw an APIError if a different user with provided email already exists', async () => {
-    jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(userData);
     jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(usersMock[1]);
 
     try {
-      await updateUserService.execute(usersMock[0]);
+      await updateUserService.execute(userData);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).status).toBe(409);

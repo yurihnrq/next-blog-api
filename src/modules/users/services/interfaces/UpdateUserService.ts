@@ -1,5 +1,5 @@
-import { User } from '../../interfaces/User';
+import { UpdateUserDTO } from '../../interfaces/UpdateUserDTO';
 
 export interface UpdateUserService {
-  execute(user: User): Promise<void>;
+  execute(user: UpdateUserDTO): Promise<void>;
 }

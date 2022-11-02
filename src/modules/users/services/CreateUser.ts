@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/User';
+import { CreateUserDTO } from '../interfaces/CreateUserDTO';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import { CreateUserService } from './interfaces/CreateUserService';
 
@@ -10,7 +10,7 @@ export class CreateUser implements CreateUserService {
     this.#usersRepository = usersRepository;
   }
 
-  execute = async (data: IUser): Promise<void> => {
+  execute = async (data: CreateUserDTO): Promise<void> => {
     const existentUser = await this.#usersRepository.getByEmail(data.email);
 
     if (existentUser)

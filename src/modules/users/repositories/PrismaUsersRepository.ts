@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { HashProvider } from '../../../providers/interfaces/HashProvider';
-import { IUser } from '../interfaces/User';
+import { User } from '../interfaces/User';
 import { UsersRepository } from './interfaces/UsersRepository';
 
 export class PrismaUsersRepository implements UsersRepository {
@@ -19,7 +19,7 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
 
-    return user as IUser;
+    return user as User;
   };
 
   getByEmail = async (email: string) => {
@@ -29,7 +29,7 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
 
-    return user as IUser | null;
+    return user as User | null;
   };
 
   getAll = async (page: number) => {
@@ -38,10 +38,10 @@ export class PrismaUsersRepository implements UsersRepository {
       skip: 10 * (page - 1)
     });
 
-    return users as IUser[];
+    return users as User[];
   };
 
-  create = async (user: IUser) => {
+  create = async (user: User) => {
     const createdUser = await this.#prismaClient.user.create({
       data: {
         name: user.name,
@@ -52,10 +52,10 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
 
-    return createdUser as IUser;
+    return createdUser as User;
   };
 
-  update = async (user: IUser) => {
+  update = async (user: User) => {
     const updatedUser = await this.#prismaClient.user.update({
       where: {
         id: user.id
@@ -69,7 +69,7 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
 
-    return updatedUser as IUser;
+    return updatedUser as User;
   };
 
   remove = async (id: string) => {

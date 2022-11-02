@@ -13,6 +13,16 @@ declare global {
     >;
   }
 
+  interface PaginatedResults<T = unknown> {
+    count: number;
+    totalPages: number;
+    currentPage: number;
+    pageSize: number;
+    results: T[];
+  }
+
+  type PaginatedAPIResponse<T = unknown> = APIResponse<PaginatedResults<T>>;
+
   interface APIController {
     execute: (req: Request, res: APIResponse) => Promise<Response>;
   }

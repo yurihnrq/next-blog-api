@@ -1,5 +1,5 @@
-import { IUser } from '../../interfaces/User';
+import { User } from '../../interfaces/User';
 
 export interface GetAllUsersService {
-  execute(page: number): Promise<IUser[]>;
+  execute(page: number): Promise<User[]>;
 }

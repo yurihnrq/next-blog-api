@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { IUser } from '../interfaces/User';
+import { User } from '../interfaces/User';
 import { GetAllUsersService } from '../services/interfaces/GetAllUsersService';
 
 export class GetAllUsersController implements APIController {
@@ -11,7 +11,7 @@ export class GetAllUsersController implements APIController {
 
   execute = async (
     req: Request,
-    res: APIResponse<IUser[]>
+    res: APIResponse<User[]>
   ): Promise<Response> => {
     const { page } = req.query;
 

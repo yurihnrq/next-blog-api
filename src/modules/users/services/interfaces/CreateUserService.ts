@@ -1,5 +1,5 @@
-import { IUser } from '../../interfaces/User';
+import { CreateUserDTO } from '../../interfaces/CreateUserDTO';
 
 export interface CreateUserService {
-  execute(user: IUser): Promise<void>;
+  execute(user: CreateUserDTO): Promise<void>;
 }

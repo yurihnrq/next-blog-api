@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/User';
+import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import { UpdateUserService } from './interfaces/UpdateUserService';
 
@@ -10,8 +10,8 @@ export class UpdateUser implements UpdateUserService {
     this.#usersRepository = usersRepository;
   }
 
-  execute = async (data: IUser): Promise<void> => {
-    const existentUser = await this.#usersRepository.getById(data.id as string);
+  execute = async (data: UpdateUserDTO): Promise<void> => {
+    const existentUser = await this.#usersRepository.getById(data.id);
 
     if (!existentUser)
       throw new APIError(404, 'User with provided id does not exist.');

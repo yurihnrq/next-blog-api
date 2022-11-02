@@ -1,10 +1,10 @@
-import { IUser } from '../../interfaces/User';
+import { User } from '../../interfaces/User';
 
 export interface UsersRepository {
-  getById(id: string): Promise<IUser | null>;
-  getByEmail(email: string): Promise<IUser | null>;
-  getAll(page: number): Promise<IUser[]>;
-  create(user: IUser): Promise<IUser>;
-  update(user: IUser): Promise<IUser>;
+  getById(id: string): Promise<User | null>;
+  getByEmail(email: string): Promise<User | null>;
+  getAll(page: number): Promise<User[]>;
+  create(user: User): Promise<User>;
+  update(user: User): Promise<User>;
   remove(id: string): Promise<void>;
 }

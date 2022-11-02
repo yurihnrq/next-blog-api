@@ -1,4 +1,4 @@
-import { IUser } from '@src/modules/users/interfaces/User';
+import { User } from '@src/modules/users/interfaces/User';
 import { NextFunction, Request, Response } from 'express';
 
 import APIError from '../errors/APIError';
@@ -9,7 +9,7 @@ export class UserInfoValidation implements APIMiddleware {
     _res: Response,
     next: NextFunction
   ): Promise<void> => {
-    const { name, email, password, biography, birthDate } = req.body as IUser;
+    const { name, email, password, biography, birthDate } = req.body as User;
 
     if (!name || !email || !password || !birthDate)
       throw new APIError(400, 'Missing required fields.');

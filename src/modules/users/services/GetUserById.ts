@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/User';
+import { User } from '../interfaces/User';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import { GetUserByIdService } from './interfaces/GetUserByIdService';
 
@@ -10,7 +10,7 @@ export class GetUserById implements GetUserByIdService {
     this.#usersRepository = usersRepository;
   }
 
-  execute = async (id: string): Promise<IUser> => {
+  execute = async (id: string): Promise<User> => {
     const existentUser = await this.#usersRepository.getById(id);
 
     if (!existentUser)

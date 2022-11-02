@@ -11,7 +11,7 @@ const updateUserService: UpdateUserService = new UpdateUser(usersRepository);
 
 const userData: UpdateUserDTO = {
   ...usersMock[0],
-  id: usersMock[0].id as string
+  id: usersMock[0].id
 };
 
 describe('UpdateUser service', () => {

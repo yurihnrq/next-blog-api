@@ -13,7 +13,7 @@ describe('RemovePost', () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(postsMock[0]);
     jest.spyOn(postsRepository, 'remove');
 
-    await removePostService.execute(postsMock[0].id as string);
+    await removePostService.execute(postsMock[0].id);
 
     expect(postsRepository.getById).toHaveBeenCalledWith(postsMock[0].id);
     expect(postsRepository.remove).toHaveBeenCalledWith(postsMock[0].id);
@@ -23,7 +23,7 @@ describe('RemovePost', () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(null);
 
     try {
-      await removePostService.execute(postsMock[0].id as string);
+      await removePostService.execute(postsMock[0].id);
     } catch (error) {
       expect((error as APIError).status).toBe(404);
       expect((error as APIError).message).toBe(

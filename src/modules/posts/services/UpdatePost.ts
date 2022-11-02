@@ -11,7 +11,7 @@ export class UpdatePost implements UpdatePostService {
   }
 
   async execute(data: UpdatePostDTO): Promise<void> {
-    const existentPost = await this.#postsRepository.getById(data.id as string);
+    const existentPost = await this.#postsRepository.getById(data.id);
 
     if (!existentPost)
       throw new APIError(404, 'Post with provided id does not exist.');

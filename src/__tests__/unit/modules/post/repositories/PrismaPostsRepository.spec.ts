@@ -61,7 +61,7 @@ describe('PrismaPostsRepository', () => {
     prisma.post.update = jest.fn().mockImplementation();
 
     await postsRepository.update({
-      id: postsMock[1].id as string,
+      id: postsMock[1].id,
       title: postsMock[1].title,
       content: postsMock[1].content,
       updateAuthorId: postsMock[1].authorId

@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { HashProvider } from '../../../providers/interfaces/HashProvider';
+import { CreateUserDTO } from '../interfaces/CreateUserDTO';
+import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
 import { User } from '../interfaces/User';
 import { UsersRepository } from './interfaces/UsersRepository';
 
@@ -41,7 +43,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return users as User[];
   };
 
-  create = async (user: User) => {
+  create = async (user: CreateUserDTO) => {
     const createdUser = await this.#prismaClient.user.create({
       data: {
         name: user.name,
@@ -55,7 +57,7 @@ export class PrismaUsersRepository implements UsersRepository {
     return createdUser as User;
   };
 
-  update = async (user: User) => {
+  update = async (user: UpdateUserDTO) => {
     const updatedUser = await this.#prismaClient.user.update({
       where: {
         id: user.id

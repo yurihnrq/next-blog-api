@@ -13,7 +13,7 @@ describe('GetUserById service', () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
     jest.spyOn(usersRepository, 'remove');
 
-    await removeUserService.execute(usersMock[0].id as string);
+    await removeUserService.execute(usersMock[0].id);
 
     expect(usersRepository.getById).toHaveBeenCalledWith(usersMock[0].id);
     expect(usersRepository.remove).toHaveBeenCalledWith(usersMock[0].id);
@@ -23,7 +23,7 @@ describe('GetUserById service', () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
 
     try {
-      await removeUserService.execute(usersMock[0].id as string);
+      await removeUserService.execute(usersMock[0].id);
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).status).toBe(404);

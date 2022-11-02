@@ -12,9 +12,7 @@ describe('GetPostById', () => {
   it('it should return a post', async () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(postsMock[0]);
 
-    const returnedPost = await getPostByIdService.execute(
-      postsMock[0].id as string
-    );
+    const returnedPost = await getPostByIdService.execute(postsMock[0].id);
 
     expect(returnedPost).toEqual(postsMock[0]);
     expect(postsRepository.getById).toHaveBeenCalledWith(postsMock[0].id);
@@ -24,7 +22,7 @@ describe('GetPostById', () => {
     jest.spyOn(postsRepository, 'getById').mockResolvedValue(null);
 
     try {
-      await getPostByIdService.execute(postsMock[0].id as string);
+      await getPostByIdService.execute(postsMock[0].id);
     } catch (error) {
       expect((error as APIError).status).toBe(404);
       expect((error as APIError).message).toBe(

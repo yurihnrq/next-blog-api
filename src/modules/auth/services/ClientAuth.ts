@@ -26,7 +26,7 @@ export class ClientAuth implements ClientAuthService {
     if (!isPasswordValid) throw new APIError(401, 'Invalid credentials.');
 
     return {
-      userId: existentUser.id as string,
+      userId: existentUser.id,
       authAt: new Date()
     };
   };

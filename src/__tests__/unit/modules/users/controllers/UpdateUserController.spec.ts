@@ -1,5 +1,5 @@
 import { UpdateUserController } from '@src/modules/users/controllers/UpdateUserController';
-import { IUpdateUserService } from '@src/modules/users/services/interfaces/IUpdateUserService';
+import { UpdateUserService } from '@src/modules/users/services/interfaces/UpdateUserService';
 
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
@@ -7,7 +7,7 @@ import { UpdateUserServiceMock } from '@mocks/modules/users/services/UpdateUserS
 import APIError from '@src/errors/APIError';
 import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
-const updateUserService: IUpdateUserService = new UpdateUserServiceMock();
+const updateUserService: UpdateUserService = new UpdateUserServiceMock();
 const updateUserController = new UpdateUserController(updateUserService);
 
 describe('UpdateUserController', () => {

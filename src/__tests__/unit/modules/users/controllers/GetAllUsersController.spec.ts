@@ -1,4 +1,4 @@
-import { IGetAllUsersService } from '@src/modules/users/services/interfaces/IGetAllUsersService';
+import { GetAllUsersService } from '@src/modules/users/services/interfaces/GetAllUsersService';
 import { GetAllUsersController } from '@src/modules/users/controllers/GetAllUsersController';
 
 import { requestMock } from '@mocks/express/requestMock';
@@ -6,7 +6,7 @@ import { responseMock } from '@mocks/express/responseMock';
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { GetAllUsersServiceMock } from '@mocks/modules/users/services/GetAllUsersServiceMock';
 
-const getAllUsersService: IGetAllUsersService = new GetAllUsersServiceMock();
+const getAllUsersService: GetAllUsersService = new GetAllUsersServiceMock();
 const getAllUsersController: APIController = new GetAllUsersController(
   getAllUsersService
 );

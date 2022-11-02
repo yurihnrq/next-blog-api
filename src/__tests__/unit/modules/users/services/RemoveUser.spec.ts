@@ -1,16 +1,14 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { IRemoveUserService } from '@src/modules/users/services/interfaces/IRemoveUserService';
-import { RemoveUserService } from '@src/modules/users/services/RemoveUserService';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
+import { RemoveUserService } from '@src/modules/users/services/interfaces/RemoveUserService';
+import { RemoveUser } from '@src/modules/users/services/RemoveUser';
 import APIError from '@src/errors/APIError';
 
-const usersRepository: IUsersRepository = new UsersRepositoryMock();
-const removeUserService: IRemoveUserService = new RemoveUserService(
-  usersRepository
-);
+const usersRepository: UsersRepository = new UsersRepositoryMock();
+const removeUserService: RemoveUserService = new RemoveUser(usersRepository);
 
-describe('GetUserByIdService', () => {
+describe('GetUserById service', () => {
   it('should remove a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
     jest.spyOn(usersRepository, 'remove');

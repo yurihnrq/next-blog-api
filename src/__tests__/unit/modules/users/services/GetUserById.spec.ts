@@ -1,16 +1,14 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { GetUserByIdService } from '@src/modules/users/services/GetUserByIdService';
-import { IGetUserByIdService } from '@src/modules/users/services/interfaces/IGetUserByIdService';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
+import { GetUserById } from '@src/modules/users/services/GetUserById';
+import { GetUserByIdService } from '@src/modules/users/services/interfaces/GetUserByIdService';
 import APIError from '@src/errors/APIError';
 
-const usersRepository: IUsersRepository = new UsersRepositoryMock();
-const getUserByIdService: IGetUserByIdService = new GetUserByIdService(
-  usersRepository
-);
+const usersRepository: UsersRepository = new UsersRepositoryMock();
+const getUserByIdService: GetUserByIdService = new GetUserById(usersRepository);
 
-describe('GetUserByIdService', () => {
+describe('GetUserById service', () => {
   it('should return a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
 

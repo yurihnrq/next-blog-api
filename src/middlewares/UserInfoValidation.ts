@@ -1,4 +1,4 @@
-import { IUser } from '@src/modules/users/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/User';
 import { NextFunction, Request, Response } from 'express';
 
 import APIError from '../errors/APIError';

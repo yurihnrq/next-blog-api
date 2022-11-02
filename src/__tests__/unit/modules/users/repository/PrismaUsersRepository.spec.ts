@@ -1,12 +1,12 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import prisma from '@src/configs/prisma';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
 import { PrismaUsersRepository } from '@src/modules/users/repositories/PrismaUsersRepository';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 
 const hashProvider: HashProvider = new HashProviderMock();
-const usersRepository: IUsersRepository = new PrismaUsersRepository(
+const usersRepository: UsersRepository = new PrismaUsersRepository(
   prisma,
   hashProvider
 );

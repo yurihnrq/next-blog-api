@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { IUser } from '../interfaces/IUser';
-import { IGetAllUsersService } from '../services/interfaces/IGetAllUsersService';
+import { IUser } from '../interfaces/User';
+import { GetAllUsersService } from '../services/interfaces/GetAllUsersService';
 
 export class GetAllUsersController implements APIController {
-  #getAllUsersService: IGetAllUsersService;
+  #getAllUsersService: GetAllUsersService;
 
-  constructor(getAllUsersService: IGetAllUsersService) {
+  constructor(getAllUsersService: GetAllUsersService) {
     this.#getAllUsersService = getAllUsersService;
   }
 

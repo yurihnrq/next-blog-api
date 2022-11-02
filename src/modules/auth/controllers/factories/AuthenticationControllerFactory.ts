@@ -5,7 +5,7 @@ import { PrismaAuthRepositoryFactory } from '../../repositories/factories/Prisma
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { BCryptHash } from '@src/providers/BCryptHash';
 import { GenerateTokenService } from '../../services/interfaces/GenerateTokenService';
-import { GenerateToken } from '../../services/GenerateTokenService';
+import { GenerateToken } from '../../services/GenerateToken';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { JwtToken } from '@src/providers/JwtToken';
 import { AuthenticationController } from '../AuthenticationController';

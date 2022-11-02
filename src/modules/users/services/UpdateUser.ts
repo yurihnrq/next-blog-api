@@ -1,12 +1,12 @@
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/IUser';
-import { IUsersRepository } from '../repositories/interfaces/IUsersRepository';
-import { IUpdateUserService } from './interfaces/IUpdateUserService';
+import { IUser } from '../interfaces/User';
+import { UsersRepository } from '../repositories/interfaces/UsersRepository';
+import { UpdateUserService } from './interfaces/UpdateUserService';
 
-export class UpdateUserService implements IUpdateUserService {
-  #usersRepository: IUsersRepository;
+export class UpdateUser implements UpdateUserService {
+  #usersRepository: UsersRepository;
 
-  constructor(usersRepository: IUsersRepository) {
+  constructor(usersRepository: UsersRepository) {
     this.#usersRepository = usersRepository;
   }
 

@@ -1,5 +1,5 @@
 import { RemoveUserController } from '@src/modules/users/controllers/RemoveUserController';
-import { IRemoveUserService } from '@src/modules/users/services/interfaces/IRemoveUserService';
+import { RemoveUserService } from '@src/modules/users/services/interfaces/RemoveUserService';
 
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
@@ -7,7 +7,7 @@ import { RemoveUserServiceMock } from '@src/__mocks__/modules/users/services/Rem
 import APIError from '@src/errors/APIError';
 import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
-const removeUserService: IRemoveUserService = new RemoveUserServiceMock();
+const removeUserService: RemoveUserService = new RemoveUserServiceMock();
 const removeUserController: APIController = new RemoveUserController(
   removeUserService
 );

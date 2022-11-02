@@ -1,6 +1,6 @@
-import { IUser } from '../../interfaces/IUser';
+import { IUser } from '../../interfaces/User';
 
-export interface IUsersRepository {
+export interface UsersRepository {
   getById(id: string): Promise<IUser | null>;
   getByEmail(email: string): Promise<IUser | null>;
   getAll(page: number): Promise<IUser[]>;

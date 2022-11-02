@@ -2,8 +2,8 @@ import prisma from '@src/configs/prisma';
 import { BCryptHash } from '@src/providers/BCryptHash';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { PrismaUsersRepository } from '../../repositories/PrismaUsersRepository';
-import { IUpdateUserService } from '../../services/interfaces/IUpdateUserService';
-import { UpdateUserService } from '../../services/UpdateUserService';
+import { UpdateUserService } from '../../services/interfaces/UpdateUserService';
+import { UpdateUserService } from '../../services/UpdateUser';
 import { UpdateUserController } from '../UpdateUserController';
 
 export const UpdateUserControllerFactory = () => {
@@ -11,7 +11,7 @@ export const UpdateUserControllerFactory = () => {
 
   const usersRepository = new PrismaUsersRepository(prisma, hashProvider);
 
-  const updateUserService: IUpdateUserService = new UpdateUserService(
+  const updateUserService: UpdateUserService = new UpdateUserService(
     usersRepository
   );
 

@@ -1,4 +1,4 @@
-import { GenerateToken } from '@src/modules/auth/services/GenerateTokenService';
+import { GenerateToken } from '@src/modules/auth/services/GenerateToken';
 import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { TokenProviderMock } from '@mocks/providers/TokenProviderMock';

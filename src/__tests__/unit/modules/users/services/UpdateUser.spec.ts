@@ -1,16 +1,14 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { IUpdateUserService } from '@src/modules/users/services/interfaces/IUpdateUserService';
-import { UpdateUserService } from '@src/modules/users/services/UpdateUserService';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
+import { UpdateUserService } from '@src/modules/users/services/interfaces/UpdateUserService';
+import { UpdateUser } from '@src/modules/users/services/UpdateUser';
 import APIError from '@src/errors/APIError';
 
-const usersRepository: IUsersRepository = new UsersRepositoryMock();
-const updateUserService: IUpdateUserService = new UpdateUserService(
-  usersRepository
-);
+const usersRepository: UsersRepository = new UsersRepositoryMock();
+const updateUserService: UpdateUserService = new UpdateUser(usersRepository);
 
-describe('UpdateUserService', () => {
+describe('UpdateUser service', () => {
   it('should update a user', async () => {
     jest.spyOn(usersRepository, 'getById').mockResolvedValue(usersMock[0]);
     jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(null);

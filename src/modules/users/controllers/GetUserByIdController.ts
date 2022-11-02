@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { IGetUserByIdService } from '../services/interfaces/IGetUserByIdService';
+import { GetUserByIdService } from '../services/interfaces/GetUserByIdService';
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/IUser';
+import { IUser } from '../interfaces/User';
 
 export class GetUserByIdController implements APIController {
-  #getUserByIdService: IGetUserByIdService;
+  #getUserByIdService: GetUserByIdService;
 
-  constructor(getUserByIdService: IGetUserByIdService) {
+  constructor(getUserByIdService: GetUserByIdService) {
     this.#getUserByIdService = getUserByIdService;
   }
 

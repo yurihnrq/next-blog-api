@@ -1,13 +1,13 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { GetAllUsersService } from '@src/modules/users/services/GetAllUsersService';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
+import { GetAllUsers } from '@src/modules/users/services/GetAllUsers';
 import APIError from '@src/errors/APIError';
 
-const usersRepository: IUsersRepository = new UsersRepositoryMock();
-const getAllUsersService = new GetAllUsersService(usersRepository);
+const usersRepository: UsersRepository = new UsersRepositoryMock();
+const getAllUsersService = new GetAllUsers(usersRepository);
 
-describe('GetAllUsersService', () => {
+describe('GetAllUsers service', () => {
   it('should be able to get all users', async () => {
     jest.spyOn(usersRepository, 'getAll').mockResolvedValue(usersMock);
 

@@ -1,13 +1,13 @@
 import prisma from '@src/configs/prisma';
 import { BCryptHash } from '@src/providers/BCryptHash';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
-import { IUsersRepository } from '../interfaces/IUsersRepository';
+import { UsersRepository } from '../interfaces/UsersRepository';
 import { PrismaUsersRepository } from '../PrismaUsersRepository';
 
-export const PrismaUsersRepositoryFactory = (): IUsersRepository => {
+export const PrismaUsersRepositoryFactory = (): UsersRepository => {
   const hashProvider: HashProvider = new BCryptHash();
 
-  const usersRepository: IUsersRepository = new PrismaUsersRepository(
+  const usersRepository: UsersRepository = new PrismaUsersRepository(
     prisma,
     hashProvider
   );

@@ -1,9 +1,9 @@
-import { IUser } from '@src/modules/users/interfaces/IUser';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { IUser } from '@src/modules/users/interfaces/User';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
 
 import { usersMock } from '../usersMocks';
 
-export class UsersRepositoryMock implements IUsersRepository {
+export class UsersRepositoryMock implements UsersRepository {
   getById(_id: string): Promise<IUser | null> {
     return Promise.resolve(usersMock[0]);
   }

@@ -1,5 +1,5 @@
 import { AuthRepository } from '@src/modules/auth/repositories/interfaces/IAuthRepository';
-import { IUser } from '@src/modules/users/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/User';
 
 import { usersMock } from '../../users/usersMocks';
 

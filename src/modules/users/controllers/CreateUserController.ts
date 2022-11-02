@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ICreateUserService } from '../services/interfaces/ICreateUserService';
+import { CreateUserService } from '../services/interfaces/CreateUserService';
 
 export class CreateUserController implements APIController {
-  #createUserService: ICreateUserService;
+  #createUserService: CreateUserService;
 
-  constructor(createUserService: ICreateUserService) {
+  constructor(createUserService: CreateUserService) {
     this.#createUserService = createUserService;
   }
 

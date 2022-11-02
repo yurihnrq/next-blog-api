@@ -1,4 +1,4 @@
-import { IUser } from '@src/modules/users/interfaces/IUser';
+import { IUser } from '@src/modules/users/interfaces/User';
 
 export const usersMock: IUser[] = [
   {

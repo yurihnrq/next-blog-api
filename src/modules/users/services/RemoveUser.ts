@@ -1,11 +1,11 @@
 import APIError from '@src/errors/APIError';
-import { IUsersRepository } from '../repositories/interfaces/IUsersRepository';
-import { IRemoveUserService } from './interfaces/IRemoveUserService';
+import { UsersRepository } from '../repositories/interfaces/UsersRepository';
+import { RemoveUserService } from './interfaces/RemoveUserService';
 
-export class RemoveUserService implements IRemoveUserService {
-  #usersRepository: IUsersRepository;
+export class RemoveUser implements RemoveUserService {
+  #usersRepository: UsersRepository;
 
-  constructor(usersRepository: IUsersRepository) {
+  constructor(usersRepository: UsersRepository) {
     this.#usersRepository = usersRepository;
   }
 

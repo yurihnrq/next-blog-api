@@ -1,16 +1,14 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { UsersRepositoryMock } from '@mocks/modules/users/repositories/UsersRepositoryMock';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
-import { CreateUserService } from '@src/modules/users/services/CreateUserService';
-import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
+import { CreateUser } from '@src/modules/users/services/CreateUser';
+import { CreateUserService } from '@src/modules/users/services/interfaces/CreateUserService';
 import APIError from '@src/errors/APIError';
 
-const usersRepository: IUsersRepository = new UsersRepositoryMock();
-const createUserService: ICreateUserService = new CreateUserService(
-  usersRepository
-);
+const usersRepository: UsersRepository = new UsersRepositoryMock();
+const createUserService: CreateUserService = new CreateUser(usersRepository);
 
-describe('CreateUserService', () => {
+describe('CreateUser service', () => {
   it('should create a user', async () => {
     jest.spyOn(usersRepository, 'create');
     jest.spyOn(usersRepository, 'getByEmail').mockResolvedValue(null);

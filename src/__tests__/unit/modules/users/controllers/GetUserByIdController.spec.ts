@@ -1,4 +1,4 @@
-import { IGetUserByIdService } from '@src/modules/users/services/interfaces/IGetUserByIdService';
+import { GetUserByIdService } from '@src/modules/users/services/interfaces/GetUserByIdService';
 import { GetUserByIdController } from '@src/modules/users/controllers/GetUserByIdController';
 
 import { requestMock } from '@mocks/express/requestMock';
@@ -7,8 +7,8 @@ import { responseMock } from '@mocks/express/responseMock';
 import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 import APIError from '@src/errors/APIError';
 
-const getUserByIdService: IGetUserByIdService = new GetUserByIdServiceMock();
-const getUserByIdController: IController = new GetUserByIdController(
+const getUserByIdService: GetUserByIdService = new GetUserByIdServiceMock();
+const getUserByIdController: APIController = new GetUserByIdController(
   getUserByIdService
 );
 

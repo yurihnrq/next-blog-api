@@ -15,6 +15,7 @@
     "migrate:dev": "prisma migrate dev",
     "test": "jest --no-cache",
     "test:watch": "jest --watchAll --no-cache",
+    "test:coverage": "jest --coverage --no-cache",
     "prepare": "husky install"
   },
   "repository": {

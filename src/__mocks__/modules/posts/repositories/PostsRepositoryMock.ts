@@ -1,23 +1,23 @@
-import { ICreatePostDTO } from '@src/modules/post/interfaces/ICreatePostDTO';
-import { IPost } from '@src/modules/post/interfaces/IPost';
-import { IUpdatePostDTO } from '@src/modules/post/interfaces/IUpdatePostDTO';
-import { IPostsRepository } from '@src/modules/post/repositories/interface/IPostsRepository';
+import { CreatePostDTO } from '@src/modules/post/interfaces/ICreatePostDTO';
+import { Post } from '@src/modules/post/interfaces/IPost';
+import { UpdatePostDTO } from '@src/modules/post/interfaces/IUpdatePostDTO';
+import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
 import { postsMock } from '../postsMock';
 
-export class PostsRepositoryMock implements IPostsRepository {
-  getAll(_page: number): Promise<IPost[]> {
+export class PostsRepositoryMock implements PostsRepository {
+  getAll(_page: number): Promise<Post[]> {
     return Promise.resolve(postsMock);
   }
 
-  getById(id: string): Promise<IPost | null> {
+  getById(id: string): Promise<Post | null> {
     return Promise.resolve(postsMock[Number(id) - 1] || null);
   }
 
-  create(_post: ICreatePostDTO): Promise<void> {
+  create(_post: CreatePostDTO): Promise<void> {
     return Promise.resolve();
   }
 
-  update(_post: IUpdatePostDTO): Promise<void> {
+  update(_post: UpdatePostDTO): Promise<void> {
     return Promise.resolve();
   }
 

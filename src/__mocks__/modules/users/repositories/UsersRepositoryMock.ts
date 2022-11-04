@@ -1,25 +1,25 @@
-import { IUser } from '@src/modules/users/interfaces/IUser';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { User } from '@src/modules/users/interfaces/User';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
 
 import { usersMock } from '../usersMocks';
 
-export class UsersRepositoryMock implements IUsersRepository {
-  getById(_id: string): Promise<IUser | null> {
+export class UsersRepositoryMock implements UsersRepository {
+  getById(_id: string): Promise<User | null> {
     return Promise.resolve(usersMock[0]);
   }
-  getByEmail(_email: string): Promise<IUser | null> {
+  getByEmail(_email: string): Promise<User | null> {
     return Promise.resolve(usersMock[1]);
   }
-  getAll(_page: number): Promise<IUser[]> {
+  getAll(_page: number): Promise<User[]> {
     return Promise.resolve(usersMock);
   }
-  update(_user: IUser): Promise<IUser> {
+  update(_user: User): Promise<User> {
     return Promise.resolve(usersMock[0]);
   }
   remove(_id: string): Promise<void> {
     return Promise.resolve();
   }
-  async create(user: IUser): Promise<IUser> {
+  async create(user: User): Promise<User> {
     return Promise.resolve(user);
   }
 }

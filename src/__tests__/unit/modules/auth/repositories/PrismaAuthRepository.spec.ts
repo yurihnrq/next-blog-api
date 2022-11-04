@@ -1,9 +1,9 @@
 import prisma from '@src/configs/prisma';
-import { IAuthRepository } from '@src/modules/auth/repositories/interfaces/IAuthRepository';
+import { AuthRepository } from '@src/modules/auth/repositories/interfaces/AuthRepository';
 import { PrismaAuthRepository } from '@src/modules/auth/repositories/PrismaAuthRepository';
 import { usersMock } from '@src/__mocks__/modules/users/usersMocks';
 
-const prismaAuthRepository: IAuthRepository = new PrismaAuthRepository(prisma);
+const prismaAuthRepository: AuthRepository = new PrismaAuthRepository(prisma);
 
 describe('PrismaAuthRepository', () => {
   it('should return a user by email calling prisma client', async () => {

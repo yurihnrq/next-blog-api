@@ -1,16 +1,15 @@
 import { AuthenticationController } from '@src/modules/auth/controllers/AuthenticationController';
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
-import { IClientAuthService } from '@src/modules/auth/services/interfaces/IClientAuthService';
-import { ClientAuthServiceMock } from '@mocks/modules/auth/services/ClientAuthServiceMock';
-import { IGenerateTokenService } from '@src/modules/auth/services/interfaces/IGenerateTokenService';
-import { GenerateTokenServiceMock } from '@mocks/modules/auth/services/GenerateTokenServiceMock';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientAuthService';
+import { ClientAuthMock } from '@mocks/modules/auth/services/ClientAuthMock';
+import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
+import { GenerateTokenMock } from '@mocks/modules/auth/services/GenerateTokenMock';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
-const clientAuthService: IClientAuthService = new ClientAuthServiceMock();
-const generateTokenService: IGenerateTokenService =
-  new GenerateTokenServiceMock();
-const authenticationController: IController = new AuthenticationController(
+const clientAuthService: ClientAuthService = new ClientAuthMock();
+const generateTokenService: GenerateTokenService = new GenerateTokenMock();
+const authenticationController: APIController = new AuthenticationController(
   clientAuthService,
   generateTokenService
 );
@@ -24,7 +23,7 @@ requestMock.body = {
   password
 };
 
-const authInfo: IAuthInfo = {
+const authInfo: AuthInfo = {
   userId: '1',
   authAt: new Date()
 };
@@ -50,7 +49,7 @@ describe('AuthenticationController', () => {
     });
   });
 
-  it('should get IAuthInfo object from clientAuthService', async () => {
+  it('should get AuthInfo object from clientAuthService', async () => {
     jest.spyOn(clientAuthService, 'execute');
 
     await authenticationController.execute(requestMock, responseMock);
@@ -58,7 +57,7 @@ describe('AuthenticationController', () => {
     expect(clientAuthService.execute).toHaveBeenCalledWith(email, password);
   });
 
-  it('should call generateTokenService with IAuthInfo object', async () => {
+  it('should call generateTokenService with AuthInfo object', async () => {
     jest.spyOn(generateTokenService, 'execute');
 
     await authenticationController.execute(requestMock, responseMock);

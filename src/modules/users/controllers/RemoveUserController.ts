@@ -1,19 +1,19 @@
 import { Request, Response } from 'express';
-import { IRemoveUserService } from '../services/interfaces/IRemoveUserService';
+import { RemoveUserService } from '../services/interfaces/RemoveUserService';
 import APIError from '@src/errors/APIError';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
-export class RemoveUserController implements IController {
-  #removeUserService: IRemoveUserService;
+export class RemoveUserController implements APIController {
+  #removeUserService: RemoveUserService;
 
-  constructor(removeUserService: IRemoveUserService) {
+  constructor(removeUserService: RemoveUserService) {
     this.#removeUserService = removeUserService;
   }
 
-  execute = async (req: Request, res: IResponse): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse): Promise<Response> => {
     const { id } = req.params;
 
-    const { userId } = res.locals.authInfo as IAuthInfo;
+    const { userId } = res.locals.authInfo as AuthInfo;
 
     if (!userId || userId !== id)
       throw new APIError(401, 'Unauthorized request.');

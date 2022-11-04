@@ -1,30 +1,30 @@
-import { IAuthRepository } from '../../repositories/interfaces/IAuthRepository';
-import { ClientAuthService } from '../../services/ClientAuthService';
-import { IClientAuthService } from '../../services/interfaces/IClientAuthService';
+import { AuthRepository } from '../../repositories/interfaces/AuthRepository';
+import { ClientAuth } from '../../services/ClientAuth';
+import { ClientAuthService } from '../../services/interfaces/ClientAuthService';
 import { PrismaAuthRepositoryFactory } from '../../repositories/factories/PrismaAuthRepositoryFactory';
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
-import { BCryptHashProvider } from '@src/providers/BCryptHashProvider';
-import { IGenerateTokenService } from '../../services/interfaces/IGenerateTokenService';
-import { GenerateTokenService } from '../../services/GenerateTokenService';
-import { ITokenProvider } from '@src/providers/interfaces/ITokenProvider';
-import { JwtTokenProvider } from '@src/providers/JwtTokenProvider';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
+import { BCryptHash } from '@src/providers/BCryptHash';
+import { GenerateTokenService } from '../../services/interfaces/GenerateTokenService';
+import { GenerateToken } from '../../services/GenerateToken';
+import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
+import { JwtToken } from '@src/providers/JwtToken';
 import { AuthenticationController } from '../AuthenticationController';
 
 export const AuthenticationControllerFactory = () => {
-  const authRepository: IAuthRepository = PrismaAuthRepositoryFactory();
+  const authRepository: AuthRepository = PrismaAuthRepositoryFactory();
 
-  const hashProvider: IHashProvider = new BCryptHashProvider();
+  const hashProvider: HashProvider = new BCryptHash();
 
-  const clientAuthService: IClientAuthService = new ClientAuthService(
+  const clientAuthService: ClientAuthService = new ClientAuth(
     authRepository,
     hashProvider
   );
 
-  const tokenProvider: ITokenProvider = new JwtTokenProvider(
+  const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
   );
 
-  const generateTokenService: IGenerateTokenService = new GenerateTokenService(
+  const generateTokenService: GenerateTokenService = new GenerateToken(
     tokenProvider
   );
 

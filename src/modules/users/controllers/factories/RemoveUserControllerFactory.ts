@@ -1,19 +1,17 @@
 import prisma from '@src/configs/prisma';
-import { BCryptHashProvider } from '@src/providers/BCryptHashProvider';
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
+import { BCryptHash } from '@src/providers/BCryptHash';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { PrismaUsersRepository } from '../../repositories/PrismaUsersRepository';
-import { IRemoveUserService } from '../../services/interfaces/IRemoveUserService';
-import { RemoveUserService } from '../../services/RemoveUserService';
+import { RemoveUserService } from '../../services/interfaces/RemoveUserService';
+import { RemoveUser } from '../../services/RemoveUser';
 import { RemoveUserController } from '../RemoveUserController';
 
 export const RemoveUserControllerFactory = () => {
-  const hashProvider: IHashProvider = new BCryptHashProvider();
+  const hashProvider: HashProvider = new BCryptHash();
 
   const usersRepository = new PrismaUsersRepository(prisma, hashProvider);
 
-  const removeUserService: IRemoveUserService = new RemoveUserService(
-    usersRepository
-  );
+  const removeUserService: RemoveUserService = new RemoveUser(usersRepository);
 
   return new RemoveUserController(removeUserService);
 };

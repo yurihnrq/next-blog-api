@@ -1,17 +1,17 @@
 import { Request, Response } from 'express';
-import { IUser } from '../interfaces/IUser';
-import { IGetAllUsersService } from '../services/interfaces/IGetAllUsersService';
+import { User } from '../interfaces/User';
+import { GetAllUsersService } from '../services/interfaces/GetAllUsersService';
 
-export class GetAllUsersController implements IController {
-  #getAllUsersService: IGetAllUsersService;
+export class GetAllUsersController implements APIController {
+  #getAllUsersService: GetAllUsersService;
 
-  constructor(getAllUsersService: IGetAllUsersService) {
+  constructor(getAllUsersService: GetAllUsersService) {
     this.#getAllUsersService = getAllUsersService;
   }
 
   execute = async (
     req: Request,
-    res: IResponse<IUser[]>
+    res: APIResponse<User[]>
   ): Promise<Response> => {
     const { page } = req.query;
 

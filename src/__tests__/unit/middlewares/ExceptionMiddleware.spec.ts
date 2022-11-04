@@ -34,4 +34,19 @@ describe('Exception Middleware', () => {
       data: null
     });
   });
+
+  it('should log the error if the environment is not test', async () => {
+    process.env.NODE_ENV = 'development';
+    jest.spyOn(console, 'error').mockImplementation();
+    const definedError = new APIError(500, 'Server Internal Error, try again.');
+
+    await exceptionMiddleware.execute(
+      definedError,
+      requestMock,
+      responseMock,
+      next
+    );
+
+    expect(console.error).toHaveBeenCalledWith(definedError);
+  });
 });

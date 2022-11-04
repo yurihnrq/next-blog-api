@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
-import { IGetUserByIdService } from '../services/interfaces/IGetUserByIdService';
+import { GetUserByIdService } from '../services/interfaces/GetUserByIdService';
 import APIError from '@src/errors/APIError';
-import { IUser } from '../interfaces/IUser';
+import { User } from '../interfaces/User';
 
-export class GetUserByIdController implements IController {
-  #getUserByIdService: IGetUserByIdService;
+export class GetUserByIdController implements APIController {
+  #getUserByIdService: GetUserByIdService;
 
-  constructor(getUserByIdService: IGetUserByIdService) {
+  constructor(getUserByIdService: GetUserByIdService) {
     this.#getUserByIdService = getUserByIdService;
   }
 
-  execute = async (req: Request, res: IResponse<IUser>): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse<User>): Promise<Response> => {
     const { id } = req.params;
 
     if (!id) throw new APIError(400, 'User id is required.');

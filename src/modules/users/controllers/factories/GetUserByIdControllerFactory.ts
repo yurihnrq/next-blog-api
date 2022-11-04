@@ -1,12 +1,12 @@
 import { PrismaUsersRepositoryFactory } from '../../repositories/factories/PrismaUsersRepositoryFactory';
-import { IUsersRepository } from '../../repositories/interfaces/IUsersRepository';
-import { GetUserByIdService } from '../../services/GetUserByIdService';
+import { UsersRepository } from '../../repositories/interfaces/UsersRepository';
+import { GetUserById } from '../../services/GetUserById';
 import { GetUserByIdController } from '../GetUserByIdController';
 
 export const GetUserByIdControllerFactory = () => {
-  const usersRepository: IUsersRepository = PrismaUsersRepositoryFactory();
+  const usersRepository: UsersRepository = PrismaUsersRepositoryFactory();
 
-  const getUserByIdService = new GetUserByIdService(usersRepository);
+  const getUserByIdService = new GetUserById(usersRepository);
 
   return new GetUserByIdController(getUserByIdService);
 };

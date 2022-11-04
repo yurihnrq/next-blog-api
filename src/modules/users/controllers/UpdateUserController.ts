@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
-import { IUpdateUserService } from '../services/interfaces/IUpdateUserService';
+import { UpdateUserService } from '../services/interfaces/UpdateUserService';
 import APIError from '@src/errors/APIError';
-import { IAuthInfo } from '@src/modules/auth/services/interfaces/IAuthInfo';
+import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
 
-export class UpdateUserController implements IController {
-  #updateUserService: IUpdateUserService;
+export class UpdateUserController implements APIController {
+  #updateUserService: UpdateUserService;
 
-  constructor(updateUserService: IUpdateUserService) {
+  constructor(updateUserService: UpdateUserService) {
     this.#updateUserService = updateUserService;
   }
 
-  execute = async (req: Request, res: IResponse<null>): Promise<Response> => {
+  execute = async (req: Request, res: APIResponse<null>): Promise<Response> => {
     const { id } = req.params;
-    const { userId } = res.locals.authInfo as IAuthInfo;
+    const { userId } = res.locals.authInfo as AuthInfo;
 
     if (!userId || userId !== id)
       throw new APIError(401, 'Unauthorized request.');

@@ -1,6 +1,6 @@
-import { IRemoveUserService } from '@src/modules/users/services/interfaces/IRemoveUserService';
+import { RemoveUserService } from '@src/modules/users/services/interfaces/RemoveUserService';
 
-export class RemoveUserServiceMock implements IRemoveUserService {
+export class RemoveUserServiceMock implements RemoveUserService {
   execute(_id: string): Promise<void> {
     return Promise.resolve();
   }

@@ -1,15 +1,13 @@
 import { CreateUserController } from '../CreateUserController';
-import { IUsersRepository } from '../../repositories/interfaces/IUsersRepository';
-import { CreateUserService } from '../../services/CreateUserService';
-import { ICreateUserService } from '../../services/interfaces/ICreateUserService';
+import { UsersRepository } from '../../repositories/interfaces/UsersRepository';
+import { CreateUser } from '../../services/CreateUser';
+import { CreateUserService } from '../../services/interfaces/CreateUserService';
 import { PrismaUsersRepositoryFactory } from '../../repositories/factories/PrismaUsersRepositoryFactory';
 
 export const CreateUserControllerFactory = () => {
-  const usersRepository: IUsersRepository = PrismaUsersRepositoryFactory();
+  const usersRepository: UsersRepository = PrismaUsersRepositoryFactory();
 
-  const createUserService: ICreateUserService = new CreateUserService(
-    usersRepository
-  );
+  const createUserService: CreateUserService = new CreateUser(usersRepository);
 
   return new CreateUserController(createUserService);
 };

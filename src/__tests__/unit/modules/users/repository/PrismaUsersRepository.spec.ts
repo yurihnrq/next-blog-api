@@ -1,12 +1,14 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
 import prisma from '@src/configs/prisma';
-import { IUsersRepository } from '@src/modules/users/repositories/interfaces/IUsersRepository';
+import { CreateUserDTO } from '@src/modules/users/interfaces/CreateUserDTO';
+import { UpdateUserDTO } from '@src/modules/users/interfaces/UpdateUserDTO';
+import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
 import { PrismaUsersRepository } from '@src/modules/users/repositories/PrismaUsersRepository';
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
 
-const hashProvider: IHashProvider = new HashProviderMock();
-const usersRepository: IUsersRepository = new PrismaUsersRepository(
+const hashProvider: HashProvider = new HashProviderMock();
+const usersRepository: UsersRepository = new PrismaUsersRepository(
   prisma,
   hashProvider
 );
@@ -51,48 +53,55 @@ describe('PrismaUsersRepository', () => {
   });
 
   it('should create a user', async () => {
-    prisma.user.create = jest.fn().mockResolvedValue(usersMock[0]);
+    const createUserData: CreateUserDTO = {
+      ...usersMock[0]
+    };
+    prisma.user.create = jest.fn().mockResolvedValue(createUserData);
 
-    await usersRepository.create(usersMock[0]);
+    await usersRepository.create(createUserData);
 
     expect(prisma.user.create).toHaveBeenCalledWith({
       data: {
-        name: usersMock[0].name,
-        email: usersMock[0].email,
+        name: createUserData.name,
+        email: createUserData.email,
         password: usersMock[0].password,
-        birthDate: new Date(usersMock[0].birthDate),
-        biography: usersMock[0].biography
+        birthDate: new Date(createUserData.birthDate),
+        biography: createUserData.biography
       }
     });
   });
 
   it('should update a user', async () => {
-    prisma.user.update = jest.fn().mockResolvedValue(usersMock[0]);
+    const updateUserData: UpdateUserDTO = {
+      ...usersMock[0]
+    };
+    prisma.user.update = jest.fn().mockResolvedValue(updateUserData);
 
-    await usersRepository.update(usersMock[0]);
+    await usersRepository.update(updateUserData);
 
     expect(prisma.user.update).toHaveBeenCalledWith({
       where: {
-        id: usersMock[0].id
+        id: updateUserData.id
       },
       data: {
-        name: usersMock[0].name,
-        email: usersMock[0].email,
-        password: usersMock[0].password,
-        birthDate: new Date(usersMock[0].birthDate),
-        biography: usersMock[0].biography
+        name: updateUserData.name,
+        email: updateUserData.email,
+        password: updateUserData.password,
+        birthDate: new Date(updateUserData.birthDate),
+        biography: updateUserData.biography
       }
     });
   });
 
   it('should delete an user', async () => {
+    const userId = usersMock[0].id;
     prisma.user.delete = jest.fn().mockResolvedValue(usersMock[0]);
 
-    await usersRepository.remove(usersMock[0].id as string);
+    await usersRepository.remove(userId);
 
     expect(prisma.user.delete).toHaveBeenCalledWith({
       where: {
-        id: usersMock[0].id
+        id: userId
       }
     });
   });

@@ -1,13 +1,15 @@
 import { PrismaClient } from '@prisma/client';
-import { IHashProvider } from '../../../providers/interfaces/IHashProvider';
-import { IUser } from '../interfaces/IUser';
-import { IUsersRepository } from './interfaces/IUsersRepository';
+import { HashProvider } from '../../../providers/interfaces/HashProvider';
+import { CreateUserDTO } from '../interfaces/CreateUserDTO';
+import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
+import { User } from '../interfaces/User';
+import { UsersRepository } from './interfaces/UsersRepository';
 
-export class PrismaUsersRepository implements IUsersRepository {
+export class PrismaUsersRepository implements UsersRepository {
   #prismaClient: PrismaClient;
-  #hashProvider: IHashProvider;
+  #hashProvider: HashProvider;
 
-  constructor(prismaClient: PrismaClient, hashProvider: IHashProvider) {
+  constructor(prismaClient: PrismaClient, hashProvider: HashProvider) {
     this.#prismaClient = prismaClient;
     this.#hashProvider = hashProvider;
   }
@@ -19,7 +21,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       }
     });
 
-    return user as IUser;
+    return user as User;
   };
 
   getByEmail = async (email: string) => {
@@ -29,7 +31,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       }
     });
 
-    return user as IUser | null;
+    return user as User | null;
   };
 
   getAll = async (page: number) => {
@@ -38,10 +40,10 @@ export class PrismaUsersRepository implements IUsersRepository {
       skip: 10 * (page - 1)
     });
 
-    return users as IUser[];
+    return users as User[];
   };
 
-  create = async (user: IUser) => {
+  create = async (user: CreateUserDTO) => {
     const createdUser = await this.#prismaClient.user.create({
       data: {
         name: user.name,
@@ -52,10 +54,10 @@ export class PrismaUsersRepository implements IUsersRepository {
       }
     });
 
-    return createdUser as IUser;
+    return createdUser as User;
   };
 
-  update = async (user: IUser) => {
+  update = async (user: UpdateUserDTO) => {
     const updatedUser = await this.#prismaClient.user.update({
       where: {
         id: user.id
@@ -69,7 +71,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       }
     });
 
-    return updatedUser as IUser;
+    return updatedUser as User;
   };
 
   remove = async (id: string) => {

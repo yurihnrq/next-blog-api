@@ -1,12 +1,12 @@
 import { CreateUserController } from '@src/modules/users/controllers/CreateUserController';
-import { ICreateUserService } from '@src/modules/users/services/interfaces/ICreateUserService';
+import { CreateUserService } from '@src/modules/users/services/interfaces/CreateUserService';
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { CreateUserServiceMock } from '@mocks/modules/users/services/CreateUserServiceMock';
 
-const createUserService: ICreateUserService = new CreateUserServiceMock();
-const createUserController: IController = new CreateUserController(
+const createUserService: CreateUserService = new CreateUserServiceMock();
+const createUserController: APIController = new CreateUserController(
   createUserService
 );
 

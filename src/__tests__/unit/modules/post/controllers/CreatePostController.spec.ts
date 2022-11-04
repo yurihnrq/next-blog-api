@@ -1,12 +1,12 @@
-import { CreatePostController } from '@src/modules/post/controllers/CreatePostController';
-import { ICreatePostService } from '@src/modules/post/services/interfaces/ICreatePostService';
+import { CreatePostController } from '@src/modules/posts/controllers/CreatePostController';
+import { CreatePostService } from '@src/modules/posts/services/interfaces/CreatePostService';
 import { requestMock } from '@src/__mocks__/express/requestMock';
 import { responseMock } from '@src/__mocks__/express/responseMock';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
-import { CreatePostServiceMock } from '@src/__mocks__/modules/posts/services/CreatePostServiceMock';
+import { CreatePostMock } from '@src/__mocks__/modules/posts/services/CreatePostMock';
 
-const createPostService: ICreatePostService = new CreatePostServiceMock();
-const createPostController: IController = new CreatePostController(
+const createPostService: CreatePostService = new CreatePostMock();
+const createPostController: APIController = new CreatePostController(
   createPostService
 );
 

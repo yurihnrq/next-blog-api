@@ -1,6 +1,6 @@
-import { IPost } from '@src/modules/post/interfaces/IPost';
+import { Post } from '@src/modules/post/interfaces/IPost';
 
-export const postsMock: IPost[] = [
+export const postsMock: Post[] = [
   {
     id: '1',
     title: 'Post 1',

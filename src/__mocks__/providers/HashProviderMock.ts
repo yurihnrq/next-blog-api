@@ -1,6 +1,6 @@
-import { IHashProvider } from '@src/providers/interfaces/IHashProvider';
+import { HashProvider } from '@src/providers/interfaces/HashProvider';
 
-export class HashProviderMock implements IHashProvider {
+export class HashProviderMock implements HashProvider {
   public async generateHash(password: string): Promise<string> {
     return password;
   }

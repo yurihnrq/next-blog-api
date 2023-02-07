@@ -17,23 +17,23 @@ export const PostsRouter = () => {
   const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);
 
   router.post(
-    '/post',
+    '/posts',
     authMiddleware.execute,
     CreatePostControllerFactory().execute
   );
 
   router.get('/posts', GetAllPostsControllerFactory().execute);
 
-  router.get('/post/:id', GetPostByIdControllerFactory().execute);
+  router.get('/posts/:id', GetPostByIdControllerFactory().execute);
 
   router.delete(
-    '/post/:id',
+    '/posts/:id',
     authMiddleware.execute,
     RemovePostControllerFactory().execute
   );
 
   router.put(
-    '/post/:id',
+    '/posts/:id',
     authMiddleware.execute,
     UpdatePostControllerFactory().execute
   );

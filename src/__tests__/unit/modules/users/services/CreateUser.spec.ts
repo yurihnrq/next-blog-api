@@ -10,7 +10,7 @@ const usersRepository: UsersRepository = new UsersRepositoryMock();
 const createUserService: CreateUserService = new CreateUser(usersRepository);
 
 const userData: CreateUserDTO = {
-  ...usersMock[0]
+  ...(usersMock[0] as CreateUserDTO)
 };
 
 describe('CreateUser service', () => {

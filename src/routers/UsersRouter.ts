@@ -8,11 +8,16 @@ import { GetUserByIdControllerFactory } from '../modules/users/controllers/facto
 import { RemoveUserControllerFactory } from '../modules/users/controllers/factories/RemoveUserControllerFactory';
 import { UpdateUserControllerFactory } from '../modules/users/controllers/factories/UpdateUserControllerFactory';
 import { UserInfoValidation } from '../middlewares/UserInfoValidation';
+import { ValidationMiddleware } from '@src/middlewares/ValidationMiddleware';
+import { CreateUserSchema } from '@src/modules/users/interfaces/CreateUserDTO';
 
 export const UsersRouter = () => {
   const router = Router();
 
   const userInfoValidation: APIMiddleware = new UserInfoValidation();
+  const createUserValitator: APIMiddleware = new ValidationMiddleware(
+    CreateUserSchema
+  );
   const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
   );
@@ -20,7 +25,7 @@ export const UsersRouter = () => {
 
   router.post(
     '/users/',
-    userInfoValidation.execute,
+    createUserValitator.execute,
     CreateUserControllerFactory().execute
   );
 

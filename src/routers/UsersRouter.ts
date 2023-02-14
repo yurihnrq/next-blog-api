@@ -7,16 +7,18 @@ import { GetAllUsersControllerFactory } from '../modules/users/controllers/facto
 import { GetUserByIdControllerFactory } from '../modules/users/controllers/factories/GetUserByIdControllerFactory';
 import { RemoveUserControllerFactory } from '../modules/users/controllers/factories/RemoveUserControllerFactory';
 import { UpdateUserControllerFactory } from '../modules/users/controllers/factories/UpdateUserControllerFactory';
-import { UserInfoValidation } from '../middlewares/UserInfoValidation';
 import { ValidationMiddleware } from '@src/middlewares/ValidationMiddleware';
 import { CreateUserSchema } from '@src/modules/users/interfaces/CreateUserDTO';
+import { UpdateUserSchema } from '@src/modules/users/interfaces/UpdateUserDTO';
 
 export const UsersRouter = () => {
   const router = Router();
 
-  const userInfoValidation: APIMiddleware = new UserInfoValidation();
   const createUserValitator: APIMiddleware = new ValidationMiddleware(
     CreateUserSchema
+  );
+  const updateUserValidator: APIMiddleware = new ValidationMiddleware(
+    UpdateUserSchema
   );
   const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
@@ -31,7 +33,7 @@ export const UsersRouter = () => {
 
   router.get('/users/', GetAllUsersControllerFactory().execute);
 
-  router.get('/user/:id', GetUserByIdControllerFactory().execute);
+  router.get('/users/:id', GetUserByIdControllerFactory().execute);
 
   router.delete(
     '/users/:id',
@@ -42,7 +44,7 @@ export const UsersRouter = () => {
   router.put(
     '/users/:id',
     authMiddleware.execute,
-    userInfoValidation.execute,
+    updateUserValidator.execute,
     UpdateUserControllerFactory().execute
   );
 

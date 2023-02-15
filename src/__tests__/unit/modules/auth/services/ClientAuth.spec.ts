@@ -31,7 +31,7 @@ describe('ClientAuth', () => {
   });
 
   it('should return an AuthInfo object only if fetch a user with provided email from repository', async () => {
-    jest.spyOn(authRepository, 'getByEmail');
+    jest.spyOn(authRepository, 'getUserByEmail');
 
     const authInfo: AuthInfo = await clientAuthService.execute(
       loginInfo.email,
@@ -39,11 +39,11 @@ describe('ClientAuth', () => {
     );
 
     expect(authInfo).toBeDefined();
-    expect(authRepository.getByEmail).toBeCalledWith(loginInfo.email);
+    expect(authRepository.getUserByEmail).toBeCalledWith(loginInfo.email);
   });
 
   it('should throw an APIError if no user is found with provided email', async () => {
-    jest.spyOn(authRepository, 'getByEmail').mockResolvedValue(null);
+    jest.spyOn(authRepository, 'getUserByEmail').mockResolvedValue(null);
 
     try {
       await clientAuthService.execute(loginInfo.email, loginInfo.password);

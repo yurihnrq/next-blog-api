@@ -14,7 +14,7 @@ export class ClientAuth implements ClientAuthService {
   }
 
   execute = async (email: string, password: string): Promise<AuthInfo> => {
-    const existentUser = await this.#authRepository.getByEmail(email);
+    const existentUser = await this.#authRepository.getUserByEmail(email);
 
     if (!existentUser) throw new APIError(401, 'Invalid credentials.');
 

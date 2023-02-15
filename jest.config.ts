@@ -23,6 +23,13 @@ const config: Config = {
     '<rootDir>/dist/'
   ],
 
+  collectCoverageFrom: [
+    '<rootDir>/src/modules/**/*.ts',
+    '<rootDir>/src/providers/**/*.ts',
+    '<rootDir>/src/middlewares/**/*.ts',
+    '!<rootDir>/src/**/interfaces/*.ts'
+  ],
+
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',
 

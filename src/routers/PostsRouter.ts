@@ -1,15 +1,25 @@
 import { AuthMiddleware } from '@src/middlewares/AuthMiddleware';
+import { ValidationMiddleware } from '@src/middlewares/ValidationMiddleware';
 import { CreatePostControllerFactory } from '@src/modules/posts/controllers/factories/CreatePostControllerFactory';
 import { GetAllPostsControllerFactory } from '@src/modules/posts/controllers/factories/GetAllPostsControllerFactory';
 import { GetPostByIdControllerFactory } from '@src/modules/posts/controllers/factories/GetPostByIdControllerFactory';
 import { RemovePostControllerFactory } from '@src/modules/posts/controllers/factories/RemovePostControllerFactory';
 import { UpdatePostControllerFactory } from '@src/modules/posts/controllers/factories/UpdatePostControllerFactory';
+import { CreatePostSchema } from '@src/modules/posts/interfaces/CreatePostDTO';
+import { UpdatePostSchema } from '@src/modules/posts/interfaces/UpdatePostDTO';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { JwtToken } from '@src/providers/JwtToken';
 import { Router } from 'express';
 
 export const PostsRouter = () => {
   const router = Router();
+
+  const createPostValidator: APIMiddleware = new ValidationMiddleware(
+    CreatePostSchema
+  );
+  const updatePostValitador: APIMiddleware = new ValidationMiddleware(
+    UpdatePostSchema
+  );
 
   const tokenProvider: TokenProvider = new JwtToken(
     process.env.JWT_SECRET as string
@@ -19,6 +29,7 @@ export const PostsRouter = () => {
   router.post(
     '/posts',
     authMiddleware.execute,
+    createPostValidator.execute,
     CreatePostControllerFactory().execute
   );
 
@@ -35,6 +46,7 @@ export const PostsRouter = () => {
   router.put(
     '/posts/:id',
     authMiddleware.execute,
+    updatePostValitador.execute,
     UpdatePostControllerFactory().execute
   );
 

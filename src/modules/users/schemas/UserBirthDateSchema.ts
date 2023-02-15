@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const UserBirthDataSchema = z.union([
+export const UserBirthDateSchema = z.union([
   z.date({
     required_error: 'Birth date is required.'
   }),

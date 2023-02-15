@@ -1,5 +1,6 @@
+import { ClientAuthDTO } from '../../interfaces/ClientAuthDTO';
 import { AuthInfo } from './AuthInfo';
 
 export interface ClientAuthService {
-  execute(email: string, password: string): Promise<AuthInfo>;
+  execute(data: ClientAuthDTO): Promise<AuthInfo>;
 }

@@ -1,5 +1,6 @@
 import APIError from '@src/errors/APIError';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
+import { ClientAuthDTO } from '../interfaces/ClientAuthDTO';
 import { AuthRepository } from '../repositories/interfaces/AuthRepository';
 import { AuthInfo } from './interfaces/AuthInfo';
 import { ClientAuthService } from './interfaces/ClientAuthService';
@@ -13,13 +14,13 @@ export class ClientAuth implements ClientAuthService {
     this.#hashProvider = hashProvider;
   }
 
-  execute = async (email: string, password: string): Promise<AuthInfo> => {
-    const existentUser = await this.#authRepository.getUserByEmail(email);
+  execute = async (data: ClientAuthDTO): Promise<AuthInfo> => {
+    const existentUser = await this.#authRepository.getUserByEmail(data.email);
 
     if (!existentUser) throw new APIError(401, 'Invalid credentials.');
 
     const isPasswordValid = await this.#hashProvider.compareHash(
-      password,
+      data.password,
       existentUser.password
     );
 

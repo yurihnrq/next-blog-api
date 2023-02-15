@@ -54,7 +54,10 @@ describe('AuthenticationController', () => {
 
     await authenticationController.execute(requestMock, responseMock);
 
-    expect(clientAuthService.execute).toHaveBeenCalledWith(email, password);
+    expect(clientAuthService.execute).toHaveBeenCalledWith({
+      email,
+      password
+    });
   });
 
   it('should call generateTokenService with AuthInfo object', async () => {

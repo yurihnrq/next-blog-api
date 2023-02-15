@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { UserBiographySchema } from '../schemas/UserBiographySchema';
 import { UserBirthDateSchema } from '../schemas/UserBirthDateSchema';
-import { EmailSchema } from '../schemas/UserEmailSchema';
 import { UserNameSchema } from '../schemas/UserNameSchema';
-import { UserPasswordSchema } from '../schemas/UserPasswordSchema';
+import { UserEmailSchema } from '@src/modules/common/schemas/UserEmailSchema';
+import { UserPasswordSchema } from '@src/modules/common/schemas/UserPasswordSchema';
 
 export const CreateUserSchema = z.object({
   name: UserNameSchema,
-  email: EmailSchema,
+  email: UserEmailSchema,
   password: UserPasswordSchema,
   birthDate: UserBirthDateSchema,
   biography: UserBiographySchema

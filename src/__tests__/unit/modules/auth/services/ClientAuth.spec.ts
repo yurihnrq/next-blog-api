@@ -22,10 +22,10 @@ const loginInfo = {
 
 describe('ClientAuth', () => {
   it('should return an AuthInfo object', async () => {
-    const authInfo: AuthInfo = await clientAuthService.execute(
-      loginInfo.email,
-      loginInfo.password
-    );
+    const authInfo: AuthInfo = await clientAuthService.execute({
+      email: loginInfo.email,
+      password: loginInfo.password
+    });
 
     expect(authInfo).toBeDefined();
   });
@@ -33,10 +33,10 @@ describe('ClientAuth', () => {
   it('should return an AuthInfo object only if fetch a user with provided email from repository', async () => {
     jest.spyOn(authRepository, 'getUserByEmail');
 
-    const authInfo: AuthInfo = await clientAuthService.execute(
-      loginInfo.email,
-      loginInfo.password
-    );
+    const authInfo: AuthInfo = await clientAuthService.execute({
+      email: loginInfo.email,
+      password: loginInfo.password
+    });
 
     expect(authInfo).toBeDefined();
     expect(authRepository.getUserByEmail).toBeCalledWith(loginInfo.email);
@@ -46,7 +46,10 @@ describe('ClientAuth', () => {
     jest.spyOn(authRepository, 'getUserByEmail').mockResolvedValue(null);
 
     try {
-      await clientAuthService.execute(loginInfo.email, loginInfo.password);
+      await clientAuthService.execute({
+        email: loginInfo.email,
+        password: loginInfo.password
+      });
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).message).toBe('Invalid credentials.');
@@ -60,7 +63,10 @@ describe('ClientAuth', () => {
     jest.spyOn(hashProvider, 'compareHash').mockResolvedValue(false);
 
     try {
-      await clientAuthService.execute(loginInfo.email, loginInfo.password);
+      await clientAuthService.execute({
+        email: loginInfo.email,
+        password: loginInfo.password
+      });
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
       expect((error as APIError).message).toBe('Invalid credentials.');
@@ -71,10 +77,10 @@ describe('ClientAuth', () => {
   });
 
   it('should return an AuthInfo object with fetched user id', async () => {
-    const authInfo: AuthInfo = await clientAuthService.execute(
-      loginInfo.email,
-      loginInfo.password
-    );
+    const authInfo: AuthInfo = await clientAuthService.execute({
+      email: loginInfo.email,
+      password: loginInfo.password
+    });
 
     expect(authInfo.userId).toBe(usersMock[0].id);
   });

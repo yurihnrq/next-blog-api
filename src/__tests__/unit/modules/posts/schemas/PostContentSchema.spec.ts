@@ -12,4 +12,10 @@ describe('PostContentSchema', () => {
       PostContentSchema.parse(undefined);
     }).toThrow('Content is required.');
   });
+
+  it('should throw an error if content is not a string', () => {
+    expect(() => {
+      PostContentSchema.parse(12345678);
+    }).toThrow('Content must be a string.');
+  });
 });

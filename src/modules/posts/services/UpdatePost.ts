@@ -1,6 +1,6 @@
 import APIError from '@src/errors/APIError';
 import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';
-import { PostsRepository } from '../repositories/interface/PostsRepository';
+import { PostsRepository } from '../repositories/interfaces/PostsRepository';
 import { UpdatePostService } from './interfaces/UpdatePostService';
 
 export class UpdatePost implements UpdatePostService {

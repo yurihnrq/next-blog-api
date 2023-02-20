@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Post } from '../interfaces/Post';
 import { CreatePostDTO } from '../interfaces/CreatePostDTO';
-import { PostsRepository } from './interface/PostsRepository';
+import { PostsRepository } from './interfaces/PostsRepository';
 import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';
 
 export class PrismaPostsRepository implements PostsRepository {

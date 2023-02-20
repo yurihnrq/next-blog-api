@@ -1,7 +1,7 @@
 import APIError from '../errors/APIError';
 import { TokenProvider } from '../providers/interfaces/TokenProvider';
 import { NextFunction, Request, Response } from 'express';
-import { AuthInfo } from '../modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '../modules/common/interfaces/AuthInfo';
 
 export class AuthMiddleware implements APIMiddleware {
   #tokenProvider: TokenProvider;

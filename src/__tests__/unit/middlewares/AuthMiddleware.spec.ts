@@ -4,7 +4,7 @@ import { responseMock } from '@mocks/express/responseMock';
 import APIError from '@src/errors/APIError';
 import { TokenProviderMock } from '@src/__mocks__/providers/TokenProviderMock';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const tokenProvider: TokenProvider = new TokenProviderMock();
 const authMiddleware: APIMiddleware = new AuthMiddleware(tokenProvider);

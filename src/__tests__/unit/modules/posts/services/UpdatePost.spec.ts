@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { PostsRepository } from '@src/modules/posts/repositories/interfaces/PostsRepository';
 import { UpdatePostService } from '@src/modules/posts/services/interfaces/UpdatePostService';
 import { UpdatePost } from '@src/modules/posts/services/UpdatePost';
 import { PostsRepositoryMock } from '@src/__mocks__/modules/posts/repositories/PostsRepositoryMock';

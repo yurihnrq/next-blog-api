@@ -20,7 +20,10 @@ export class AuthenticationController implements APIController {
   ): Promise<Response> => {
     const { email, password } = req.body;
 
-    const authInfo = await this.#clientAuthService.execute(email, password);
+    const authInfo = await this.#clientAuthService.execute({
+      email,
+      password
+    });
 
     const token = await this.#generateTokenService.execute(authInfo);
 

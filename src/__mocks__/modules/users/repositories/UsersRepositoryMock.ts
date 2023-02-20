@@ -1,3 +1,4 @@
+import { CreateUserDTO } from '@src/modules/users/interfaces/CreateUserDTO';
 import { User } from '@src/modules/users/interfaces/User';
 import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
 
@@ -19,7 +20,7 @@ export class UsersRepositoryMock implements UsersRepository {
   remove(_id: string): Promise<void> {
     return Promise.resolve();
   }
-  async create(user: User): Promise<User> {
-    return Promise.resolve(user);
+  async create(user: CreateUserDTO): Promise<User> {
+    return Promise.resolve(user as User);
   }
 }

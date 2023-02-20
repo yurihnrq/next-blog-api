@@ -1,5 +1,5 @@
 import { PrismaPostsRepositoryFactory } from '../../repositories/factories/PrismaPostsRepositoryFactory';
-import { PostsRepository } from '../../repositories/interface/PostsRepository';
+import { PostsRepository } from '../../repositories/interfaces/PostsRepository';
 import { UpdatePost } from '../../services/UpdatePost';
 import { UpdatePostService } from '../../services/interfaces/UpdatePostService';
 import { UpdatePostController } from '../UpdatePostController';

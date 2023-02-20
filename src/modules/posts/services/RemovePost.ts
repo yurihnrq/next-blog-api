@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { PostsRepository } from '../repositories/interface/PostsRepository';
+import { PostsRepository } from '../repositories/interfaces/PostsRepository';
 import { RemovePostService } from './interfaces/RemovePostService';
 
 export class RemovePost implements RemovePostService {

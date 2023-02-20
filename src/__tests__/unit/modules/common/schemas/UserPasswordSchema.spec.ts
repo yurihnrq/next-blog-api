@@ -12,4 +12,10 @@ describe('UserPasswordSchema', () => {
       UserPasswordSchema.parse(undefined);
     }).toThrow('Password is required.');
   });
+
+  it('should throw an error if password is not a string', () => {
+    expect(() => {
+      UserPasswordSchema.parse(12345678);
+    }).toThrow('Password must be a string.');
+  });
 });

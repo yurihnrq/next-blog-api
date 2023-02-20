@@ -12,4 +12,10 @@ describe('UserBiographySchema', () => {
       UserBiographySchema.parse(null);
     }).not.toThrow();
   });
+
+  it('should throw an error if biography is not a string', () => {
+    expect(() => {
+      UserBiographySchema.parse(12345678);
+    }).toThrow('Biography must be a string.');
+  });
 });

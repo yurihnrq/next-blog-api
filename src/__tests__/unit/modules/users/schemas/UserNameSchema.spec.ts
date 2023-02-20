@@ -24,4 +24,10 @@ describe('UserNameSchema', () => {
       UserNameSchema.parse('Jo');
     }).toThrow('Name must have at least 3 characters.');
   });
+
+  it('should throw an error if name is too long', () => {
+    expect(() => {
+      UserNameSchema.parse('J'.repeat(256));
+    }).toThrow('Name must have less than 255 characters.');
+  });
 });

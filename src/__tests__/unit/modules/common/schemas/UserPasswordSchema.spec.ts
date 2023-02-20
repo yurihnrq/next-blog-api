@@ -24,4 +24,10 @@ describe('UserPasswordSchema', () => {
       UserPasswordSchema.parse('1234567');
     }).toThrow('Password must have at least 8 characters.');
   });
+
+  it('should throw an error if password is too long', () => {
+    expect(() => {
+      UserPasswordSchema.parse('1'.repeat(36));
+    }).toThrow('Password must have less than 32 characters.');
+  });
 });

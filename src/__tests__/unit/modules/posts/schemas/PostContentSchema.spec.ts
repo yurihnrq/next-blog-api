@@ -18,4 +18,10 @@ describe('PostContentSchema', () => {
       PostContentSchema.parse(12345678);
     }).toThrow('Content must be a string.');
   });
+
+  it('should throw an error if content is too short', () => {
+    expect(() => {
+      PostContentSchema.parse('1234567');
+    }).toThrow('Content must be at least 10 characters long.');
+  });
 });

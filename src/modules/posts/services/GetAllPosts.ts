@@ -1,6 +1,6 @@
 import APIError from '@src/errors/APIError';
 import { Post } from '../interfaces/Post';
-import { PostsRepository } from '../repositories/interface/PostsRepository';
+import { PostsRepository } from '../repositories/interfaces/PostsRepository';
 import { GetAllPostsService } from './interfaces/GetAllPostsService';
 
 export class GetAllPosts implements GetAllPostsService {

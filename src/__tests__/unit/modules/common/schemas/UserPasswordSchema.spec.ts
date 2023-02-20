@@ -18,4 +18,10 @@ describe('UserPasswordSchema', () => {
       UserPasswordSchema.parse(12345678);
     }).toThrow('Password must be a string.');
   });
+
+  it('should throw an error if password is too short', () => {
+    expect(() => {
+      UserPasswordSchema.parse('1234567');
+    }).toThrow('Password must have at least 8 characters.');
+  });
 });

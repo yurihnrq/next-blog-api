@@ -18,4 +18,10 @@ describe('PostTitleSchema', () => {
       PostTitleSchema.parse(12345678);
     }).toThrow('Title must be a string.');
   });
+
+  it('should throw an error if title is too short', () => {
+    expect(() => {
+      PostTitleSchema.parse('123');
+    }).toThrow('Title must be at least 4 characters long.');
+  });
 });

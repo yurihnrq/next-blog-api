@@ -6,4 +6,10 @@ describe('UserEmailSchema', () => {
       UserEmailSchema.parse('test@mail.com');
     }).not.toThrow();
   });
+
+  it('shuold throw if email is not provided', () => {
+    expect(() => {
+      UserEmailSchema.parse(undefined);
+    }).toThrow('Email is required.');
+  });
 });

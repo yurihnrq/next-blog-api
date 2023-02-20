@@ -18,4 +18,10 @@ describe('UserNameSchema', () => {
       UserNameSchema.parse(undefined);
     }).toThrow('Name is required.');
   });
+
+  it('should throw an error if name is less too short', () => {
+    expect(() => {
+      UserNameSchema.parse('Jo');
+    }).toThrow('Name must have at least 3 characters.');
+  });
 });

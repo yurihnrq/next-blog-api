@@ -5,7 +5,7 @@ import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientA
 import { ClientAuthMock } from '@mocks/modules/auth/services/ClientAuthMock';
 import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
 import { GenerateTokenMock } from '@mocks/modules/auth/services/GenerateTokenMock';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const clientAuthService: ClientAuthService = new ClientAuthMock();
 const generateTokenService: GenerateTokenService = new GenerateTokenMock();

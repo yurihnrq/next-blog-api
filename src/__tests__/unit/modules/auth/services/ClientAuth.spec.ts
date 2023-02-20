@@ -1,6 +1,6 @@
 import { AuthRepository } from '@src/modules/auth/repositories/interfaces/AuthRepository';
 import { ClientAuth } from '@src/modules/auth/services/ClientAuth';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientAuthService';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import APIError from '@src/errors/APIError';

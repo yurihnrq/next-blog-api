@@ -5,7 +5,7 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { UpdateUserServiceMock } from '@mocks/modules/users/services/UpdateUserServiceMock';
 import APIError from '@src/errors/APIError';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const updateUserService: UpdateUserService = new UpdateUserServiceMock();
 const updateUserController = new UpdateUserController(updateUserService);

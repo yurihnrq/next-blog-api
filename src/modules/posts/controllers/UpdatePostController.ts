@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 import { Request, Response } from 'express';
 import { UpdatePostService } from '../services/interfaces/UpdatePostService';
 

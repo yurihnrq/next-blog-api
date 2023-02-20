@@ -2,7 +2,7 @@ import { GenerateToken } from '@src/modules/auth/services/GenerateToken';
 import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { TokenProviderMock } from '@mocks/providers/TokenProviderMock';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const tokenProvider: TokenProvider = new TokenProviderMock();
 const generateTokenService: GenerateTokenService = new GenerateToken(

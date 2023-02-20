@@ -5,7 +5,7 @@ import { requestMock } from '@mocks/express/requestMock';
 import { responseMock } from '@mocks/express/responseMock';
 import { RemoveUserServiceMock } from '@src/__mocks__/modules/users/services/RemoveUserServiceMock';
 import APIError from '@src/errors/APIError';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const removeUserService: RemoveUserService = new RemoveUserServiceMock();
 const removeUserController: APIController = new RemoveUserController(

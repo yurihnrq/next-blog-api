@@ -2,7 +2,7 @@ import APIError from '@src/errors/APIError';
 import { HashProvider } from '@src/providers/interfaces/HashProvider';
 import { ClientAuthDTO } from '../interfaces/ClientAuthDTO';
 import { AuthRepository } from '../repositories/interfaces/AuthRepository';
-import { AuthInfo } from './interfaces/AuthInfo';
+import { AuthInfo } from '../../common/interfaces/AuthInfo';
 import { ClientAuthService } from './interfaces/ClientAuthService';
 
 export class ClientAuth implements ClientAuthService {

@@ -24,4 +24,10 @@ describe('PostTitleSchema', () => {
       PostTitleSchema.parse('123');
     }).toThrow('Title must be at least 4 characters long.');
   });
+
+  it('should throw an error if title is too long', () => {
+    expect(() => {
+      PostTitleSchema.parse('1'.repeat(256));
+    }).toThrow('Title must be at most 255 characters long.');
+  });
 });

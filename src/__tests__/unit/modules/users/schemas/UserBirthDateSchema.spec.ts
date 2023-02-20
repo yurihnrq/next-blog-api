@@ -18,4 +18,10 @@ describe('UserBirthDateSchema', () => {
       UserBirthDateSchema.parse(12345678);
     }).toThrow('Birth date must be a date or a string.');
   });
+
+  it('should throw an error if birth date is not provided', () => {
+    expect(() => {
+      UserBirthDateSchema.parse(undefined);
+    }).toThrow('Birth date is required.');
+  });
 });

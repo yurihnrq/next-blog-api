@@ -1,5 +1,5 @@
 import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
-import { AuthInfo } from './interfaces/AuthInfo';
+import { AuthInfo } from '../../common/interfaces/AuthInfo';
 import { GenerateTokenService } from './interfaces/GenerateTokenService';
 
 export class GenerateToken implements GenerateTokenService {

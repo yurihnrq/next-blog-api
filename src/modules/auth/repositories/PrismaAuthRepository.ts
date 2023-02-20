@@ -9,7 +9,7 @@ export class PrismaAuthRepository implements AuthRepository {
     this.#prismaClient = prismaClient;
   }
 
-  async getByEmail(email: string): Promise<User | null> {
+  async getUserByEmail(email: string): Promise<User | null> {
     const user = await this.#prismaClient.user.findUnique({
       where: {
         email

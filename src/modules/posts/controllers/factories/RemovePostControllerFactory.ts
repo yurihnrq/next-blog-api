@@ -1,5 +1,5 @@
 import { PrismaPostsRepositoryFactory } from '../../repositories/factories/PrismaPostsRepositoryFactory';
-import { PostsRepository } from '../../repositories/interface/PostsRepository';
+import { PostsRepository } from '../../repositories/interfaces/PostsRepository';
 import { RemovePost } from '../../services/RemovePost';
 import { RemovePostService } from '../../services/interfaces/RemovePostService';
 import { RemovePostController } from '../RemovePostController';

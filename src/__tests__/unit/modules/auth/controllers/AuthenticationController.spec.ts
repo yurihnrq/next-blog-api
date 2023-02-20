@@ -5,7 +5,7 @@ import { ClientAuthService } from '@src/modules/auth/services/interfaces/ClientA
 import { ClientAuthMock } from '@mocks/modules/auth/services/ClientAuthMock';
 import { GenerateTokenService } from '@src/modules/auth/services/interfaces/GenerateTokenService';
 import { GenerateTokenMock } from '@mocks/modules/auth/services/GenerateTokenMock';
-import { AuthInfo } from '@src/modules/auth/services/interfaces/AuthInfo';
+import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
 const clientAuthService: ClientAuthService = new ClientAuthMock();
 const generateTokenService: GenerateTokenService = new GenerateTokenMock();
@@ -54,7 +54,10 @@ describe('AuthenticationController', () => {
 
     await authenticationController.execute(requestMock, responseMock);
 
-    expect(clientAuthService.execute).toHaveBeenCalledWith(email, password);
+    expect(clientAuthService.execute).toHaveBeenCalledWith({
+      email,
+      password
+    });
   });
 
   it('should call generateTokenService with AuthInfo object', async () => {

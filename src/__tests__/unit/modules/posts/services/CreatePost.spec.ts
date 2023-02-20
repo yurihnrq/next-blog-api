@@ -1,4 +1,4 @@
-import { PostsRepository } from '@src/modules/posts/repositories/interface/PostsRepository';
+import { PostsRepository } from '@src/modules/posts/repositories/interfaces/PostsRepository';
 import { CreatePost } from '@src/modules/posts/services/CreatePost';
 import { CreatePostService } from '@src/modules/posts/services/interfaces/CreatePostService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';

@@ -10,7 +10,7 @@ describe('PrismaAuthRepository', () => {
     const email = 'test@mail.com';
     prisma.user.findUnique = jest.fn().mockResolvedValue(usersMock[0]);
 
-    const user = await prismaAuthRepository.getByEmail(email);
+    const user = await prismaAuthRepository.getUserByEmail(email);
 
     expect(user).toEqual(usersMock[0]);
     expect(prisma.user.findUnique).toHaveBeenCalledWith({

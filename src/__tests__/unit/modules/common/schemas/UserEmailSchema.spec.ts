@@ -19,17 +19,23 @@ describe('UserEmailSchema', () => {
     }).toThrow('Email must be a string.');
   });
 
-  it('shuold throw if email is not a valid', () => {
+  it('should throw if email is not a valid', () => {
     expect(() => {
       UserEmailSchema.parse('test');
     }).toThrow('Invalid email.');
   });
 
-  it('shuold throw if email is too long', () => {
+  it('should throw if email is too long', () => {
     const longString = `test@m${'a'.repeat(250)}il.com`;
 
     expect(() => {
       UserEmailSchema.parse(longString);
     }).toThrow('Email must have less than 255 characters.');
+  });
+
+  it('should throw if email is too short', () => {
+    expect(() => {
+      UserEmailSchema.parse('a@a');
+    }).toThrow('Email must have at least 5 characters.');
   });
 });

@@ -12,4 +12,10 @@ describe('UserEmailSchema', () => {
       UserEmailSchema.parse(undefined);
     }).toThrow('Email is required.');
   });
+
+  it('should throw if email is not a string', () => {
+    expect(() => {
+      UserEmailSchema.parse(123);
+    }).toThrow('Email must be a string.');
+  });
 });

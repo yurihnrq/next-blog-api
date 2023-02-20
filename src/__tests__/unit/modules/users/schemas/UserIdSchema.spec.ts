@@ -12,4 +12,10 @@ describe('UserIdSchema', () => {
       UserIdSchema.parse(123);
     }).toThrow('User id must be a string.');
   });
+
+  it('should throw a error if user id is not privded', () => {
+    expect(() => {
+      UserIdSchema.parse(undefined);
+    }).toThrow('User id is required.');
+  });
 });

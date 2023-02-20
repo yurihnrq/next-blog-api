@@ -6,4 +6,10 @@ describe('UserBiographySchema', () => {
       UserBiographySchema.parse('New biography');
     }).not.toThrow();
   });
+
+  it('should parse a null biography', () => {
+    expect(() => {
+      UserBiographySchema.parse(null);
+    }).not.toThrow();
+  });
 });

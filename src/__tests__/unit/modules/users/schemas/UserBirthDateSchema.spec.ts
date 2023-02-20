@@ -12,4 +12,10 @@ describe('UserBirthDateSchema', () => {
       UserBirthDateSchema.parse('2021-01-01');
     }).not.toThrow();
   });
+
+  it('should throw an error if birth date is not date nor string', () => {
+    expect(() => {
+      UserBirthDateSchema.parse(12345678);
+    }).toThrow('Birth date must be a date or a string.');
+  });
 });

@@ -6,4 +6,10 @@ describe('PostContentSchema', () => {
       PostContentSchema.parse('New content');
     }).not.toThrow();
   });
+
+  it('should throw an error if content is not provided', () => {
+    expect(() => {
+      PostContentSchema.parse(undefined);
+    }).toThrow('Content is required.');
+  });
 });

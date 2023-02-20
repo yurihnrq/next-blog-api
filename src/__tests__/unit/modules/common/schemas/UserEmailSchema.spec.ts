@@ -18,4 +18,10 @@ describe('UserEmailSchema', () => {
       UserEmailSchema.parse(123);
     }).toThrow('Email must be a string.');
   });
+
+  it('shuold throw if email is not a valid', () => {
+    expect(() => {
+      UserEmailSchema.parse('test');
+    }).toThrow('Invalid email.');
+  });
 });

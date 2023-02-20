@@ -24,4 +24,12 @@ describe('UserEmailSchema', () => {
       UserEmailSchema.parse('test');
     }).toThrow('Invalid email.');
   });
+
+  it('shuold throw if email is too long', () => {
+    const longString = `test@m${'a'.repeat(250)}il.com`;
+
+    expect(() => {
+      UserEmailSchema.parse(longString);
+    }).toThrow('Email must have less than 255 characters.');
+  });
 });

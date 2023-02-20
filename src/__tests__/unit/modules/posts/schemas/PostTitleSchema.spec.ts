@@ -6,4 +6,10 @@ describe('PostTitleSchema', () => {
       PostTitleSchema.parse('New title');
     }).not.toThrow();
   });
+
+  it('should throw an error if title is not provided', () => {
+    expect(() => {
+      PostTitleSchema.parse(undefined);
+    }).toThrow('Title is required.');
+  });
 });

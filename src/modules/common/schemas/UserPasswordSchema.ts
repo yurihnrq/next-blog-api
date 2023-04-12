@@ -1,5 +1,15 @@
 import { z } from 'zod';
 
+/**
+ * @swagger
+ *
+ * components:
+ *   schemas:
+ *     UserPassword:
+ *       type: string
+ *       description: The user's password.
+ *       example: 12345678
+ */
 export const UserPasswordSchema = z
   .string({
     required_error: 'Password is required.',

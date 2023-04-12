@@ -1,5 +1,15 @@
 import { z } from 'zod';
 
+/**
+ * @swagger
+ *
+ * components:
+ *   schemas:
+ *     UserName:
+ *       type: string
+ *       description: The user's name.
+ *       example: John Doe
+ */
 export const UserNameSchema = z
   .string({
     required_error: 'Name is required.',

@@ -1,6 +1,6 @@
-import { CreatePostDTO } from '@src/modules/post/interfaces/ICreatePostDTO';
-import { Post } from '@src/modules/post/interfaces/IPost';
-import { UpdatePostDTO } from '@src/modules/post/interfaces/IUpdatePostDTO';
+import { CreatePostDTO } from '@src/modules/posts/interfaces/CreatePostDTO';
+import { Post } from '@src/modules/posts/interfaces/Post';
+import { UpdatePostDTO } from '@src/modules/posts/interfaces/UpdatePostDTO';
 import { PostsRepository } from '@src/modules/posts/repositories/interfaces/PostsRepository';
 import { postsMock } from '../postsMock';
 

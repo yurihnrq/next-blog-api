@@ -1,6 +1,14 @@
 import { z } from 'zod';
 import { CreateUserSchema } from './CreateUserDTO';
 
+/**
+ * @swagger
+ *
+ * components:
+ *   schemas:
+ *     UpdateUserDTO:
+ *       $ref: '#/components/schemas/CreateUserDTO'
+ */
 export const UpdateUserSchema = CreateUserSchema;
 
 export type UpdateUserType = z.infer<typeof UpdateUserSchema>;

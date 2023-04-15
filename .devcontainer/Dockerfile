@@ -51,3 +51,7 @@ RUN mkdir ${HISTORY_DIR} && \
   touch ${HISTORY_DIR}/.zsh_history && \
   SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=${HISTORY_DIR}/.zsh_history" && \
   echo "$SNIPPET" >> "/home/$USERNAME/.zshrc"
+
+# Create project directory (workspace).
+RUN mkdir /home/$USERNAME/App
+WORKDIR /home/$USERNAME/App

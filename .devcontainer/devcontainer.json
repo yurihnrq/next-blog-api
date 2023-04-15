@@ -2,7 +2,7 @@
   "name": "Next Blog API",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/home/dev/App",
   "forwardPorts": [
     3030
   ],

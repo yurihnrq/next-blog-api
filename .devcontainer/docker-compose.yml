@@ -8,17 +8,16 @@ services:
       dockerfile: Dockerfile
     hostname: devcontainer
     volumes:
-      - ..:/workspace:cached
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/home/dev/App:cached
       # Persist devcontainer's zsh history
       - app-zsh_history:/home/dev/.commandhistory
-    # Overrides default command so things don't shut down after the process ends.
+    # Prevent container from exit after build
     command: /bin/sh -c "while sleep 1000; do :; done"
-    # ports:
-    #   - "3030:3030"
     depends_on:
       - db
   db:
+    env_file:
+      - ../.env
     image: postgres:latest
     environment:
       - POSTGRES_USER=${DB_USER}

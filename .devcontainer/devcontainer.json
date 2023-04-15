@@ -1,0 +1,37 @@
+{
+  "name": "Next Blog API",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [
+    3030
+  ],
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "VisualStudioExptTeam.intellicode-api-usage-examples",
+        "Prisma.prisma",
+        "christian-kohler.npm-intellisense",
+        "ms-vsliveshare.vsliveshare",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "eamodio.gitlens",
+        "codezombiech.gitignore",
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    }
+  }
+}

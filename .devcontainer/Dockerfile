@@ -1,10 +1,9 @@
 FROM fedora:latest
 
-# Update the base image.
-RUN dnf -y update && dnf clean all
-
-# Install git, wget and zsh.
-RUN dnf install -y git wget zsh
+# Install needed packages.
+RUN dnf update -y && \
+  dnf install -y git wget zsh sudo && \
+  dnf clean all
 
 # Create a non-root - see https://aka.ms/vscode-remote/containers/non-root-user.
 ARG USERNAME=dev
@@ -14,8 +13,6 @@ ARG USER_GID=$USER_UID
 # Create the user with zsh as default shell.
 RUN groupadd --gid $USER_GID $USERNAME \
   && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME -s /bin/zsh \
-  # Add sudo support.
-  && dnf install -y sudo \
   && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
   && chmod 0440 /etc/sudoers.d/$USERNAME
 

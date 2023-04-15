@@ -1,0 +1,11 @@
+components:
+  schemas:
+    UserEmail:
+      type: string
+      description: The user's email.
+      example: john@mail.com
+
+    UserPassword:
+      type: string
+      description: The user's password.
+      example: 12345678

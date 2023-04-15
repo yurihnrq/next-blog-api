@@ -1,0 +1,55 @@
+components:
+  schemas:
+    UserId:
+      type: string
+      description: The user ID.
+      example: 1231231-231-3123123-123123-123123
+
+    UserName:
+      type: string
+      description: The user's name.
+      example: John Doe
+
+    UserBirthDate:
+      type: string
+      description: The user's birth date.
+      example: 1990-01-01
+
+    UserBiography:
+      type: string
+      description: The user's biography.
+      example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      nullable: true
+
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/UserId'
+        name:
+          $ref: '#/components/schemas/UserName'
+        email:
+          $ref: '#/components/schemas/UserEmail'
+        password:
+          $ref: '#/components/schemas/UserPassword'
+        birthDate:
+          $ref: '#/components/schemas/UserBirthDate'
+        biography:
+          $ref: '#/components/schemas/UserBiography'
+
+    CreateUserDTO:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/UserName'
+        email:
+          $ref: '#/components/schemas/UserEmail'
+        password:
+          $ref: '#/components/schemas/UserPassword'
+        birthDate:
+          $ref: '#/components/schemas/UserBirthDate'
+        biography:
+          $ref: '#/components/schemas/UserBiography'
+
+    UpdateUserDTO:
+      $ref: '#/components/schemas/CreateUserDTO'

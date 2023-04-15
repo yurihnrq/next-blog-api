@@ -11,17 +11,6 @@ import { ExceptionMiddleware } from '@src/middlewares/ExceptionMiddleware';
 import { swagger } from './swagger';
 const exceptionMiddleware = new ExceptionMiddleware();
 
-/**
- * @swagger
- *
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- */
-
 const app = express();
 
 app.use(express.json());

@@ -1,15 +1,5 @@
 import { z } from 'zod';
 
-/**
- * @swagger
- *
- * components:
- *   schemas:
- *     UserEmail:
- *       type: string
- *       description: The user's email.
- *       example: john@mail.com
- */
 export const UserEmailSchema = z
   .string({
     required_error: 'Email is required.',

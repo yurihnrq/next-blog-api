@@ -13,13 +13,7 @@ const swaggerDefinition: SwaggerDefinition = {
 
 const options: Options = {
   swaggerDefinition,
-  apis: [
-    'src/routers/*.ts',
-    'src/modules/**/interfaces/*.ts',
-    'src/modules/**/schemas/*.ts',
-    'src/types/global.d.ts',
-    'src/configs/app.ts'
-  ]
+  apis: ['docs/swagger/**/*.yaml']
 };
 
 const swaggerSpec = swaggerJsDoc(options);

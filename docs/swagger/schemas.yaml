@@ -1,0 +1,50 @@
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful or not.
+        message:
+          type: string
+          description: The message returned by the server.
+        data:
+          type: object
+          description: The data returned by the server.
+          nullable: true
+
+    PaginatedAPIResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful or not.
+        message:
+          type: string
+          description: The message returned by the server.
+        data:
+          type: object
+          properties:
+            count:
+              type: number
+              description: The total number of results.
+              example: 1
+            totalPages:
+              type: number
+              description: The total number of pages.
+              example: 1
+            currentPage:
+              type: number
+              description: The current page.
+              example: 1
+            pageSize:
+              type: number
+              description: The number of results per page.
+              example: 10
+            results:
+              type: array
+              description: The results.
+              items:
+                type: object
+                description: The result item.

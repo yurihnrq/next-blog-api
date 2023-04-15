@@ -14,6 +14,8 @@ services:
       - app-zsh_history:/home/dev/.commandhistory
     # Overrides default command so things don't shut down after the process ends.
     command: /bin/sh -c "while sleep 1000; do :; done"
+    # ports:
+    #   - "3030:3030"
     depends_on:
       - db
   db:

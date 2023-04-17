@@ -59,3 +59,21 @@ components:
                 type: object
                 nullable: true
                 example: null
+
+    InvalidInput:
+      description: Bad request. Check the error message for more details.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Invalid input data.
+              data:
+                type: object
+                nullable: true
+                example: null

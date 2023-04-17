@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ClientAuthDTO:
+      type: object
+      properties:
+        email:
+          $ref: '#/components/schemas/UserEmail'
+        password:
+          $ref: '#/components/schemas/UserPassword'

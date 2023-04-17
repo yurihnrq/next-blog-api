@@ -27,26 +27,9 @@
                   nullable: true
                   example: null
       400:
-        description: Bad request. Check the error message for more details.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                success:
-                  type: boolean
-                  example: false
-                message:
-                  type: string
-                  example: Invalid input data.
-                data:
-                  type: object
-                  nullable: true
-                  example: null
-
+        $ref: '#/components/responses/InvalidInput'
       409:
         $ref: '#/components/responses/Conflict'
-
       500:
         $ref: '#/components/responses/ServerInternalError'
 
@@ -150,7 +133,6 @@
                   type: object
                   nullable: true
                   example: null
-
       500:
         $ref: '#/components/responses/ServerInternalError'
 
@@ -200,7 +182,6 @@
                   type: object
                   nullable: true
                   example: null
-
       500:
         $ref: '#/components/responses/ServerInternalError'
 
@@ -239,22 +220,7 @@
                   nullable: true
                   example: null
       400:
-        description: Bad request. Check the error message for more details.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                success:
-                  type: boolean
-                  example: false
-                message:
-                  type: string
-                  example: Invalid input data.
-                data:
-                  type: object
-                  nullable: true
-                  example: null
+        $ref: '#/components/responses/InvalidInput'
       404:
         description: Requested user not found.
         content:
@@ -272,9 +238,7 @@
                   type: object
                   nullable: true
                   example: null
-
       409:
         $ref: '#/components/responses/Conflict'
-
       500:
         $ref: '#/components/responses/ServerInternalError'

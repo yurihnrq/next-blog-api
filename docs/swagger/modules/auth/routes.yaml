@@ -1,0 +1,35 @@
+/auth:
+  post:
+    description: Create a new access token
+    tags: [Auth]
+    requestBody:
+      name: Login credentials
+      description: The client login credentials (email and password).
+      required: true
+      content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientAuthDTO'
+    responses:
+      200:
+        description: Authentication successful.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Authentication successful.
+                data:
+                  type: string
+                  example: 'access token here'
+      400:
+        $ref: '#/components/responses/InvalidInput'
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      500:
+        $ref: '#/components/responses/ServerInternalError'

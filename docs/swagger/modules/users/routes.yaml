@@ -14,27 +14,41 @@
         content:
           application/json:
             schema:
-              type:
-                $ref: '#/components/schemas/APIResponse/type'
+              type: object
               properties:
-                $ref: '#/components/schemas/APIResponse/properties'
-              example:
-                success: true
-                data: null
-                message: User created successfully.
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: User created successfully.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
       400:
         description: Bad request. Check the error message for more details.
         content:
           application/json:
             schema:
-              type:
-                $ref: '#/components/schemas/APIResponse/type'
+              type: object
               properties:
-                $ref: '#/components/schemas/APIResponse/properties'
-              example:
-                success: false
-                data: null
-                message: Invalid input data.
+                success:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: Invalid input data.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+
+      409:
+        $ref: '#/components/responses/Conflict'
+
+      500:
+        $ref: '#/components/responses/ServerInternalError'
 
   get:
     description: Get all users
@@ -45,23 +59,53 @@
         content:
           application/json:
             schema:
-              type:
-                $ref: '#/components/schemas/PaginatedAPIResponse/type'
+              type: object
               properties:
-                $ref: '#/components/schemas/PaginatedAPIResponse/properties'
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Users fetched successfully.
+                data:
+                  type: object
+                  properties:
+                    count:
+                      type: number
+                      example: 1
+                    totalPages:
+                      type: number
+                      example: 1
+                    currentPage:
+                      type: number
+                      example: 1
+                    pageSize:
+                      type: number
+                      example: 10
+                    results:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/User'
       204:
         description: No users found.
         content:
           application/json:
             schema:
-              type:
-                $ref: '#/components/schemas/APIResponse/type'
+              type: object
               properties:
-                $ref: '#/components/schemas/APIResponse/properties'
-              example:
-                success: true
-                data: null
-                message: No users found.
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: No users found.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+
+      500:
+        $ref: '#/components/responses/ServerInternalError'
 
 /users/{userId}:
   get:
@@ -79,11 +123,11 @@
         content:
           application/json:
             schema:
-              type:
-                $ref: '#/components/schemas/APIResponse/type'
+              type: object
               properties:
                 success:
-                  $ref: '#/components/schemas/APIResponse/properties/success'
+                  type: boolean
+                  example: true
                 message:
                   type: string
                   example: User fetched successfully.
@@ -94,7 +138,21 @@
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: User not found.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+
+      500:
+        $ref: '#/components/responses/ServerInternalError'
 
   delete:
     description: Delete a user.
@@ -113,17 +171,38 @@
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
-              example:
-                success: true
-                data: null
-                message: User created successfully.
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: User deleted successfully.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
       404:
         description: Requested user not found.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: User not found.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+
+      500:
+        $ref: '#/components/responses/ServerInternalError'
 
   put:
     description: Update a user.
@@ -147,20 +226,55 @@
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
-              example:
-                success: true
-                data: null
-                message: User created successfully.
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: User updated successfully.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
       400:
         description: Bad request. Check the error message for more details.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: Invalid input data.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
       404:
         description: Requested user not found.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/APIResponse'
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: User not found.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+
+      409:
+        $ref: '#/components/responses/Conflict'
+
+      500:
+        $ref: '#/components/responses/ServerInternalError'

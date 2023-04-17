@@ -28,5 +28,5 @@ docs
     │   └── posts
     │       ├── routes.yaml
     │       └── schemas.yaml
-    └─── schemas.yaml (global schemas)
+    └─── index.yaml (global definitions)
 ```

@@ -8,6 +8,15 @@ const swaggerDefinition: SwaggerDefinition = {
     version: '1.0.0',
     description:
       'REST API developed with Node.js and Express for the Next Blog project.'
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT'
+      }
+    }
   }
 };
 

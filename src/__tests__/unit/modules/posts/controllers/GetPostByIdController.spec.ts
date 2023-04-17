@@ -17,6 +17,8 @@ describe('GetPostByIdController', () => {
   });
 
   it('should call getPostByIdService and return a post', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     requestMock.params = {
       id: '1'
     };

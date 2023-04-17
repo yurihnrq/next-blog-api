@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app:
+    env_file:
+      - ../.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: devcontainer
+    volumes:
+      - ..:/home/dev/App:cached
+      # Persist devcontainer's zsh history
+      - app-zsh_history:/home/dev/.commandhistory
+    # Prevent container from exit after build
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    depends_on:
+      - db
+  db:
+    env_file:
+      - ../.env
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+volumes:
+  app-zsh_history:

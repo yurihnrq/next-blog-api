@@ -13,6 +13,8 @@ const getAllUsersController: APIController = new GetAllUsersController(
 
 describe('GetAllUsersController', () => {
   it('should call getAllUsersService and return all users', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     jest.spyOn(getAllUsersService, 'execute');
     requestMock.query = {
       page: undefined

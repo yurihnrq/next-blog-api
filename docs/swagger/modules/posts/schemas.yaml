@@ -1,0 +1,47 @@
+components:
+  schemas:
+    PostId:
+      type: string
+      description: The ID of the post.
+      example: 5f9f1b9b-7b1e-4b9f-8c1a-8c1a8c1a8c1a
+
+    PostContent:
+      type: string
+      description: The content of the post.
+      example: Hello world! Enjoy this post.
+
+    PostTitle:
+      type: string
+      description: The title of the post.
+      example: Documentation is important
+
+    Post:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/PostId'
+        title:
+          $ref: '#/components/schemas/PostTitle'
+        content:
+          $ref: '#/components/schemas/PostContent'
+        authorId:
+          $ref: '#/components/schemas/UserId'
+        createdAt:
+          type: string
+          description: The date and time the post was created.
+          example: 2020-01-01T00:00:00.000Z
+        updatedAt:
+          type: string
+          description: The date and time the post was last updated.
+          example: 2020-01-01T00:00:00.000Z
+
+    CreatePostDTO:
+      type: object
+      properties:
+        title:
+          $ref: '#/components/schemas/PostTitle'
+        content:
+          $ref: '#/components/schemas/PostContent'
+
+    UpdatePostDTO:
+      $ref: '#/components/schemas/CreatePostDTO'

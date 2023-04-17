@@ -20,6 +20,8 @@ describe('CreatePostController', () => {
       userId: postsMock[0].authorId
     };
     jest.spyOn(createPostService, 'execute');
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
 
     await createPostController.execute(requestMock, responseMock);
 

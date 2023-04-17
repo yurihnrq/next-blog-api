@@ -12,6 +12,8 @@ const updateUserController = new UpdateUserController(updateUserService);
 
 describe('UpdateUserController', () => {
   it('should call updateUserService only if client user id matches with user id in the request', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     jest.spyOn(updateUserService, 'execute');
     requestMock.params = {
       id: '1'

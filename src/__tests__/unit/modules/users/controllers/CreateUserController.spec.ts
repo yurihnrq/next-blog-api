@@ -14,6 +14,8 @@ describe('CreateUserController', () => {
   it('should call the createUserService and return a response', async () => {
     requestMock.body = usersMock[0];
     jest.spyOn(createUserService, 'execute');
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
 
     await createUserController.execute(requestMock, responseMock);
 

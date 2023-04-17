@@ -12,6 +12,8 @@ const updatePostController: APIController = new UpdatePostController(
 
 describe('UpdatePostController', () => {
   it('should call updatePostService and return a response', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     jest.spyOn(updatePostService, 'execute');
     requestMock.body = {
       title: 'New title',

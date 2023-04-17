@@ -12,6 +12,8 @@ const getAllPostsController: APIController = new GetAllPostsController(
 
 describe('GetAllPostsController', () => {
   it('should call getAllPostsService and return all posts', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     jest.spyOn(getAllPostsService, 'execute');
     requestMock.query = {
       page: undefined

@@ -1,6 +1,6 @@
 {
   "name": "next-blog-api",
-  "version": "0.3.0-alpha",
+  "version": "0.4.0-alpha",
   "description": "RESTful API to manage users and content for blogs.",
   "main": ".build/index.js",
   "scripts": {

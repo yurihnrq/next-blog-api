@@ -1,15 +1,17 @@
-/users:
+/posts:
   post:
-    description: Create a new user
-    tags: [Users]
+    description: Create a new post
+    security:
+      - bearerAuth: []
+    tags: [Posts]
     requestBody:
-      name: CreateUserDTO
-      description: The user to create.
+      name: CreatePostDTO
+      description: The post to create.
       required: true
       content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserDTO'
+              $ref: '#/components/schemas/CreatePostDTO'
     responses:
       201:
         $ref: '#/components/responses/ResourceCreated'
@@ -21,11 +23,11 @@
         $ref: '#/components/responses/ServerInternalError'
 
   get:
-    description: Get all users
-    tags: [Users]
+    description: Get all posts
+    tags: [Posts]
     responses:
       200:
-        description: Users fetched successfully.
+        description: Posts fetched successfully.
         content:
           application/json:
             schema:
@@ -36,44 +38,29 @@
                   example: true
                 message:
                   type: string
-                  example: Users fetched successfully.
+                  example: Posts fetched successfully.
                 data:
                   type: array
                   items:
-                    $ref: '#/components/schemas/User'
-      204:
-        description: No users found.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                success:
-                  type: boolean
-                  example: true
-                message:
-                  type: string
-                  example: No users found.
-                data:
-                  type: object
-                  nullable: true
-                  example: null
+                    $ref: '#/components/schemas/Post'
+      404:
+        $ref: '#/components/responses/NotFound'
       500:
         $ref: '#/components/responses/ServerInternalError'
 
-/users/{userId}:
+/posts/{postId}:
   get:
-    description: Get data from a specific user
-    tags: [Users]
+    description: Get data from a specific post
+    tags: [Posts]
     parameters:
       - in: path
-        name: userId
-        description: The user id.
+        name: postId
+        description: The post id.
         schema:
-          $ref: '#/components/schemas/UserId'
+          $ref: '#/components/schemas/PostId'
     responses:
       200:
-        description: User fetched successfully.
+        description: Post fetched successfully.
         content:
           application/json:
             schema:
@@ -84,28 +71,28 @@
                   example: true
                 message:
                   type: string
-                  example: User fetched successfully.
+                  example: Post fetched successfully.
                 data:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/components/schemas/Post'
       404:
         $ref: '#/components/responses/NotFound'
       500:
         $ref: '#/components/responses/ServerInternalError'
 
   delete:
-    description: Delete a user.
+    description: Delete a post.
     security:
       - bearerAuth: []
-    tags: [Users]
+    tags: [Posts]
     parameters:
       - in: path
-        name: userId
-        description: The user id.
+        name: postId
+        description: The post id.
         schema:
-          $ref: '#/components/schemas/UserId'
+          $ref: '#/components/schemas/PostId'
     responses:
       200:
-        description: User deleted successfully.
+        description: Post deleted successfully.
         content:
           application/json:
             schema:
@@ -116,7 +103,7 @@
                   example: true
                 message:
                   type: string
-                  example: User deleted successfully.
+                  example: Post deleted successfully.
                 data:
                   type: object
                   nullable: true
@@ -129,27 +116,27 @@
         $ref: '#/components/responses/ServerInternalError'
 
   put:
-    description: Update a user.
+    description: Update a post.
     security:
       - bearerAuth: []
-    tags: [Users]
+    tags: [Posts]
     requestBody:
-      name: UpdateUserDTO
-      description: The user updated data.
+      name: UpdatePostDTO
+      description: The post updated data.
       required: true
       content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserDTO'
+              $ref: '#/components/schemas/UpdatePostDTO'
     parameters:
       - in: path
-        name: userId
-        description: The user id.
+        name: postId
+        description: The post id.
         schema:
-          $ref: '#/components/schemas/UserId'
+          $ref: '#/components/schemas/PostId'
     responses:
       200:
-        description: Users updated successfully.
+        description: Post updated successfully.
         content:
           application/json:
             schema:
@@ -160,7 +147,7 @@
                   example: true
                 message:
                   type: string
-                  example: User updated successfully.
+                  example: Post updated successfully.
                 data:
                   type: object
                   nullable: true
@@ -169,6 +156,8 @@
         $ref: '#/components/responses/InvalidInput'
       401:
         $ref: '#/components/responses/Unauthorized'
+      403:
+        $ref: '#/components/responses/NotAllowed'
       404:
         $ref: '#/components/responses/NotFound'
       409:

@@ -61,7 +61,7 @@ components:
                 example: null
 
     InvalidInput:
-      description: Bad request. Check the error message for more details.
+      description: Bad request. See message for more details.
       content:
         application/json:
           schema:
@@ -91,6 +91,42 @@ components:
               message:
                 type: string
                 example: Resource not found.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    ResourceCreated:
+      description: Resource created successfully. See message to identify the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Resource created successfully.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    NotAllowed:
+      description: Requested action is not allowed. See message for more details.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Action not allowed.
               data:
                 type: object
                 nullable: true

@@ -8,6 +8,7 @@ import { UsersRouter } from '../routers/UsersRouter';
 import { AuthRouter } from '../routers/AuthRouter';
 import { PostsRouter } from '@src/routers/PostsRouter';
 import { ExceptionMiddleware } from '@src/middlewares/ExceptionMiddleware';
+import { swagger } from './swagger';
 const exceptionMiddleware = new ExceptionMiddleware();
 
 const app = express();
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(AuthRouter());
 app.use(UsersRouter());
 app.use(PostsRouter());
+
+app.use('/docs', swagger.serve, swagger.setup);
 
 app.use(exceptionMiddleware.execute);
 

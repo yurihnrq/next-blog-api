@@ -18,6 +18,8 @@ describe('GetUserByIdController', () => {
   });
 
   it('should call getUserByIdService and return a user', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     requestMock.params = {
       id: '1'
     };

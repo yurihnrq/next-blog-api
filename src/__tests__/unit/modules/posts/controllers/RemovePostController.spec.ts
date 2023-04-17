@@ -12,6 +12,8 @@ const removePostController: APIController = new RemovePostController(
 
 describe('RemovePostController', () => {
   it('should call removePostService and return a response', async () => {
+    jest.spyOn(responseMock, 'status');
+    jest.spyOn(responseMock, 'json');
     jest.spyOn(removePostService, 'execute');
     requestMock.params = {
       id: '1'

@@ -10,7 +10,6 @@
     // Configure properties specific to VS Code.
     "vscode": {
       "extensions": [
-        "ms-azuretools.vscode-docker",
         "GitHub.copilot",
         "VisualStudioExptTeam.intellicode-api-usage-examples",
         "Prisma.prisma",

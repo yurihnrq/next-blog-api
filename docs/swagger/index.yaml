@@ -1,0 +1,133 @@
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    ServerInternalError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Server Internal Error, try again.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    Unauthorized:
+      description: Unauthorized request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Unauthorized request.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    Conflict:
+      description: Conflict. See message for more details.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Data already exists.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    InvalidInput:
+      description: Bad request. See message for more details.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Invalid input data.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    NotFound:
+      description: Requested resource not found. See message to identify the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Resource not found.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    ResourceCreated:
+      description: Resource created successfully. See message to identify the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: Resource created successfully.
+              data:
+                type: object
+                nullable: true
+                example: null
+
+    NotAllowed:
+      description: Requested action is not allowed. See message for more details.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Action not allowed.
+              data:
+                type: object
+                nullable: true
+                example: null

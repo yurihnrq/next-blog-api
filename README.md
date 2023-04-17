@@ -22,7 +22,6 @@ Finally, you can run the project in development mode:
 
 ```bash
 yarn dev
-
 ```
 
 ## Responses
@@ -47,4 +46,9 @@ Remember that this is a RESTful API and the reponses always will be devlivered w
 
 ## Documentation
 
-The `docs` folder is where you can find the archive containing the `collection` exported from `Insomnia`.
+The [docs](./docs/) folder is where you can find the API documentation. Two folders are available:
+
+- [swagger](./docs/swagger/): contains the OpenAPI specification for the API.
+- [collection](./docs/collection/): contains the collection file exported from `Insomnia`.
+
+Read more about this project OpenAPI documentation in the [docs/swagger/README.md](./docs/swagger/README.md) file.

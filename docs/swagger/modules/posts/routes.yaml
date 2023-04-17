@@ -1,0 +1,166 @@
+/posts:
+  post:
+    description: Create a new post
+    security:
+      - bearerAuth: []
+    tags: [Posts]
+    requestBody:
+      name: CreatePostDTO
+      description: The post to create.
+      required: true
+      content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePostDTO'
+    responses:
+      201:
+        $ref: '#/components/responses/ResourceCreated'
+      400:
+        $ref: '#/components/responses/InvalidInput'
+      409:
+        $ref: '#/components/responses/Conflict'
+      500:
+        $ref: '#/components/responses/ServerInternalError'
+
+  get:
+    description: Get all posts
+    tags: [Posts]
+    responses:
+      200:
+        description: Posts fetched successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Posts fetched successfully.
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Post'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerInternalError'
+
+/posts/{postId}:
+  get:
+    description: Get data from a specific post
+    tags: [Posts]
+    parameters:
+      - in: path
+        name: postId
+        description: The post id.
+        schema:
+          $ref: '#/components/schemas/PostId'
+    responses:
+      200:
+        description: Post fetched successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Post fetched successfully.
+                data:
+                  $ref: '#/components/schemas/Post'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerInternalError'
+
+  delete:
+    description: Delete a post.
+    security:
+      - bearerAuth: []
+    tags: [Posts]
+    parameters:
+      - in: path
+        name: postId
+        description: The post id.
+        schema:
+          $ref: '#/components/schemas/PostId'
+    responses:
+      200:
+        description: Post deleted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Post deleted successfully.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerInternalError'
+
+  put:
+    description: Update a post.
+    security:
+      - bearerAuth: []
+    tags: [Posts]
+    requestBody:
+      name: UpdatePostDTO
+      description: The post updated data.
+      required: true
+      content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePostDTO'
+    parameters:
+      - in: path
+        name: postId
+        description: The post id.
+        schema:
+          $ref: '#/components/schemas/PostId'
+    responses:
+      200:
+        description: Post updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: Post updated successfully.
+                data:
+                  type: object
+                  nullable: true
+                  example: null
+      400:
+        $ref: '#/components/responses/InvalidInput'
+      401:
+        $ref: '#/components/responses/Unauthorized'
+      403:
+        $ref: '#/components/responses/NotAllowed'
+      404:
+        $ref: '#/components/responses/NotFound'
+      409:
+        $ref: '#/components/responses/Conflict'
+      500:
+        $ref: '#/components/responses/ServerInternalError'

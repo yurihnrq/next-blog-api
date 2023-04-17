@@ -3,7 +3,7 @@
     description: Create a new access token
     tags: [Auth]
     requestBody:
-      name: Login credentials
+      name: ClientAuthDTO
       description: The client login credentials (email and password).
       required: true
       content:

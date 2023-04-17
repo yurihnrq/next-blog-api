@@ -77,3 +77,21 @@ components:
                 type: object
                 nullable: true
                 example: null
+
+    NotFound:
+      description: Requested resource not found. See message to identify the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: false
+              message:
+                type: string
+                example: Resource not found.
+              data:
+                type: object
+                nullable: true
+                example: null

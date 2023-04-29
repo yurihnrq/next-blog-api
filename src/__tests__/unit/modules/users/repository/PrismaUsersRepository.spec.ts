@@ -111,12 +111,14 @@ describe('PrismaUsersRepository', () => {
     const userId = usersMock[0].id;
     prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
 
-    const posts = await usersRepository.getPosts(userId);
+    const posts = await usersRepository.getPosts(userId, 1);
 
     expect(prisma.post.findMany).toHaveBeenCalledWith({
       where: {
         authorId: userId
-      }
+      },
+      take: 10,
+      skip: 10 * (1 - 1)
     });
     expect(posts).toEqual(postsMock);
   });

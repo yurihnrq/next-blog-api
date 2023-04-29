@@ -10,5 +10,5 @@ export interface UsersRepository {
   create(user: CreateUserDTO): Promise<User>;
   update(user: UpdateUserDTO): Promise<User>;
   remove(id: string): Promise<void>;
-  getPosts(id: string): Promise<Post[]>;
+  getPosts(id: string, page: number): Promise<Post[]>;
 }

@@ -82,10 +82,10 @@ export class PrismaUsersRepository implements UsersRepository {
     });
   };
 
-  getPosts = async (id: string, page: number) => {
+  getPosts = async (authorId: string, page: number) => {
     return await this.#prismaClient.post.findMany({
       where: {
-        authorId: id
+        authorId
       },
       take: 10,
       skip: 10 * (page - 1)

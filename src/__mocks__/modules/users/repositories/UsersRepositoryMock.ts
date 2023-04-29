@@ -3,6 +3,8 @@ import { User } from '@src/modules/users/interfaces/User';
 import { UsersRepository } from '@src/modules/users/repositories/interfaces/UsersRepository';
 
 import { usersMock } from '../usersMocks';
+import { Post } from '@src/modules/common/interfaces/Post';
+import { postsMock } from '../../posts/postsMock';
 
 export class UsersRepositoryMock implements UsersRepository {
   getById(_id: string): Promise<User | null> {
@@ -20,7 +22,10 @@ export class UsersRepositoryMock implements UsersRepository {
   remove(_id: string): Promise<void> {
     return Promise.resolve();
   }
-  async create(user: CreateUserDTO): Promise<User> {
+  create(user: CreateUserDTO): Promise<User> {
     return Promise.resolve(user as User);
+  }
+  getPosts(_id: string, _page: number): Promise<Post[]> {
+    return Promise.resolve(postsMock);
   }
 }

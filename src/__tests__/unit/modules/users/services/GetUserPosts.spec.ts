@@ -20,6 +20,22 @@ describe('GetUserPosts service', () => {
     expect(usersRepository.getPosts).toHaveBeenCalledWith('user-id', 1);
   });
 
+  it('should throw na APIError if provided author id is invalid', async () => {
+    jest.spyOn(usersRepository, 'getById').mockResolvedValue(null);
+
+    try {
+      await getUserPostsService.execute('user-id', 1);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(404);
+      expect((error as APIError).message).toBe(
+        'Provided author id is not valid.'
+      );
+    }
+
+    expect.assertions(3);
+  });
+
   it('should throw an APIError if no posts are found', async () => {
     jest.spyOn(usersRepository, 'getPosts').mockResolvedValue([]);
 

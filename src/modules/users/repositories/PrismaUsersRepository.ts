@@ -81,4 +81,17 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
   };
+
+  getPosts = async (authorId: string, page: number) => {
+    return await this.#prismaClient.post.findMany({
+      where: {
+        authorId
+      },
+      take: 10,
+      skip: 10 * (page - 1),
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+  };
 }

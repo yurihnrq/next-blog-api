@@ -10,6 +10,7 @@ import { UpdateUserControllerFactory } from '../modules/users/controllers/factor
 import { ValidationMiddleware } from '@src/middlewares/ValidationMiddleware';
 import { CreateUserSchema } from '@src/modules/users/interfaces/CreateUserDTO';
 import { UpdateUserSchema } from '@src/modules/users/interfaces/UpdateUserDTO';
+import { GetUserPostsControllerFactory } from '@src/modules/users/controllers/factories/GetUserPostsControllerFactory';
 
 export const UsersRouter = () => {
   const router = Router();
@@ -34,6 +35,8 @@ export const UsersRouter = () => {
   router.get('/users/', GetAllUsersControllerFactory().execute);
 
   router.get('/users/:id', GetUserByIdControllerFactory().execute);
+
+  router.get('/users/:authorId/posts', GetUserPostsControllerFactory().execute);
 
   router.delete(
     '/users/:id',

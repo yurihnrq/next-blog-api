@@ -1,5 +1,6 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
+import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import prisma from '@src/configs/prisma';
 import { CreateUserDTO } from '@src/modules/users/interfaces/CreateUserDTO';
 import { UpdateUserDTO } from '@src/modules/users/interfaces/UpdateUserDTO';
@@ -104,5 +105,24 @@ describe('PrismaUsersRepository', () => {
         id: userId
       }
     });
+  });
+
+  it('shold get posts from an user and order by latest created', async () => {
+    const userId = usersMock[0].id;
+    prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
+
+    const posts = await usersRepository.getPosts(userId, 1);
+
+    expect(prisma.post.findMany).toHaveBeenCalledWith({
+      where: {
+        authorId: userId
+      },
+      take: 10,
+      skip: 10 * (1 - 1),
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+    expect(posts).toEqual(postsMock);
   });
 });

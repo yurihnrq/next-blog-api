@@ -3,6 +3,7 @@ import { UsersRepository } from '@src/modules/users/repositories/interfaces/User
 import { GetUserPostsService } from '@src/modules/users/services/interfaces/GetUserPostsService';
 import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import { GetUserPosts } from '@src/modules/users/services/GetUserPosts';
+import APIError from '@src/errors/APIError';
 
 const usersRepository: UsersRepository = new UsersRepositoryMock();
 const getUserPostsService: GetUserPostsService = new GetUserPosts(
@@ -17,5 +18,19 @@ describe('GetUserPosts service', () => {
 
     expect(userPosts).toEqual(postsMock);
     expect(usersRepository.getPosts).toHaveBeenCalledWith('user-id', 1);
+  });
+
+  it('should throw an APIError if no posts are found', async () => {
+    jest.spyOn(usersRepository, 'getPosts').mockResolvedValue([]);
+
+    try {
+      await getUserPostsService.execute('user-id', 1);
+    } catch (error) {
+      expect(error).toBeInstanceOf(APIError);
+      expect((error as APIError).status).toBe(204);
+      expect((error as APIError).message).toBe('No posts found for this user.');
+    }
+
+    expect.assertions(3);
   });
 });

@@ -35,4 +35,16 @@ describe('GetUserPostsController', () => {
     });
     expect(getUserPostsService.execute).toHaveBeenCalledWith('user-id', 1);
   });
+
+  it('should parse page query param if it is provided', async () => {
+    jest.spyOn(global, 'parseInt');
+    const page = '2';
+    requestMock.query = {
+      page
+    };
+
+    await getUserPostsController.execute(requestMock, responseMock);
+
+    expect(global.parseInt).toHaveBeenCalledWith(page);
+  });
 });

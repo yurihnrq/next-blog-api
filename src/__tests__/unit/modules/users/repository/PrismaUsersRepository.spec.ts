@@ -1,5 +1,6 @@
 import { usersMock } from '@mocks/modules/users/usersMocks';
 import { HashProviderMock } from '@mocks/providers/HashProviderMock';
+import { postsMock } from '@src/__mocks__/modules/posts/postsMock';
 import prisma from '@src/configs/prisma';
 import { CreateUserDTO } from '@src/modules/users/interfaces/CreateUserDTO';
 import { UpdateUserDTO } from '@src/modules/users/interfaces/UpdateUserDTO';
@@ -104,5 +105,19 @@ describe('PrismaUsersRepository', () => {
         id: userId
       }
     });
+  });
+
+  it('shold get posts from an user', async () => {
+    const userId = usersMock[0].id;
+    prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
+
+    const posts = await usersRepository.getPosts(userId);
+
+    expect(prisma.post.findMany).toHaveBeenCalledWith({
+      where: {
+        authorId: userId
+      }
+    });
+    expect(posts).toEqual(postsMock);
   });
 });

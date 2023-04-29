@@ -1,4 +1,4 @@
-import { Post } from '@src/modules/posts/interfaces/Post';
+import { Post } from '@src/modules/common/interfaces/Post';
 
 export const postsMock: Post[] = [
   {

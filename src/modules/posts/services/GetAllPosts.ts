@@ -1,5 +1,5 @@
 import APIError from '@src/errors/APIError';
-import { Post } from '../interfaces/Post';
+import { Post } from '../../common/interfaces/Post';
 import { PostsRepository } from '../repositories/interfaces/PostsRepository';
 import { GetAllPostsService } from './interfaces/GetAllPostsService';
 

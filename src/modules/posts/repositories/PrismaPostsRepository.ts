@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Post } from '../interfaces/Post';
+import { Post } from '../../common/interfaces/Post';
 import { CreatePostDTO } from '../interfaces/CreatePostDTO';
 import { PostsRepository } from './interfaces/PostsRepository';
 import { UpdatePostDTO } from '../interfaces/UpdatePostDTO';

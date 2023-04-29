@@ -4,6 +4,7 @@ import { CreateUserDTO } from '../interfaces/CreateUserDTO';
 import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
 import { User } from '../interfaces/User';
 import { UsersRepository } from './interfaces/UsersRepository';
+import { Post } from '@src/modules/common/interfaces/Post';
 
 export class PrismaUsersRepository implements UsersRepository {
   #prismaClient: PrismaClient;
@@ -81,4 +82,12 @@ export class PrismaUsersRepository implements UsersRepository {
       }
     });
   };
+
+  async getPosts(id: string): Promise<Post[]> {
+    return await this.#prismaClient.post.findMany({
+      where: {
+        authorId: id
+      }
+    });
+  }
 }

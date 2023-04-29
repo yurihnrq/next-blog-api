@@ -1,5 +1,5 @@
 import { CreatePostDTO } from '@src/modules/posts/interfaces/CreatePostDTO';
-import { Post } from '@src/modules/posts/interfaces/Post';
+import { Post } from '@src/modules/common/interfaces/Post';
 import { UpdatePostDTO } from '@src/modules/posts/interfaces/UpdatePostDTO';
 import { PostsRepository } from '@src/modules/posts/repositories/interfaces/PostsRepository';
 import { postsMock } from '../postsMock';

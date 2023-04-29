@@ -88,7 +88,10 @@ export class PrismaUsersRepository implements UsersRepository {
         authorId
       },
       take: 10,
-      skip: 10 * (page - 1)
+      skip: 10 * (page - 1),
+      orderBy: {
+        createdAt: 'desc'
+      }
     });
   };
 }

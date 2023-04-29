@@ -107,7 +107,7 @@ describe('PrismaUsersRepository', () => {
     });
   });
 
-  it('shold get posts from an user', async () => {
+  it('shold get posts from an user and order by latest created', async () => {
     const userId = usersMock[0].id;
     prisma.post.findMany = jest.fn().mockResolvedValue(postsMock);
 
@@ -118,7 +118,10 @@ describe('PrismaUsersRepository', () => {
         authorId: userId
       },
       take: 10,
-      skip: 10 * (1 - 1)
+      skip: 10 * (1 - 1),
+      orderBy: {
+        createdAt: 'desc'
+      }
     });
     expect(posts).toEqual(postsMock);
   });

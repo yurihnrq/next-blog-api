@@ -175,3 +175,36 @@
         $ref: '#/components/responses/Conflict'
       500:
         $ref: '#/components/responses/ServerInternalError'
+
+/users/{authorId}/posts:
+  get:
+    description: Get data from a specific user
+    tags: [Users]
+    parameters:
+      - in: path
+        name: authorId
+        description: The posts author id. It is a user id.
+        schema:
+          $ref: '#/components/schemas/UserId'
+    responses:
+      200:
+        description: User posts fetched successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: User posts fetched successfully.
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Post'
+      404:
+        $ref: '#/components/responses/NotFound'
+      500:
+        $ref: '#/components/responses/ServerInternalError'

@@ -2,7 +2,7 @@ FROM fedora:latest
 
 # Install needed packages.
 RUN dnf update -y && \
-  dnf install -y git wget zsh sudo && \
+  dnf install -y git wget xsel zsh sudo && \
   dnf clean all
 
 # Create a non-root - see https://aka.ms/vscode-remote/containers/non-root-user.

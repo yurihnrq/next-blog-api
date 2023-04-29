@@ -12,7 +12,17 @@ import { CreateUserSchema } from '@src/modules/users/interfaces/CreateUserDTO';
 import { UpdateUserSchema } from '@src/modules/users/interfaces/UpdateUserDTO';
 import { GetUserPostsControllerFactory } from '@src/modules/users/controllers/factories/GetUserPostsControllerFactory';
 
-export const UsersRouter = () => {
+/**
+ * Setup the router for the users routes.
+ *
+ * @returns {Router} The router for the users routes.
+ *
+ * @example
+ * import { UsersRouter } from '@src/routers/UsersRouter';
+ *
+ * app.use(UsersRouter());
+ */
+export const UsersRouter = (): Router => {
   const router = Router();
 
   const createUserValitator: APIMiddleware = new ValidationMiddleware(

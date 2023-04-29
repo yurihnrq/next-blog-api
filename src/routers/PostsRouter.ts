@@ -11,7 +11,17 @@ import { TokenProvider } from '@src/providers/interfaces/TokenProvider';
 import { JwtToken } from '@src/providers/JwtToken';
 import { Router } from 'express';
 
-export const PostsRouter = () => {
+/**
+ * Setup the router for the posts routes.
+ *
+ * @returns {Router} The router for the posts routes.
+ *
+ * @example
+ * import { PostsRouter } from '@src/routers/PostsRouter';
+ *
+ * app.use(PostsRouter());
+ */
+export const PostsRouter = (): Router => {
   const router = Router();
 
   const createPostValidator: APIMiddleware = new ValidationMiddleware(

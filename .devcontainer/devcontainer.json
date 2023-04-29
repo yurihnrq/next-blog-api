@@ -20,7 +20,8 @@
         "codezombiech.gitignore",
         "EditorConfig.EditorConfig",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "ritwickdey.LiveServer"
       ],
       "settings": {
         "editor.formatOnSave": true,

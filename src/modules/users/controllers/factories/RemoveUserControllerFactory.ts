@@ -6,7 +6,12 @@ import { RemoveUserService } from '../../services/interfaces/RemoveUserService';
 import { RemoveUser } from '../../services/RemoveUser';
 import { RemoveUserController } from '../RemoveUserController';
 
-export const RemoveUserControllerFactory = () => {
+/**
+ * Factory to create an instance of the RemoveUserController class.
+ *
+ * @returns {RemoveUserController} An instance of the RemoveUserController class.
+ */
+export const RemoveUserControllerFactory = (): RemoveUserController => {
   const hashProvider: HashProvider = new BCryptHash();
 
   const usersRepository = new PrismaUsersRepository(prisma, hashProvider);

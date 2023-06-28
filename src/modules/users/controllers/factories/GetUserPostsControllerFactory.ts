@@ -4,6 +4,11 @@ import { GetUserPosts } from '../../services/GetUserPosts';
 import { GetUserPostsService } from '../../services/interfaces/GetUserPostsService';
 import { GetUserPostsController } from '../GetUserPostsController';
 
+/**
+ * Factory to create an instance of the GetUserPostsController class.
+ *
+ * @returns {GetUserPostsController} An instance of the GetUserPostsController class.
+ */
 export const GetUserPostsControllerFactory = () => {
   const usersRepository: UsersRepository = PrismaUsersRepositoryFactory();
 

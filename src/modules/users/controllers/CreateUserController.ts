@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { CreateUserService } from '../services/interfaces/CreateUserService';
 
+/**
+ * Controller for the POST '/users/' route.
+ *
+ * @param {CreateUserService} createUserService An instance of the CreateUserService class.
+ */
 export class CreateUserController implements APIController {
   #createUserService: CreateUserService;
 

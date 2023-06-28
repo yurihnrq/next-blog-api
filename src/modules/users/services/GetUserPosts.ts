@@ -1,7 +1,11 @@
 import { GetUserPostsService } from './interfaces/GetUserPostsService';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import APIError from '@src/errors/APIError';
+import { Post } from '@src/modules/common/interfaces/Post';
 
+/**
+ * Service to get all posts from a user.
+ */
 export class GetUserPosts implements GetUserPostsService {
   #usersRepository: UsersRepository;
 
@@ -9,7 +13,14 @@ export class GetUserPosts implements GetUserPostsService {
     this.#usersRepository = usersRepository;
   }
 
-  execute = async (authorId: string, page: number) => {
+  /**
+   * Execute the service.
+   *
+   * @param {string} authorId The author id.
+   * @param {number} page The page number.
+   * @returns {Promise<Post[]>} Promise that resolves to an array of posts.
+   */
+  execute = async (authorId: string, page: number): Promise<Post[]> => {
     const user = await this.#usersRepository.getById(authorId);
 
     if (!user) {

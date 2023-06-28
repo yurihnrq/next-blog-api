@@ -3,6 +3,11 @@ import { RemoveUserService } from '../services/interfaces/RemoveUserService';
 import APIError from '@src/errors/APIError';
 import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
+/**
+ * Controller for the DELETE '/users/:id' route.
+ *
+ * @param {RemoveUserService} removeUserService An instance of the RemoveUserService class.
+ */
 export class RemoveUserController implements APIController {
   #removeUserService: RemoveUserService;
 

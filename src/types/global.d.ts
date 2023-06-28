@@ -23,7 +23,19 @@ declare global {
 
   type PaginatedAPIResponse<T = unknown> = APIResponse<PaginatedResults<T>>;
 
+  /**
+   * Interface for API controllers.
+   *
+   * A controller is a class responsible for handling a request and returning a response.
+   */
   interface APIController {
+    /**
+     * Execute the controller.
+     *
+     * @param {Request} req The request object.
+     * @param {Response} res The response object.
+     * @returns {Promise<Response>} A Promise that resolves to a Response object.
+     */
     execute: (req: Request, res: APIResponse) => Promise<Response>;
   }
 

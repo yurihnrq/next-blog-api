@@ -3,6 +3,11 @@ import { UpdateUserService } from '../services/interfaces/UpdateUserService';
 import APIError from '@src/errors/APIError';
 import { AuthInfo } from '@src/modules/common/interfaces/AuthInfo';
 
+/**
+ * Controller for the PUT '/users/:id' route.
+ *
+ * @param {UpdateUserService} updateUserService An instance of the UpdateUserService class.
+ */
 export class UpdateUserController implements APIController {
   #updateUserService: UpdateUserService;
 

@@ -3,6 +3,9 @@ import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import { UpdateUserService } from './interfaces/UpdateUserService';
 
+/**
+ * Service to update a user.
+ */
 export class UpdateUser implements UpdateUserService {
   #usersRepository: UsersRepository;
 
@@ -10,6 +13,12 @@ export class UpdateUser implements UpdateUserService {
     this.#usersRepository = usersRepository;
   }
 
+  /**
+   * Execute the service.
+   *
+   * @param {UpdateUserDTO} data The data to update a user.
+   * @returns {Promise<void>} Promise that resolves to void when the user is updated.
+   */
   execute = async (data: UpdateUserDTO): Promise<void> => {
     const existentUser = await this.#usersRepository.getById(data.id);
 

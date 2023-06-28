@@ -6,7 +6,12 @@ import { UpdateUserService } from '../../services/interfaces/UpdateUserService';
 import { UpdateUser } from '../../services/UpdateUser';
 import { UpdateUserController } from '../UpdateUserController';
 
-export const UpdateUserControllerFactory = () => {
+/**
+ * Factory to create an instance of the UpdateUserController class.
+ *
+ * @returns {UpdateUserController} An instance of the UpdateUserController class.
+ */
+export const UpdateUserControllerFactory = (): UpdateUserController => {
   const hashProvider: HashProvider = new BCryptHash();
 
   const usersRepository = new PrismaUsersRepository(prisma, hashProvider);

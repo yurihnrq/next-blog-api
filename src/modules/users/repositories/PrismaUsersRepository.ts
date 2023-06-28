@@ -5,6 +5,9 @@ import { UpdateUserDTO } from '../interfaces/UpdateUserDTO';
 import { User } from '../interfaces/User';
 import { UsersRepository } from './interfaces/UsersRepository';
 
+/**
+ * Implementation of the UsersRepository interface using Prisma.
+ */
 export class PrismaUsersRepository implements UsersRepository {
   #prismaClient: PrismaClient;
   #hashProvider: HashProvider;

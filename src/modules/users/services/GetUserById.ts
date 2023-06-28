@@ -3,6 +3,9 @@ import { User } from '../interfaces/User';
 import { UsersRepository } from '../repositories/interfaces/UsersRepository';
 import { GetUserByIdService } from './interfaces/GetUserByIdService';
 
+/**
+ * Service to get a user by id.
+ */
 export class GetUserById implements GetUserByIdService {
   #usersRepository: UsersRepository;
 
@@ -10,6 +13,13 @@ export class GetUserById implements GetUserByIdService {
     this.#usersRepository = usersRepository;
   }
 
+  /**
+   * Execute the service.
+   *
+   * @param {string} id The user id.
+   *
+   * @returns {Promise<User>} Promise that resolves to the user.
+   */
   execute = async (id: string): Promise<User> => {
     const existentUser = await this.#usersRepository.getById(id);
 

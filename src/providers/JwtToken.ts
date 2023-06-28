@@ -11,6 +11,9 @@ import { TokenProvider } from './interfaces/TokenProvider';
  * const tokenProvider: TokenProvider = new JwtToken('my-secret');
  */
 export class JwtToken implements TokenProvider {
+  /**
+   * The secret used to sign the token.
+   */
   #secret: string;
 
   /**

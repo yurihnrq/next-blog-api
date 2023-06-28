@@ -2,6 +2,11 @@ import { Post } from '@src/modules/common/interfaces/Post';
 import { Request } from 'express';
 import { GetUserPostsService } from '../services/interfaces/GetUserPostsService';
 
+/**
+ * Controller for the GET '/users/:authorId/posts' route.
+ *
+ * @param {GetUserPostsService} getUserPostsService An instance of the GetUserPostsService class.
+ */
 export class GetUserPostsController implements APIController {
   #getUserPostsService: GetUserPostsService;
 

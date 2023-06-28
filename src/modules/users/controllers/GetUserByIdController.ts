@@ -3,6 +3,11 @@ import { GetUserByIdService } from '../services/interfaces/GetUserByIdService';
 import APIError from '@src/errors/APIError';
 import { User } from '../interfaces/User';
 
+/**
+ * Controller for the GET '/users/:id' route.
+ *
+ * @param {GetUserByIdService} getUserByIdService An instance of the GetUserByIdService class.
+ */
 export class GetUserByIdController implements APIController {
   #getUserByIdService: GetUserByIdService;
 

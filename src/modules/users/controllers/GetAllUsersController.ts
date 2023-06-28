@@ -2,6 +2,11 @@ import { Request, Response } from 'express';
 import { User } from '../interfaces/User';
 import { GetAllUsersService } from '../services/interfaces/GetAllUsersService';
 
+/**
+ * Controller for the GET '/users/' route.
+ *
+ * @param {GetAllUsersService} getAllUsersService An instance of the GetAllUsersService class.
+ */
 export class GetAllUsersController implements APIController {
   #getAllUsersService: GetAllUsersService;
 

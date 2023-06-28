@@ -1,0 +1,16 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "out": "./typedoc-static",
+  "entryPointStrategy": "expand",
+  "entryPoints": [
+    "./src"
+  ],
+  "exclude": [
+    "**/+(__tests__|__mocks__|configs)+/**/*"
+  ],
+  "excludeNotDocumented": true,
+  "plugin": [
+    "typedoc-theme-hierarchy"
+  ],
+  "theme": "hierarchy"
+}

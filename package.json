@@ -17,7 +17,7 @@
     "test:watch": "jest --watchAll --no-cache",
     "test:coverage": "jest --coverage --no-cache",
     "prepare": "husky install",
-    "typedoc:build": "typedoc --out typedoc-static --entryPointStrategy expand ./src --exclude '**/+(__tests__|__mocks__|configs)+/**/*' --excludeNotDocumented",
+    "typedoc:build": "typedoc",
     "typedoc:serve": "serve typedoc-static --listen 6006"
   },
   "repository": {
@@ -75,11 +75,13 @@
     "nodemon": "^2.0.22",
     "prettier": "^2.8.4",
     "prisma": "^4.11.0",
+    "serve": "^14.2.0",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "tsx": "^3.12.5",
     "typedoc": "^0.24.6",
+    "typedoc-theme-hierarchy": "^4.0.0",
     "typescript": "^4.9.5"
   },
   "prisma": {
